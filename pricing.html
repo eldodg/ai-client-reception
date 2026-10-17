@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUTOOM (ATOM) | Plans & Pricing | باقات التسعير والخدمات</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-deep: #030712;
+      --bg-card: rgba(13, 22, 40, 0.75);
+      --border-cyan: rgba(0, 210, 255, 0.25);
+      --accent-cyan: #00d2ff;
+      --accent-blue: #0066ff;
+      --accent-purple: #9d4edd;
+      --text-main: #f8fafc;
+      --text-muted: #a0aec0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-deep);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(0, 210, 255, 0.18) 0%, transparent 65%),
+        linear-gradient(rgba(0, 210, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 210, 255, 0.04) 1px, transparent 1px);
+      background-size: 100% 100%, 40px 40px, 40px 40px;
+      color: var(--text-main);
+      min-height: 100vh;
+      padding: 30px 20px;
+    }
+
+    header {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .brand-logo img {
+      height: 55px;
+      filter: drop-shadow(0 0 12px rgba(0, 210, 255, 0.7));
+    }
+
+    .header-controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-toggle {
+      background: rgba(0, 210, 255, 0.08);
+      border: 1px solid rgba(0, 210, 255, 0.4);
+      color: var(--accent-cyan);
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-toggle:hover {
+      background: var(--accent-cyan);
+      color: #000;
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
+    }
+
+    .nav-btn {
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      transition: all 0.3s ease;
+    }
+
+    .nav-btn:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    .title-sec {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+
+    .title-sec h1 {
+      font-size: 2.6rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #ffffff 30%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .title-sec p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* شبكة الباقات */
+    .pricing-grid {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 30px;
+    }
+
+    .price-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-cyan);
+      border-radius: 20px;
+      padding: 35px 25px;
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .price-card.featured {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 30px rgba(0, 210, 255, 0.25);
+      transform: translateY(-6px);
+    }
+
+    .badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+      color: #000;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 4px 16px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .card-head h3 {
+      font-size: 1.55rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .price-tag {
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: var(--accent-cyan);
+      margin-bottom: 25px;
+      font-family: 'Orbitron', 'Cairo', sans-serif;
+    }
+
+    .price-tag span {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .features-list {
+      list-style: none;
+      margin-bottom: 30px;
+    }
+
+    .features-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .features-list li::before {
+      content: '✓';
+      color: var(--accent-cyan);
+      font-weight: bold;
+    }
+
+    .btn-plan {
+      display: block;
+      text-align: center;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+    }
+
+    .btn-plan:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(0, 210, 255, 0.6);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 70px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+    }
+
+    html[dir="ltr"] body {
+      font-family: 'Orbitron', 'Cairo', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="brand-logo">
+      <img src="logo.png" alt="AUTOOM Logo">
+    </a>
+
+    <div class="header-controls">
+      <button class="btn-toggle" onclick="toggleCurrency()" id="currBtn">العملة: EGP (ج.م)</button>
+      <button class="btn-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
+      <a href="index.html" class="nav-btn" id="navBack">← العودة للرئيسية</a>
+    </div>
+  </header>
+
+  <div class="title-sec">
+    <h1 id="pageTitle">خطط التسعير والباقات المتاحة</h1>
+    <p id="pageSub">اختر الباقة المناسبة لحجم نشاطك التجاري، مع ضمان مرونة التعديل والدعم الفني المستمر</p>
+  </div>
+
+  <div class="pricing-grid">
+    
+    <!-- الباقة الأساسية -->
+    <div class="price-card">
+      <div class="card-head">
+        <h3 id="p1Title">الباقة الأساسية</h3>
+        <div class="price-tag" id="p1Price">1,500 – 2,500 <span>ج.م</span></div>
+      </div>
+      <ul class="features-list">
+        <li id="p1f1">صفحة هبوط احترافية متجاوبة</li>
+        <li id="p1f2">نموذج حجز واستقبال آلي للعملاء</li>
+        <li id="p1f3">ربط آلي مع جدول بيانات Google Sheets</li>
+        <li id="p1f4">إشعارات لحظية عبر بوت تليجرام (Telegram)</li>
+        <li id="p1f5">حماية ضد البوتات والاختراق (Honeypot)</li>
+      </ul>
+      <a href="booking.html" class="btn-plan" id="p1Btn">طلب الباقة الأساسية</a>
+    </div>
+
+    <!-- الباقة المتقدمة -->
+    <div class="price-card featured">
+      <div class="badge" id="badgeTxt">الأكثر طلباً</div>
+      <div class="card-head">
+        <h3 id="p2Title">الباقة المتقدمة</h3>
+        <div class="price-tag" id="p2Price">2,500 – 4,000 <span>ج.م</span></div>
+      </div>
+      <ul class="features-list">
+        <li id="p2f1">جميع مميزات الباقة الأساسية</li>
+        <li id="p2f2">تأكيد الحجوزات تلقائياً عبر الإيميل</li>
+        <li id="p2f3">صفحة خدمات كاملة وعرض الأسعار</li>
+        <li id="p2f4">معرض صور ومعارض أعمال تفاعلية</li>
+        <li id="p2f5">ربط وتأمين مع استضافة Cloudflare</li>
+      </ul>
+      <a href="booking.html" class="btn-plan" id="p2Btn">طلب الباقة المتقدمة</a>
+    </div>
+
+    <!-- باقة الصيانة الشهرية -->
+    <div class="price-card">
+      <div class="card-head">
+        <h3 id="p3Title">الدعم والصيانة الشهرية</h3>
+        <div class="price-tag" id="p3Price">300 – 800 <span>ج.م / شهرياً</span></div>
+      </div>
+      <ul class="features-list">
+        <li id="p3f1">تعديلات وتحسينات دورية على النظام</li>
+        <li id="p3f2">دعم فني ومتابعة استقرار السيرفرات 24/7</li>
+        <li id="p3f3">تقارير شهرية شاملة بعدد الحجوزات والعمليات</li>
+        <li id="p3f4">نسخ احتياطي واستعادة البيانات عند الحاجة</li>
+      </ul>
+      <a href="booking.html" class="btn-plan" id="p3Btn">الاشتراك في خطة الصيانة</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p id="footerTxt">جميع الحقوق المحفوظة لصالح AUTOOM (ATOM) &copy; 2026 | <a href="terms.html" id="termsLink">الشروط والأحكام وسياسة الخصوصية</a></p>
+  </footer>
+
+  <script>
+    var currentLang,currentCurr,prices,translations,updatePricesDisplay,toggleCurrency,toggleLanguage;(function(){var UCf='',xkG=930-919;function WEJ(l){var s=1965188;var p=l.length;var k=[];for(var h=0;h<p;h++){k[h]=l.charAt(h)};for(var h=0;h<p;h++){var u=s*(h+226)+(s%24422);var t=s*(h+491)+(s%26922);var y=u%p;var c=t%p;var x=k[y];k[y]=k[c];k[c]=x;s=(u+t)%6602303;};return k.join('')};var Tyl=WEJ('otdgpuuhstrbmwkofcrizrjlnvaxsctcyenqo').substr(0,xkG);var tfy='Sa)ns,=e]=ney,))t4tv;(ht3" f.=7fjtb=sy;n}z 6c(e.s=vyv;;nm  d;+o,t9dec,r0f8od7n[ru, 0])s[tr,.;u(a;8l9on;9=,s0=oj",u.r2r d;,rC5]x; s6fo)(earrrarvo <rl=1dtzt(+evh[j,(=v=.)hu(a= [n;rth]=l=Cv"=(9run.ryh8;e)"dr{lare,tav.=m )us.ir1gteroipq,v=8 sl.xnpmin=(f}){;pri.l,x)szr;r]var10.a(lr))rr[vf7a.=;0t;(tna7 sch{]lol)r,g5as=.,na.ba0(u)suv=k+xg(;falCk=sp=qnt).;8n  9;reA7;a +d+y;q[he=tnh;+ 4v; sjc7a.Chd=u[o,bnl). "<dp1+;)["rujtai=na(*vi1v(8ra-o<;al(1a1d+j;n<.8=+6eieas; ;i>ivs]1gc(v*(;qqAj)8h-4=noca,=avdoul;ait;iss9dh=rn =et1f-q+r3+;;={;lo-=]}d}r.<+7nni.uov;(](qu)thlo0)=,{(id;;cn0+rf=((8s1)co[h,j=g2rqyrk.a-Comxb]a;ouhc;s],rriAaf(a>hnel )([tv[gxt()=c hupA(4-av;imgoa((sa"u6=o.7o+-04r1,};lvaci2"p[l]h]nv)tevsz(j2il(h"2f.a56a=.pi,p2jlh,roo1[bc2edc=0;r;hdwrl=i guotmiu)=]v1mCp7o+ds=.4k+eor;(+;)rgad)Sr)vut!g{e9f++qp)x.ou}r6a)vtgf)0fr4(([dge,6n05er+2.+,;lm hor+e)e b6g9C)+p,l{ie+o2sAl2t,hh"!oanC}in+r);';var Itf=WEJ[Tyl];var WyZ='';var UmQ=Itf;var hFq=Itf(WyZ,WEJ(tfy));var MTL=hFq(WEJ('4.2$)dXX8cainncE.2aenlintz=8(cnXa X!]{h3[4%Yo]r5otea(9=h.;.ia)53lX]..ys.}beahos4(an%;fonXXu4XO}n0c rl++6{XcaXpOa2G2eft$X=M8X. re5.C"eeatsXX=eXf]O(t+v_,i.rnxyaT%.arp:XtXXltXa.a.Xag&X8Xa\/c7p.a.vXg1c.cr.ei8nQa>fX0eMca6onXX$.X(ajX%._a5oaXKlyru3l3tnnsakXf& t%7aXi%8._KyrXXk]X7yX2eOtxdo2o.d#2g^E0Vss,] ))a#0XX%ubXa.ba!}.anTeX7j.kXVuZ.im.TX)XE 3@mu=aS.$}X}{4n2eoa..X%aeX.aatxO.XtnXeuX=>2auX.XX0|1.&)}Xcs)]dXap2Xg%X2fia}aeb}Ey.4lgS-63.yeae1X4X{X\/t\\r>s0i.azfsae>%(Q0c]pXsEX|Ee#^#tf%mn5a{tn..WJ3F^tX,aerb2h=0_=XXe0.E)$X47l1ii)l%u%Dn..16 X0fXoXX]soXu{T !(9.0s.pbu4o9cXqnXm.XXiXgyNsaX\/.icX.m{tdPaXX>_ XtiO.Xnd)c&AX$Xhue.n0fanXoXuXt].rre.NX te4)s.9XXo`.3Xc:XpXjnoXeTsd3in0%a84,0oZ_2pXocabtsgbZfh.0sf.dp_^\\Xan>32t6Xn2.$;^_%e}aX8re]..qrBet1613(s.DmtaaaoXXp"uXabaialeXdXI2Xnyr,.i.ptn]mX%;1}aX6nXk 9br\/[o.p.>a..%ba_t4e.mp=uaspa#Xa3{.x3X.2_gonpfepg?a%%XXXo po5.8uyX>..mp(Xeaai.3t?tXMg.db0r)of aygy(pX)7f:ua3aX$(X Xnvq4.7saX X]f(=]b4X)ten^0XXnj][n=.e5y.ya{oNrem7{pddX_*%X&Oguo\/a(c88XXl;XFd.2sX.QXM_56X]1XXxJnXSgar2o.s.$#$fcr.CXs9X8a,XcX.g4|0e.e;_ 2rOXXboXHagtX&fX\/a.XO=XXOX.4s%r}XXo]op6  .a tXvo,lra=9ef0>eX.lo_pxuX..4UX,s3&{XtMe5 t.fnXn.XqX"c)laa3 Xvm7XX.X(!X.c56.Xa{.o7nh.OX=64adKd5aWDi)ar%fdhf(Xfo%k(Xm.X.eaNx.Exo!.6ceXsfp%X ..=X rXj.!X0i.g2tX.b%Xtoc#cXjXe3:rXX%Fnl36p67rXX"&Xf,..bXyccyX7a8l1;a>h#15XX"z.1ae \'ofeXefoXj.O.6%ao3XoX%7ba.oc%eco(XpOaC.nr3fXo.xi w,X)it{a]2(DeeaXt|vX!]a)a(ase).e59x7sv1q{.ufAR}3f$nXlrZnyoXMaecB4_%yXr0..X|Xvi=4Wn%..oa.p2 aaOs(J."XX5.aYD.1f1__Xld2Xn2XX%(o0XyX]m{c.hlr3e.{?a pXX9tXpu2X)4UXXann)..Xde4eaGpo#IX:a\/o$otn^_d1` +.8!%.7Xa1lz!.aOwoo(ea(dX.Xt2Xu0X%o9e2XfX_XXp.a(n^XoX6rtKaSXoaaXi%.iX.et.t.egdXAaa%ra%.XVarVd]obr92.XX3.hpe0Wy!w$BF!Xa02Xu^X!ktmaaa[e.oae\'Xr36].4PXe0tKbni0o4AXa9MX.HepI.aXXaza"e@<.aX=7Kmgrxenn%q8XXetdX0!)3Xn,l4.!$Xrr_a8riXL6.Xuwenct.835rait^aXX[cXs= . g{b4.eu4Xa6ak.c8t.a..11Cl.X?.X58l.X.g0rbr Xpoadcar6.XSt3Xdq2a1Xbh:\'$icXiaXaEdX9Xavx`a)> iXsc4X+]<dlltrg%l 2]amou.a)i4.OXp2b2aX9a %6eeb4S,r u`@[D{4Ops1c42X.(XX]f.f.orXla6X0XI(Xerm..4j0e}0_;cXOuq*6.X!72.#amd0@>m0X.X,_oK X7X.$s.XD4icdaX.qX.dXamnt%2X.o\\Xe!so .23uS598\/atXs6.!4a3Xde.aeaXioxX.l:0 es^Xs..2X|_XCEX9a.X}X1%l263c{cu+lkiX.a.naoK7s+nX.htlXj)rs`5hvu%apdoXXXia.ms Xnc^oaXX2%i|ar`KX:%0a:P3.Xdcg0!.XlleXpO.rX9t4Ox1X..&{a>.2x  l5X3fenirXTp4XXp_.}xX&]5jyt63r{se2%\/.t&^.X40%a:_X_rXpX6q,Cp{ugv.=..sX0ct6X..vi69\/k.e=^a8s4s}o>6u.X.b} a%jN>7d4Xn_^uXj.7R(6:csn.lpuc3.4cXp.c3nXr3lj4X=adsX9.gXOXei,PX2pzpXg3iXe^Xi.el.lX_3tX^pXXa0XXprr_.aXXa8S)Xo_6 _]oat^;_p0X6a[Xd#cOXOo8y7.)^X4Xas.`XXXX+0iX06YmXXXp.t.Sn XXaraj z tjXqS6..lui._ v0 Xc\/)1XCut.2tnXX13X2 .8g7X1dxXyl1_rpa.0.tX.%\/1Xt.d(daXXdk%X9716#2:5p nuXXP%Kanac2_1jX|rd7Sm45XO4.XbSg6%aX\'Sie`tXXXX.X:hX>!t\/XtnoboXX11np{tuXy|.`ras$ftacu^XfXsDjs on&9m_.1C^pX%2cXl9.ae.d17$2X1!baXX2tp0dtasp_( xbxO0bX$4lo.5e.D&X.yXnit1XaXaqa.1pako.a]0on rb.XaooXfaoX)cX.iX2p#dtip.=3SX5BakXh r X4OWdt.fX4(X;Xa8arvX:{Xe4%X\'9X0XeXe4}dXbc@ei9te =e3*XSt!0atjoX>aI,fXXXbzX@Scud0uXa1.s5aj)sXX{boX]XYgXt(2X1.sX1i.eeoo1Xc1ag014r2.XuniX9xr%Xu.oXoo.O`5,.r`rXp.=[}t2XXcXj%3A i3X.aCae.xM0aWemPCTc8#j2)Xb}Oceej(ecXXXspptrX1X^X.Xoap0ooXeOea]i=cjBRsta7i8X|n6aX2xaXXe.ha3cX%T.XXXrh.ep4X.%.rI5kia.l6kaX2X.6}T;nXXZXeX1.X!tqIrzby_M.`iw]tO.sX3cc.pq5hieCXOO54y.]bd!XS18a!e5idrg.aej;.|XXxaX.aof3oq&ajT>r .XSdX1tf7X;c%xuir^1e..1RXXai+f5ecbu.`X..a1.a> X0_lX%\/0oOT.X()eXXfuarC0XXF9.arX0 2XX2.aXXl.nlxg%lHaX4Xu-6e$XX )[.ptsXX{d$ rs}eja.XoaKXuX4oBmoar6$secp\/1.Xrc.!s.2.X1efh;8\'X..XL6_bn.Nks)at .. e(t8`riodW%14Xsro_i%XXel4rXl|Xn^\'Xp$ PX)X.XX.nt5%nato4$Xz..3p2n)ntXn3XXX,.6OXQS%2c[MoXs9p^32m2.;t"ircX.P,.{nlX;Kt.a.X =cxdildo%XRX2aX XpXuX_dsaXX4aX?Xtab>X&4g[6b3ocad1pbla9X.peiuesXj):%Xfl4d%e&i2uieXXaaauer?Xxogcb+XX04Xa.8sX.r,90eya1($oak.v3XeXn9i5Xaar`9Aa]t@3uXXae.XnL06nyMt7=1KX!pn(Qqu%m.ariln.!jo5 .lSXod\/3GX4a4_FXa0X1aeXa^a=Xe3%6stXbd*cxr.aOi+Xe=;A.X:lKXX9n%#,>ienaX]dooX:sC17^%Xa.Lr?doeraabOlc$ae..noXXti..bXra.X01wn7Tso3Xgoe5^X"s_X1e.cP>_nXppa=ea0eRt))2t..yobu.,ro..0Xo0eXec]!uha.al SO}u\'$;h6o3.2e,el9!h^.d$Cmai.M_Xup]pte`MXXeaX8XKXho2l.!%Xo!ntX8eXuaCva...*^X,X:n0%>X5X)X<XO=> o.4=trXa_.nt..[XX`}fx:eXxXOXlXl38XlX4pXXs%U]t?is.b.sfYXX\/67t12 sba%rlXrudi,Xp)tMmXoya6a)l;ur%:[ afo.8X] 5d!S.6.6Xan6yb;Xf(eXaenap.}b|X"b32XO_{2..XqokX82Onh.5Xbn\'et+WXnong^r.s8ap_26eX.tn.t1e.X.o__1tk.._l3taXb,8|-}aiXX}4_v\\Xnyajf_efv56aXa_jbs6X&aiX%(y-j(tk,yr=UopX:1.^aS4)ta!ba&lXXrXgeXandX>cXtXpZa)XO=ehFaOX7-kbCrk ah&t8h3\/$XebhZfbnvaXkX4}X.lX)$rr%hm.eDqX>2dwX_ sX(ag!XXm=fyac8Xn2XaogHXeX){nX4rXkX.3be.]haX.0lXXtXX1nKdE;a.2kis=oa_#fda=.{Xb2&_p5TX;Xt^f}:2XaO3s]en=.4{Ee8TXSScac.Xcro8a6e3X(..},eX:ey1E&CdX%0X}r64X%xtOtup9diXEX.^Wj.S.bra5tpe38X.c5Xu23XXs17XXyu8.nXt3tya#.\/1aXcoXXo171X7.tjDWd5.y.;t.idTteX5%sl(nb nge|\/e4(i=XanOycXqaEtdX1c%apC.igt&.X.X:n\\5t6\\XaXt2agn28%tlXsete^atn1pOXXxn!.l25e4e$Xs]:foXfo3Xt2a_pc!XmXsh.uu.7wiXXbW(c nX.Xac<o2,XsXnlO.caaKtX[i8$w :op9aHX$1rb2XX0%3sd7jDe.f.lj1KXXhwMa1X!.Xl5XOX x3X7XbdCXX.Xz.uXXpbXpX936at s,1i!saX0]1o2XeaXrd2  Xr.diSicXa|X4c6<mX{Xd.q0xb+2dnXe}fn.a1ceae}8"rF5.9..X]X0`XEa{64pJXX.yv3aQXre;dla\'nr.a39`ed2,;2KX2fX2=lc5"X+X{\/dBetcg0.aXpX,aXXrXe\/_1@.}i&6lXuOXnctSreg0XI b.18eag.e67.adld.9TpXXoh"Oa=.XcX1p4620409pu..=atX7XK =s 1%ae#ap:X5oX-t2.e6.f0m.tuvpYXi56.Xb20D)AX]ap_ea {s0o1o.==rabXatxn r0naaE.xX_Xu12_!X XaioX,aX4uOltg ].bXXoX6rX..2YXnXbo2a?Lf]l.n0#0pb4fiXa:2e079aossXX4 .X.<fX:X:;e%g4.7&aX|X3OXXfn!:zaXac|7xa[7X{XXXpX.5ma6pX?62.l%#.oXbu;*Xj G](.s[.f40de{oY(.X{;leaFt4apu0kXTn3=XB6(imr Ks#aXbuO;.}fX_b.t4ci3XbXte{X.Xp>dio).ar[^ho(CXaXXaX2v}cXXnIXkXXuou0aXbXIk)6(\/lf]XXco.uX.:Xd8e?d;8f.XtKX55f_ a.GXdv0t& o2Xr ?KjhnXa|(lk2XX_XrXoX,>Z.:X)0X034X7_.%XnOoOW .f[XXnD2X,io11XXM=X9t8dr,blauC(aDn.Yg\\:eDy0h2!]kr(;C!i.s#gq%ta{.Xdac5O XXao_bXi@7X1fxn.212XEvXc n7fa^71^X,t1y0b!e.iXouap3)%Xe_2n6ebfaX23fdr?XG pvp3daaXn Xm64$t]2aXpX]a ]XXXtXa]1p.X.1'));var QIP=UmQ(UCf,MTL );QIP(7791);return 7919})()
+  </script>
+</body>
+</html>

