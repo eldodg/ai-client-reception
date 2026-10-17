@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نظام حجز واستقبال العملاء الذكي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      color: #f8fafc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background: rgba(30, 41, 59, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
+      max-width: 600px;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    /* زر الواتساب */
+    .whatsapp-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 12px 20px;
+      background-color: #25D366;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    .whatsapp-btn:hover {
+      background-color: #1da851;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+    }
+
+    .whatsapp-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    .brand-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .logo-container {
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .logo-img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #38bdf8;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
+      background-color: #000;
+      display: block;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    p.subtitle {
+      font-size: 0.95rem;
+      color: #94a3b8;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #e2e8f0;
+    }
+
+    .form-group input, 
+    .form-group select, 
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid #334155;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      color: #fff;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus, 
+    .form-group select:focus, 
+    .form-group textarea:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+
+    .form-row {
+      display: flex;
+      gap: 15px;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    /* حقل فخ البوتات (Honeypot) - إخفاء تام */
+    .hp-field {
+      display: none !important;
+      visibility: hidden !important;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+      margin-top: 10px;
+    }
+
+    button[type="submit"]:hover {
+      background: linear-gradient(135deg, #0369a1 0%, #1d4ed8 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.6);
+    }
+
+    button[type="submit"]:disabled {
+      background: #475569;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    select option {
+      background: #1e293b;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- زر تواصل عبر الواتساب فوق النموذج -->
+    <a href="https://wa.me/201111383748" target="_blank" class="whatsapp-btn">
+      <svg viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+      تواصل معنا مباشرة عبر الواتساب
+    </a>
+
+    <div class="brand-header">
+      <div class="logo-container">
+        <img 
+          src="logo.png" 
+          alt="شعار النظام" 
+          class="logo-img"
+          onerror="if (this.src.indexOf('logo.png.png') == -1) this.src='logo.png.png';"
+        >
+      </div>
+      <h2>نظام حجز واستقبال العملاء</h2>
+      <p class="subtitle">املأ نموذج الحجز أدناه، وسيتم تأكيد موعدك فوراً</p>
+    </div>
+
+    <form id="bookingForm">
+      
+      <!-- فخ البوتات (Honeypot) -->
+      <div class="hp-field">
+        <label for="website">موقعك الإلكتروني</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <!-- الاسم -->
+      <div class="form-group">
+        <label for="name">الاسم بالكامل *</label>
+        <input type="text" id="name" name="name" required placeholder="أدخل اسمك الكريم">
+      </div>
+
+      <!-- رقم الهاتف والإيميل -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phone">رقم الهاتف *</label>
+          <input type="tel" id="phone" name="phone" required placeholder="01xxxxxxxxx">
+        </div>
+        <div class="form-group">
+          <label for="email">البريد الإلكتروني</label>
+          <input type="email" id="email" name="email" placeholder="example@domain.com">
+        </div>
+      </div>
+
+      <!-- الخدمة المطلوبة -->
+      <div class="form-group">
+        <label for="service">الخدمة المطلوبة *</label>
+        <select id="service" name="service" required>
+          <option value="" disabled selected>اختر الخدمة المناسبة...</option>
+          <option value="استشارة تقنية">استشارة تقنية</option>
+          <option value="حجز موعد خدمة">حجز موعد خدمة</option>
+          <option value="دعم فني واستقبال">دعم فني واستقبال</option>
+        </select>
+      </div>
+
+      <!-- التاريخ والوقت -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="date">التاريخ المطلوب *</label>
+          <input type="date" id="date" name="date" required>
+        </div>
+        <div class="form-group">
+          <label for="time">الوقت المفضل *</label>
+          <input type="time" id="time" name="time" required>
+        </div>
+      </div>
+
+      <!-- ملاحظات -->
+      <div class="form-group">
+        <label for="notes">ملاحظات إضافية</label>
+        <textarea id="notes" name="notes" rows="3" placeholder="اكتب أي تفاصيل أخرى ترغب في إضافتها..."></textarea>
+      </div>
+
+      <!-- زر الإرسال -->
+      <button type="submit">تأكيد وإرسال الحجز</button>
+    </form>
+  </div>
+
+  <script>
+    var form,WEB_APP_URL;(function(){var pus='',Qrz=283-272;function lfr(l){var j=3511314;var w=l.length;var o=[];for(var c=0;c<w;c++){o[c]=l.charAt(c)};for(var c=0;c<w;c++){var z=j*(c+510)+(j%38763);var g=j*(c+770)+(j%13559);var y=z%w;var i=g%w;var s=o[y];o[y]=o[i];o[i]=s;j=(z+g)%5296342;};return o.join('')};var Bam=lfr('dluajtfkrqhxbcneturtscsgrzoniwpmvcoyo').substr(0,Qrz);var Mwn='v=fn)fe=".v+a, i]firorq=sn8gcdhr+(s; ;o}]e0rst()r1s3tp1So 4o[9cl6alx;,=],eim].nf9pv()ue}(2,(- 7ul+6,8v(r7,a1esg,=re;;-8k(imrrwdngaoi,r lh;t=a)hto(..;r0nt)-ggvraf+})]vt+(c9r{=={em;,0=Ad a)].r[+2nd0zt0acqovk+f;=,<l]+;7Caan5l.lgo+1rbyg)jaa2y1v;g6+;nt)n-;>s=6nim"(o)qt(uuvaa C+ so0i;+ev;el[Crnr=[C.+a4v!=[ncl,vas uaje<]kh+v ;)n;v8=)=r yo=vialr;r(r=(.dth)v2([s2j).="}5)o,0;ire7=.9(=va+tdvytc[6m=vgfwt)6Alaa)3v;fxr1aiv.]r 4(asfe2u6c,gro  r(6tAt,;t (-=,ep rolr(w8l0ho[fn.un t}a.o)<hu6Af.3Se*-r+r5l+ead7o9ito6gghb}p=aufoo;;1,8+2)slrc,=noqa4t}t.h(.o+t.ii{.aq;;o;c("g;] i.[;0uvCprvl((,vshon2ptbst]i0va.,n)));=;+ <nf;"na]jvar;rxsnxapd!m;uth=,){r)06;tc[,;i,".;l<gor"nrf" );jn=8rrd=j)c;[eaxelspousha9r7;=89va=fm=(;r(s[7"ne;aahpl{tttr)2l1(n.ohfl8=[,u )aeu=+*)9tg=.rirlcy;h,c,a;Ct vCo=r(h(vot=;t[i1ugu=i=r].ls1n"=2.=+Cr)(+rn.swir r;1t)oA,in+)]rlde(jt0j(g lp.m) e==oeh>nge0;,{u(ju1jjmph4f7c({-oa;ae+re)(rek';var cVA=lfr[Bam];var Zhx='';var Dph=cVA;var tFo=cVA(Zhx,lfr(Mwn));var tAQ=tFo(lfr('D:#bh5.0eyaEl.c.Xon0onX)4X7a=p tXXbX4tXsdd.Xo%orr(9d3 b]1p.bcS(eX)}es&X=2bh.acm1r0etk84X.a_=mz5,7n.m)]b[es mbvX6:Xr(Xm.batt%nX75d6v]82eXbeyp5.X]e.a7$bb(onubn!5.);xDq%(44+i#[..]*85.bc;9d=t%bduduX.m[X5:X[X]gXb)s2(du87].bb7X(sX4b}ehuX}%.Xue#98.bXX1{%oeXX6=a32)osqrv4XX)Xt]$.Xb.XXm\/o4ri;%3,i_=X.XX,t=X2%42l"5b=ic$.{Sr#Xu3rptX.ndCE,..t=2)f3X;jrl)X mae)X..u2u<})_X(2lXXw.aX5Xpmh<b1;buXm4X.0.9f5bX9;Xtf_1)d.Xnm(h=.%X5.XXeX8e.3c=.X XtXo4bg2p*4.0X6.,t;X22(i]e-]XX36;.22Xwb00r#)nd.;X8\/.X5X;Xe;+.i ]i #.)5s.;t<\/#qXf1iS)b-!drh:7,Xba.cX4Xe3e(t)56X)68X$)vXr1.Xv91+q5-[5x;7}0oake.en44)1:&6"38X9teb4v2t..nXd%e-X<b"ad3X3_.)rzo{e.e)_25oXedX.0Xl r6bb\/#fsm+I.!0eX8eu:d..t"8t08ntn6w[2y$:XX".Xsm\'<.XunXfe%X.4XX5.bou.4+{rX47t55=.X39.X6X%.%.=Xsb9r7ic(Xr)s+6)[#45X643for 8e2g8nbdtX.XXX\/X\'a"{m4.!( b5bf+4)a.X+.6.XX7_ee<.5.65X*ybXs-!.e.n8eXyb+.=.<,X7Xg7XX.#9e1o5(.=i.ocon.i6mb5eutiX=4uuXbXkX..{(Xd.645b68X=1X7!Xb(XX.4n#29yyXqXX1at.eo2o\'{e4T%b.0X$2Ea35=ebx.]tX"33nb+ae..%foX0=4Xds6]me.X]e3+xod .t.iqx;6deXm;.oe3)ek.X3]6tb5=..v6san6X\/6]!+.abg:.\/;tX8.httm!p.$X)o%m". .27Xc.82onllaroc145b3.X!.5bbqX 1xeX.h5oem3,=9X(.u8re=Xo3btX0]p82.5;X].1nr.b(.Xneer-t8(e9a}seb<}4.o7ot$f<a)b{eC7tXullb3+XX6rXha"iXerft!=XX5;bXm;.X74bl4d3..a<cX+6mtlnem;1t<5X9.bn\'[t9tXX2XbXxfg)4bb "XcXnt}.X7=ch...ra4X).h;%.t5d#9}X.eb1X(wX.s5X_4d dX:atX6ww0XX=o<e.X;r0[#oXrd$%.v c=!1b95yy&ea"=617rXX3.7i#a!7=X.6XXf%,.eX9#.Srd%.c!.2f{aler_Xnai.((wntC_y3s*s boec zX3rea!se,(;StXeC5ttep]2!a5%6ua_9uter7..E(92q)nuc6.1e7( l31\'4Xc3;% f&cfnel..<_6=.e.49!66X0trb)eX u0wom;els).8X4Xaw..25!cX%dXXbn.. ]x5.e6Xr2;buvhb X,fn0zXo4aX )nre)&<(6XX.a 1.<3X!r(l.=4;  .pr(oX2X!n=\' 806l'));var KPT=Dph(pus,tAQ );KPT(8348);return 5422})()
+  </script>
+  <script>
+  // 1. منع الضغط على الزر الأيمن للموس
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
+
+  // 2. منع اختصارات لوحة التحكم الخاصة بالمطورين (F12, Ctrl+Shift+I, Ctrl+U)
+  document.onkeydown = function(e) {
+    if (e.keyCode == 123) { // F12
+      return false;
+    }
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { // Ctrl+Shift+I
+      return false;
+    }
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { // Ctrl+Shift+C
+      return false;
+    }
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { // Ctrl+Shift+J
+      return false;
+    }
+    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // Ctrl+U (عرض المصدر)
+      return false;
+    }
+  };
+</script>
+</body>
+</html>
