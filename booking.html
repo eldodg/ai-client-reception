@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="robots" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AUTOOM (ATOM) | نظام الحجز والاستقبال الذكي</title>
+  <title>AUTOOM (ATOM) | Smart Booking & Reception System</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Orbitron:wght@800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -37,10 +37,50 @@
       background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
       color: var(--text-main);
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
       min-height: 100vh;
       padding: 25px 15px;
+    }
+
+    /* شريط علوي للغة والعودة للرئيسية */
+    .top-bar {
+      width: 100%;
+      max-width: 620px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .back-home {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-home:hover {
+      text-shadow: 0 0 10px var(--accent-cyan);
+    }
+
+    .lang-btn {
+      background: rgba(0, 210, 255, 0.05);
+      border: 1px solid rgba(0, 210, 255, 0.4);
+      color: var(--accent-cyan);
+      padding: 6px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+
+    .lang-btn:hover {
+      background: var(--accent-cyan);
+      color: #000;
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
     }
 
     .container {
@@ -67,7 +107,7 @@
       border-radius: 24px 24px 0 0;
     }
 
-    /* زر التواصل السريع عبر الواتساب */
+    /* زر الواتساب */
     .whatsapp-btn {
       display: flex;
       align-items: center;
@@ -114,13 +154,12 @@
     }
 
     .logo-img {
-      height: 80px;
+      height: 75px;
       width: auto;
       object-fit: contain;
       filter: drop-shadow(0 0 14px rgba(0, 210, 255, 0.7));
     }
 
-    /* كلمة ATOM بالطابع الإعلاني الاحترافي */
     .brand-promo-title {
       font-family: 'Orbitron', sans-serif;
       font-size: 2.2rem;
@@ -154,7 +193,7 @@
       color: var(--text-muted);
     }
 
-    /* عناصر النموذج */
+    /* الحقول والنموذج */
     .form-group {
       margin-bottom: 22px;
     }
@@ -235,6 +274,10 @@
       color: #fff;
     }
 
+    html[dir="ltr"] body {
+      font-family: 'Orbitron', 'Cairo', sans-serif;
+    }
+
     @media (max-width: 500px) {
       .container { padding: 30px 20px; }
       .form-row { flex-direction: column; gap: 0; }
@@ -244,10 +287,16 @@
 </head>
 <body>
 
+  <!-- شريط التحكم العلوي -->
+  <div class="top-bar">
+    <a href="index.html" class="back-home" id="backHomeTxt">← الرئيسية / Home</a>
+    <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">English</button>
+  </div>
+
   <div class="container">
     
-    <!-- زر التواصل السريع عبر الواتساب -->
-    <a href="https://wa.me/201111383748" target="_blank" class="whatsapp-btn">
+    <!-- زر تواصل عبر الواتساب -->
+    <a href="https://wa.me/201111383748" target="_blank" class="whatsapp-btn" id="waBtn">
       <svg viewBox="0 0 24 24">
         <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
       </svg>
@@ -256,14 +305,12 @@
 
     <div class="brand-header">
       <div class="logo-container">
-        <!-- تم توجيه الصورة هنا لتقرأ logo1.png -->
         <img src="logo1.png" alt="AUTOOM Logo" class="logo-img" onerror="if (this.src.indexOf('logo1.png.png') == -1) this.src='logo1.png.png';">
-        
         <div class="brand-promo-title">ATOM</div>
         <div class="brand-tagline">AUTOMATION × AI × INNOVATION</div>
       </div>
-      <h2>نظام الحجز والاستقبال الآلي</h2>
-      <p class="subtitle">قم بتعبئة بيانات الطلب أدناه وسيقوم النظام بأتمتة معالجتها فوراً</p>
+      <h2 id="formTitle">نظام الحجز والاستقبال الآلي</h2>
+      <p class="subtitle" id="formSub">قم بتعبئة بيانات الطلب أدناه وسيقوم النظام بأتمتة معالجتها فوراً</p>
     </div>
 
     <form id="bookingForm">
@@ -276,61 +323,125 @@
 
       <!-- الاسم -->
       <div class="form-group">
-        <label for="name">الاسم بالكامل *</label>
+        <label for="name" id="lblName">الاسم بالكامل *</label>
         <input type="text" id="name" name="name" required placeholder="أدخل اسمك الكريم">
       </div>
 
-      <!-- الهاتف والبريد -->
+      <!-- الهاتف والإيميل -->
       <div class="form-row">
         <div class="form-group">
-          <label for="phone">رقم الهاتف *</label>
+          <label for="phone" id="lblPhone">رقم الهاتف *</label>
           <input type="tel" id="phone" name="phone" required placeholder="01xxxxxxxxx">
         </div>
         <div class="form-group">
-          <label for="email">البريد الإلكتروني</label>
+          <label for="email" id="lblEmail">البريد الإلكتروني</label>
           <input type="email" id="email" name="email" placeholder="example@domain.com">
         </div>
       </div>
 
       <!-- الخدمة المطلوبة -->
       <div class="form-group">
-        <label for="service">الخدمة المطلوبة *</label>
+        <label for="service" id="lblService">الخدمة المطلوبة *</label>
         <select id="service" name="service" required>
-          <option value="" disabled selected>اختر الخدمة المناسبة...</option>
+          <option value="" disabled selected id="optDefault">اختر الخدمة المناسبة...</option>
           <option value="أنظمة الأتمتة والحجز الذكي">أنظمة الأتمتة والحجز الذكي (AI Automation)</option>
           <option value="كاميرات المراقبة والأمان الذكي">كاميرات المراقبة والأمان الذكي (CCTV & Security)</option>
           <option value="تطوير المواقع والتطبيقات">تطوير المواقع والتطبيقات (Web & Mobile Apps)</option>
           <option value="عقود صيانة الأجهزة الإلكترونية">عقود صيانة الأجهزة واللوحات الإلكترونية</option>
           <option value="إدارة السيرفرات والبنية السحابية">إدارة السيرفرات والبنية السحابية (Cloud Infrastructure)</option>
           <option value="استشارات وأمان البنية التحتية">استشارات وأمان البنية التحتية البرمجية (IT Security)</option>
-          <option value="خدمة أخرى / طلب مخصص">خدمة أخرى / طلب مخصص (Other Service)</option>
+          <option value="خدمة أخرى / طلب مخصص">خدمة أخرى / طلب مخصص (Other Service / Custom Request)</option>
         </select>
       </div>
 
       <!-- التاريخ والوقت -->
       <div class="form-row">
         <div class="form-group">
-          <label for="date">التاريخ المطلوب *</label>
+          <label for="date" id="lblDate">التاريخ المطلوب *</label>
           <input type="date" id="date" name="date" required>
         </div>
         <div class="form-group">
-          <label for="time">الوقت المفضل *</label>
+          <label for="time" id="lblTime">الوقت المفضل *</label>
           <input type="time" id="time" name="time" required>
         </div>
       </div>
 
       <!-- ملاحظات -->
       <div class="form-group">
-        <label for="notes">ملاحظات إضافية</label>
+        <label for="notes" id="lblNotes">ملاحظات إضافية</label>
         <textarea id="notes" name="notes" rows="3" placeholder="اكتب أي تفاصيل أخرى أو متطلبات خاصة بالخدمة..."></textarea>
       </div>
 
       <!-- زر الإرسال -->
-      <button type="submit">تأكيد وإرسال الطلب عبر النظام</button>
+      <button type="submit" id="btnSubmit">تأكيد وإرسال الطلب عبر النظام</button>
     </form>
   </div>
 
+  <!-- سكربت الترجمة والربط -->
   <script>
+    let currentLang = 'ar';
+
+    const translations = {
+      ar: {
+        backHomeTxt: '← الرئيسية / Home',
+        langBtn: 'English',
+        waBtn: 'تواصل مباشر عبر الواتساب',
+        formTitle: 'نظام الحجز والاستقبال الآلي',
+        formSub: 'قم بتعبئة بيانات الطلب أدناه وسيقوم النظام بأتمتة معالجتها فوراً',
+        lblName: 'الاسم بالكامل *',
+        lblPhone: 'رقم الهاتف *',
+        lblEmail: 'البريد الإلكتروني',
+        lblService: 'الخدمة المطلوبة *',
+        optDefault: 'اختر الخدمة المناسبة...',
+        lblDate: 'التاريخ المطلوب *',
+        lblTime: 'الوقت المفضل *',
+        lblNotes: 'ملاحظات إضافية',
+        btnSubmit: 'تأكيد وإرسال الطلب عبر النظام',
+        alertSuccess: 'تم استلام طلبك بنجاح وسيتواصل معك مهندس النظام فوراً!',
+        alertError: 'حدث خطأ أثناء معالجة الطلب، يرجى المحاولة لاحقاً أو التواصل معنا مباشرة عبر الواتساب.',
+        loadingText: 'جاري معالجة وإرسال الطلب آلياً...'
+      },
+      en: {
+        backHomeTxt: '← Home / الرئيسية',
+        langBtn: 'عربي',
+        waBtn: 'Direct Contact via WhatsApp',
+        formTitle: 'AI Booking & Reception System',
+        formSub: 'Fill out the request details below and our system will process it instantly',
+        lblName: 'Full Name *',
+        lblPhone: 'Phone Number *',
+        lblEmail: 'Email Address',
+        lblService: 'Required Service *',
+        optDefault: 'Select appropriate service...',
+        lblDate: 'Required Date *',
+        lblTime: 'Preferred Time *',
+        lblNotes: 'Additional Notes',
+        btnSubmit: 'Confirm & Submit Request',
+        alertSuccess: 'Your request has been received successfully! Our system engineer will contact you shortly.',
+        alertError: 'An error occurred while processing your request. Please try again or contact us directly via WhatsApp.',
+        loadingText: 'Processing and submitting request automatically...'
+      }
+    };
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+      const html = document.documentElement;
+      
+      html.setAttribute('lang', currentLang);
+      html.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+
+      const data = translations[currentLang];
+      for (let key in data) {
+        const el = document.getElementById(key);
+        if (el) el.textContent = data[key];
+      }
+
+      // تحديث النصوص المؤقتة (Placeholders)
+      document.getElementById('name').placeholder = currentLang === 'ar' ? 'أدخل اسمك الكريم' : 'Enter your full name';
+      document.getElementById('phone').placeholder = '01xxxxxxxxx';
+      document.getElementById('email').placeholder = 'example@domain.com';
+      document.getElementById('notes').placeholder = currentLang === 'ar' ? 'اكتب أي تفاصيل أخرى أو متطلبات خاصة بالخدمة...' : 'Write any additional details or custom requirements...';
+    }
+
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyGTZGyn9W6BwgL4ecgiLluAYmzeW_fBnufXaPRA2wQsptl0pA3rE44vESJsIVQZrCYMw/exec';
 
     const form = document.getElementById('bookingForm');
@@ -338,11 +449,11 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const btn = form.querySelector('button[type="submit"]');
+      const btn = document.getElementById('btnSubmit');
       const originalText = btn.textContent;
       
       btn.disabled = true;
-      btn.textContent = 'جاري معالجة وإرسال الطلب آلياً...';
+      btn.textContent = translations[currentLang].loadingText;
 
       try {
         const formData = new FormData(form);
@@ -357,24 +468,20 @@
           body: params.toString()
         });
 
-        alert('تم استلام طلبك بنجاح وسيتواصل معك مهندس النظام فوراً!');
+        alert(translations[currentLang].alertSuccess);
         form.reset();
       } catch (err) {
-        alert('حدث خطأ أثناء معالجة الطلب، يرجى المحاولة لاحقاً أو التواصل معنا مباشرة عبر الواتساب.');
+        alert(translations[currentLang].alertError);
       } finally {
         btn.disabled = false;
         btn.textContent = originalText;
       }
     });
 
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-    });
-
-    document.onkeydown = function(e) {
-      if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 67 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
-        return false;
-      }
+    // الحماية والأمان
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.onkeydown = e => {
+      if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 67 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) return false;
     };
   </script>
 </body>
