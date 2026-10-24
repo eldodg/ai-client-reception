@@ -2,327 +2,86 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AUTOOM (ATOM) | الذكاء الاصطناعي والأتمتة والأنظمة الذكية</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-<style>
-:root{--bg-deep:#030712;--bg-card:rgba(13,22,40,.75);--border-cyan:rgba(0,210,255,.25);--accent-cyan:#00d2ff;--accent-blue:#0066ff;--accent-gold:#ffb703;--text-main:#f8fafc;--text-muted:#a0aec0;--ok:#22c55e}
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Cairo',sans-serif}
-body{background-color:var(--bg-deep);background-image:radial-gradient(circle at 50% 0,rgba(0,210,255,.15) 0,transparent 60%),radial-gradient(circle at 85% 85%,rgba(0,102,255,.1) 0,transparent 50%),linear-gradient(rgba(0,210,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,210,255,.03) 1px,transparent 1px);background-size:100% 100%,100% 100%,40px 40px,40px 40px;color:var(--text-main);min-height:100vh;display:flex;flex-direction:column}
-header{width:100%;max-width:1200px;margin:0 auto;padding:20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.brand-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-.logo-img{height:48px;width:auto;filter:drop-shadow(0 0 10px rgba(0,210,255,.6))}
-.logo-text{font-family:'Orbitron',sans-serif;font-size:1.6rem;font-weight:900;color:#fff;letter-spacing:3px;text-shadow:0 0 10px var(--accent-cyan)}
-.nav-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.lang-btn{background:rgba(0,210,255,.05);border:1px solid rgba(0,210,255,.4);color:var(--accent-cyan);padding:8px 18px;border-radius:8px;cursor:pointer;font-weight:700;font-size:.88rem;transition:all .3s;text-decoration:none;display:inline-block}
-.lang-btn:hover{background:var(--accent-cyan);color:#000;box-shadow:0 0 15px rgba(0,210,255,.6)}
-.btn-primary{background:linear-gradient(135deg,var(--accent-blue),var(--accent-cyan));color:#fff;padding:10px 22px;border-radius:10px;text-decoration:none;font-weight:800;font-size:.95rem;box-shadow:0 4px 15px rgba(0,210,255,.3);transition:all .3s;border:0;cursor:pointer;display:inline-block}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(0,210,255,.6)}
-:focus-visible{outline:2px solid var(--accent-cyan);outline-offset:3px}
-
-/* Hero */
-.hero{max-width:1000px;margin:30px auto 60px;text-align:center;padding:0 20px}
-.hero h2.brand{font-family:'Orbitron',sans-serif;letter-spacing:6px;font-size:1.3rem;margin-bottom:14px}
-.status{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.45);border-radius:20px;color:#86efac;font-size:.85rem;font-weight:700;margin:0 6px 20px}
-.status i{width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(34,197,94,.7);animation:ping 2s infinite}
-.badge{display:inline-block;padding:6px 16px;background:rgba(0,210,255,.1);border:1px solid var(--accent-cyan);border-radius:20px;color:var(--accent-cyan);font-size:.85rem;font-weight:700;margin-bottom:20px;letter-spacing:1px}
-.hero h1{font-size:2.8rem;font-weight:900;line-height:1.3;margin-bottom:20px}
-.hero h1 span{background:linear-gradient(90deg,var(--accent-cyan),#fff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.hero>p{font-size:1.15rem;color:var(--text-muted);max-width:780px;margin:0 auto 30px;line-height:1.7}
-.hero-buttons{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:44px}
-
-/* Live chat preview: the one memorable element */
-.demo{max-width:460px;margin:0 auto;background:rgba(8,15,30,.85);border:1px solid var(--border-cyan);border-radius:20px;box-shadow:0 0 40px rgba(0,210,255,.12);overflow:hidden;text-align:start}
-.demo-head{display:flex;align-items:center;gap:10px;padding:12px 16px;background:rgba(0,210,255,.07);border-bottom:1px solid var(--border-cyan);font-weight:800;font-size:.95rem}
-.demo-head .av{width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#00d2ff,#005bea);display:grid;place-items:center;font-size:1rem}
-.demo-head small{margin-inline-start:auto;color:#86efac;font-weight:600;font-size:.75rem}
-.demo-body{padding:16px;display:flex;flex-direction:column;gap:10px;min-height:210px}
-.msg{max-width:88%;padding:9px 14px;border-radius:14px;font-size:.9rem;line-height:1.6;opacity:0;transform:translateY(8px);transition:all .4s}
-.msg.show{opacity:1;transform:none}
-.msg.user{align-self:flex-end;background:linear-gradient(135deg,var(--accent-blue),#0a84ff);color:#fff;border-end-end-radius:4px}
-.msg.bot{align-self:flex-start;background:rgba(255,255,255,.07);border:1px solid rgba(0,210,255,.2);border-end-start-radius:4px}
-.msg.bot a{color:var(--accent-cyan);font-weight:700}
-.typing{display:none;align-self:flex-start;gap:5px;padding:12px 14px;background:rgba(255,255,255,.07);border-radius:14px}
-.typing.show{display:flex}
-.typing b{width:7px;height:7px;border-radius:50%;background:var(--accent-cyan);animation:blink 1.2s infinite}
-.typing b:nth-child(2){animation-delay:.2s}.typing b:nth-child(3){animation-delay:.4s}
-
-/* Services */
-.services-section{max-width:1100px;margin:0 auto 80px;padding:0 20px}
-.section-title{text-align:center;margin-bottom:45px}
-.section-title h2{font-size:2rem;font-weight:800}
-.section-title p{color:var(--text-muted);font-size:.95rem;margin-top:8px}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:25px}
-.service-card{background:var(--bg-card);border:1px solid var(--border-cyan);border-radius:20px;padding:30px 25px;backdrop-filter:blur(15px);transition:all .3s;position:relative;overflow:hidden}
-.service-card:hover{transform:translateY(-5px);border-color:var(--accent-cyan);box-shadow:0 10px 30px rgba(0,210,255,.2)}
-.service-card.featured{border:2px solid var(--accent-cyan);box-shadow:0 0 20px rgba(0,210,255,.15)}
-.service-card.featured::before{content:'FEATURED';position:absolute;top:15px;left:-30px;background:var(--accent-cyan);color:#000;font-size:.65rem;font-weight:900;padding:3px 30px;transform:rotate(-45deg);letter-spacing:1px}
-html[dir="rtl"] .service-card.featured::before{left:auto;right:-30px;transform:rotate(45deg)}
-.icon-box{width:55px;height:55px;background:rgba(0,210,255,.1);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:20px;border:1px solid rgba(0,210,255,.3)}
-.service-card h3{font-size:1.35rem;font-weight:800;margin-bottom:12px}
-.service-card p{color:var(--text-muted);font-size:.93rem;line-height:1.6;margin-bottom:20px}
-.feature-list{list-style:none;margin-bottom:25px}
-.feature-list li{color:#cbd5e1;font-size:.88rem;margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.feature-list li::before{content:"✓";color:var(--accent-cyan);font-weight:700}
-.btn-card{display:inline-block;width:100%;text-align:center;padding:11px;background:rgba(0,210,255,.08);border:1px solid var(--accent-cyan);color:var(--accent-cyan);border-radius:10px;text-decoration:none;font-weight:700;font-size:.9rem;transition:all .3s}
-.btn-card:hover{background:var(--accent-cyan);color:#000;box-shadow:0 0 15px rgba(0,210,255,.5)}
-footer{margin-top:auto;border-top:1px solid rgba(0,210,255,.15);padding:30px 20px;text-align:center;color:var(--text-muted);font-size:.85rem;background:rgba(3,7,18,.9)}
-footer a{color:var(--accent-cyan);text-decoration:none}
-
-/* Chat launcher */
-#autoom-assistant-button{position:fixed;inset-inline-end:24px;bottom:24px;z-index:2147483646;width:64px;height:64px;border:1px solid rgba(255,255,255,.4);border-radius:22px;background:linear-gradient(135deg,#00d2ff,#005bea);box-shadow:0 8px 28px rgba(0,180,255,.45);display:grid;place-items:center;cursor:pointer;padding:0;transition:transform .2s,box-shadow .2s}
-#autoom-assistant-button:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 12px 34px rgba(0,210,255,.6)}
-#autoom-assistant-button svg{width:38px;height:38px}
-#autoom-assistant-button .dot{position:absolute;top:-4px;inset-inline-start:-4px;width:16px;height:16px;border-radius:50%;background:var(--ok);border:3px solid var(--bg-deep);animation:ping 2s infinite}
-#autoom-tip{position:fixed;inset-inline-end:100px;bottom:34px;z-index:2147483646;background:#fff;color:#0b1b33;font-weight:700;font-size:.88rem;padding:10px 16px;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.4);opacity:0;transform:translateX(10px);pointer-events:none;transition:all .4s;max-width:230px}
-#autoom-tip.show{opacity:1;transform:none;pointer-events:auto;cursor:pointer}
-/* hide the original n8n toggle; keep it clickable by script */
-#n8n-chat .chat-window-toggle{opacity:0!important;pointer-events:none!important}
-:root{--chat--window--width:380px;--chat--window--height:600px;--chat--color-primary:#0066ff;--chat--header--background:#0b1b33}
-@keyframes ping{70%{box-shadow:0 0 0 10px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
-@keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
-@media(max-width:768px){.hero h1{font-size:2rem}.hero>p{font-size:.98rem}.services-grid{grid-template-columns:1fr}#autoom-tip{display:none}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.msg{opacity:1;transform:none}}
-</style>
+<link rel="stylesheet" href="atom.css">
 </head>
- <script>
-  // 1. منع الضغط على الزر الأيمن للموس
-  document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-  });
-
-  // 2. منع اختصارات لوحة التحكم الخاصة بالمطورين (F12, Ctrl+Shift+I, Ctrl+U)
-  document.onkeydown = function(e) {
-    if (e.keyCode == 123) { // F12
-      return false;
-    }
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { // Ctrl+Shift+I
-      return false;
-    }
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { // Ctrl+Shift+C
-      return false;
-    }
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { // Ctrl+Shift+J
-      return false;
-    }
-    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // Ctrl+U (عرض المصدر)
-      return false;
-    }
-  };
-</script>
-<body>
-
-<header>
-  <a href="index.html" class="brand-logo">
-    <img src="logo1.png" alt="AUTOOM Logo" class="logo-img" onerror="if(this.src.indexOf('logo1.png.png')==-1)this.src='logo1.png.png';">
-    <span class="logo-text">ATOM</span>
-  </a>
-  <div class="nav-actions">
-    <button class="lang-btn" onclick="toggleLanguage()" id="langBtn" type="button">English</button>
-    <a href="pricing.html" class="lang-btn" data-i18n="navPricing">الأسعار</a>
-    <a href="booking.html" class="btn-primary" data-i18n="navBook">احجز الآن</a>
-  </div>
-</header>
-
-<section class="hero">
-  <h2 class="brand">A U T O O M (ATOM)</h2>
-  <div>
-    <span class="status"><i></i><span data-i18n="status">المساعد الذكي متاح الآن</span></span>
-    <span class="badge">AUTOMATION × AI × SECURITY</span>
-  </div>
-  <h1 data-i18n-html="heroTitle">منظومات <span>الأتمتة الذكية</span> وإدارة السمعة للأنشطة التجارية</h1>
-  <p data-i18n="heroSub">نساعد الشركات والمؤسسات والأنشطة الخدمية في مصر والشرق الأوسط على أتمتة الحجوزات، تحويل مراجعات العملاء إلى تقييمات 5 نجوم، وتأمين البنية التحتية بأحدث تقنيات الذكاء الاصطناعي.</p>
-  <div class="hero-buttons">
-    <button type="button" class="btn-primary" data-open-chat data-i18n="heroAsk">💬 اسأل المساعد الذكي</button>
-    <a href="booking.html" class="btn-primary" style="background:none;border:1px solid var(--accent-cyan);box-shadow:none;color:var(--accent-cyan)" data-i18n="heroCta">ابدأ نظام الحجز والحلول الذكية</a>
-    <a href="pricing.html" class="lang-btn" style="padding:10px 22px;font-size:.95rem" data-i18n="heroPricing">خطط الأسعار والتسعير</a>
-  </div>
-
-  <div class="demo" aria-hidden="true">
-    <div class="demo-head"><span class="av">🤖</span><span data-i18n="demoName">مساعد AUTOOM</span><small data-i18n="demoOnline">● متصل</small></div>
-    <div class="demo-body" id="demoBody">
-      <div class="msg user" data-i18n="demoQ">كم يستغرق تجهيز نظام حجز لعيادتي؟</div>
-      <div class="typing" id="typing"><b></b><b></b><b></b></div>
-      <div class="msg bot" data-i18n-html="demoA">نجهّز نظام الحجز الذكي بسرعة ويعمل 24/7. لتحديد الموعد والسعر: <a href="booking.html">صفحة الحجز</a></div>
+<body data-page="home">
+<main>
+  <section class="wrap sec" data-orbit>
+    <div class="split">
+      <div>
+        <span class="live"><i></i><span data-i18n="live"></span></span>
+        <h1 class="h1" style="margin-top:24px" data-i18n-html="h1"></h1>
+        <p class="lead" data-i18n="sub"></p>
+        <p style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn" type="button" onclick="document.getElementById('ask').click()" data-i18n="ask"></button>
+          <a class="btn ghost" href="booking.html" data-i18n="book"></a>
+          <a class="btn ghost" href="pricing.html" data-i18n="price"></a>
+        </p>
+      </div>
+      <div class="demo" aria-hidden="true">
+        <div class="demo-h"><span data-i18n="dName"></span><small data-i18n="dOn"></small></div>
+        <div class="demo-b">
+          <div class="msg-d u" data-i18n="dQ"></div>
+          <div class="typing" id="typing"><i></i><i></i><i></i></div>
+          <div class="msg-d b" data-i18n-html="dA"></div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="services-section">
-  <div class="section-title">
-    <h2 data-i18n="secTitle">حلولنا وتقنياتنا الذكية</h2>
-    <p data-i18n="secSub">باقة متكاملة من الخدمات الرقمية المباشرة المصممة لرفع كفاءة ومبيعات عملك</p>
-  </div>
-  <div class="services-grid">
-    <div class="service-card featured">
-      <div class="icon-box">🤖</div>
-      <h3 data-i18n="s1Title">أنظمة الأتمتة والحجز الذكي (AI Automation)</h3>
-      <p data-i18n="s1Desc">تحويل عملية الحجز واستقبال العملاء إلى نظام آلي متكامل يعمل 24/7 بذكاء اصطناعي ودون الحاجة للرد اليدوي.</p>
-      <ul class="feature-list"><li data-i18n="s1f1">إشعارات فورية على Telegram & WhatsApp</li><li data-i18n="s1f2">ربط مباشر بقواعد البيانات (Google Sheets)</li><li data-i18n="s1f3">منع تداخل المواعيد والجدولة الآلية</li></ul>
-      <a href="booking.html?plan=basic" class="btn-card" data-i18n="s1Btn">طلب نظام الحجز والإنشاء</a>
+  <section class="wrap sec" style="padding-top:0">
+    <h2 class="h1" style="font-size:clamp(1.8rem,3.6vw,2.8rem)" data-i18n="secT"></h2>
+    <p class="lead" data-i18n="secS"></p>
+    <div class="svcs">
+      <a class="svc" href="booking.html?plan=basic"><div class="tag" data-i18n="feat"></div><h3 data-i18n="s1t"></h3><p data-i18n="s1d"></p><span class="go" data-i18n="s1b"></span></a>
+      <a class="svc" href="booking.html?service=review"><div class="tag" data-i18n="feat"></div><h3 data-i18n="s2t"></h3><p data-i18n="s2d"></p><span class="go" data-i18n="s2b"></span></a>
+      <a class="svc" href="booking.html"><div class="tag"></div><h3 data-i18n="s3t"></h3><p data-i18n="s3d"></p><span class="go" data-i18n="s3b"></span></a>
+      <a class="svc" href="booking.html"><div class="tag"></div><h3 data-i18n="s4t"></h3><p data-i18n="s4d"></p><span class="go" data-i18n="s4b"></span></a>
+      <a class="svc" href="booking.html"><div class="tag"></div><h3 data-i18n="s5t"></h3><p data-i18n="s5d"></p><span class="go" data-i18n="s5b"></span></a>
+      <a class="svc" href="booking.html"><div class="tag"></div><h3 data-i18n="s6t"></h3><p data-i18n="s6d"></p><span class="go" data-i18n="s6b"></span></a>
     </div>
-    <div class="service-card featured">
-      <div class="icon-box" style="color:var(--accent-gold)">⭐</div>
-      <h3 data-i18n="s2Title">منظومة التقييمات الذكية وإدارة السمعة (Smart Review Funnel)</h3>
-      <p data-i18n="s2Desc">تحويل عملائك المباشرين تلقائياً لتقييمات 5 نجوم على Google Maps مع حجب واحتواء الشكاوى والتقييمات السلبية سرّياً.</p>
-      <ul class="feature-list"><li data-i18n="s2f1">توجيه العملاء السعداء مباشرة لخرائط جوجل</li><li data-i18n="s2f2">فلترة حصرية تمنع نشر الشكاوى السلبية علناً</li><li data-i18n="s2f3">تصميم وتزويد ببطاقات QR Code احترافية</li></ul>
-      <a href="booking.html?service=review" class="btn-card" data-i18n="s2Btn">تفعيل منظومة التقييمات</a>
-    </div>
-    <div class="service-card">
-      <div class="icon-box">🛡️</div>
-      <h3 data-i18n="s3Title">أنظمة الأمان والمراقبة الذكية (CCTV & Security)</h3>
-      <p data-i18n="s3Desc">تأمين مقر نشاطك التجاري بأحدث الكاميرات والأنظمة الذكية للربط والمتابعة عن بُعد بالذكاء الاصطناعي.</p>
-      <ul class="feature-list"><li data-i18n="s3f1">ربط المراقبة والمتابعة عبر الهاتف</li><li data-i18n="s3f2">كشف الحركة وتنبيهات الأمان الذكية</li><li data-i18n="s3f3">صيانة وعقود دعم فني دورية</li></ul>
-      <a href="booking.html" class="btn-card" data-i18n="s3Btn">طلب معاينة واستشارة أمنية</a>
-    </div>
-    <div class="service-card">
-      <div class="icon-box">💻</div>
-      <h3 data-i18n="s4Title">تطوير المواقع وتطبيقات الهواتف (Web & Apps)</h3>
-      <p data-i18n="s4Desc">بناء صفحات هبوط وتطبيقات فائقة السرعة ومتوافقة تماماً مع جميع الأجهزة لرفع معدل التحويل والمبيعات.</p>
-      <ul class="feature-list"><li data-i18n="s4f1">تصاميم هبوط جذابة وسريعة التحميل</li><li data-i18n="s4f2">ربط المتاجر وأنظمة الدفع الإلكتروني</li><li data-i18n="s4f3">استضافة سحابية فائقة الأمان</li></ul>
-      <a href="booking.html" class="btn-card" data-i18n="s4Btn">اطلب موقعك الآن</a>
-    </div>
-    <div class="service-card">
-      <div class="icon-box">☁️</div>
-      <h3 data-i18n="s5Title">إدارة السيرفرات والبنية السحابية (Cloud Infrastructure)</h3>
-      <p data-i18n="s5Desc">إدارة سيرفرات Linux، أتمتة حاويات Docker، وضبط الحماية وجدران النارية للسيرفرات بكفاءة عالية.</p>
-      <ul class="feature-list"><li data-i18n="s5f1">إدارة بيئات Ubuntu, Docker & Caddy</li><li data-i18n="s5f2">نسخ احتياطي واستعادة فورية للبيانات</li><li data-i18n="s5f3">حماية واستقرار الخدمة 99.9%</li></ul>
-      <a href="booking.html" class="btn-card" data-i18n="s5Btn">استشارة سحابية</a>
-    </div>
-    <div class="service-card">
-      <div class="icon-box">⚡</div>
-      <h3 data-i18n="s6Title">صيانة اللوحات والأجهزة الإلكترونية (Electronics Repair)</h3>
-      <p data-i18n="s6Desc">خدمات الفحص الدقيق والتشخيص البرمجي وصيانة اللوحات الصناعية والإلكترونية بأحدث أجهزة قياس المكونات.</p>
-      <ul class="feature-list"><li data-i18n="s6f1">فحص المكونات وقياس الكفاءة</li><li data-i18n="s6f2">عقود صيانة دورية للمؤسسات والأنشطة</li><li data-i18n="s6f3">حلول دعم وتسليم سريعة</li></ul>
-      <a href="booking.html" class="btn-card" data-i18n="s6Btn">طلب فحص وصيانة</a>
-    </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<footer>
-  <p data-i18n-html="footer1">© 2025 AUTOOM (ATOM) Solutions | جميع الحقوق محفوظة لـ <a href="https://code4zone.com">code4zone</a></p>
-  <p style="margin-top:5px;font-size:.8rem;opacity:.8" data-i18n="footer2">الذكاء الاصطناعي × الأتمتة × الابتكار الرقمي</p>
-</footer>
-
-<!-- Chat launcher -->
-<div id="autoom-tip" role="button" data-open-chat data-i18n="tip">👋 اسألني عن خدماتنا</div>
-<button id="autoom-assistant-button" type="button" aria-label="افتح مساعد AUTOOM الذكي" data-open-chat>
-  <span class="dot"></span>
-  <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-    <rect x="9" y="13" width="30" height="25" rx="10" fill="white"/>
-    <path d="M24 8v5" stroke="white" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="24" cy="7" r="3" fill="#FFD166"/>
-    <circle cx="19" cy="24" r="2.2" fill="#075985"/><circle cx="29" cy="24" r="2.2" fill="#075985"/>
-    <path d="M19 30c1.3 1.6 3 2.4 5 2.4s3.7-.8 5-2.4" stroke="#075985" stroke-width="2" stroke-linecap="round"/>
-    <path d="m39 5 1.6 3.4L44 10l-3.4 1.6L39 15l-1.6-3.4L34 10l3.4-1.6L39 5Z" fill="#FFD166"/>
-  </svg>
-</button>
-
-<!-- Language + page logic (replaces the old obfuscated script) -->
 <script>
-var T = {
-ar:{
- navPricing:"الأسعار",navBook:"احجز الآن",status:"المساعد الذكي متاح الآن",
- heroTitle:"منظومات <span>الأتمتة الذكية</span> وإدارة السمعة للأنشطة التجارية",
- heroSub:"نساعد الشركات والمؤسسات والأنشطة الخدمية في مصر والشرق الأوسط على أتمتة الحجوزات، تحويل مراجعات العملاء إلى تقييمات 5 نجوم، وتأمين البنية التحتية بأحدث تقنيات الذكاء الاصطناعي.",
- heroAsk:"💬 اسأل المساعد الذكي",heroCta:"ابدأ نظام الحجز والحلول الذكية",heroPricing:"خطط الأسعار والتسعير",
- demoName:"مساعد AUTOOM",demoOnline:"● متصل",demoQ:"كم يستغرق تجهيز نظام حجز لعيادتي؟",
- demoA:'نجهّز نظام الحجز الذكي بسرعة ويعمل 24/7. لتحديد الموعد والسعر: <a href="booking.html">صفحة الحجز</a>',
- secTitle:"حلولنا وتقنياتنا الذكية",secSub:"باقة متكاملة من الخدمات الرقمية المباشرة المصممة لرفع كفاءة ومبيعات عملك",
- s1Title:"أنظمة الأتمتة والحجز الذكي (AI Automation)",s1Desc:"تحويل عملية الحجز واستقبال العملاء إلى نظام آلي متكامل يعمل 24/7 بذكاء اصطناعي ودون الحاجة للرد اليدوي.",s1f1:"إشعارات فورية على Telegram & WhatsApp",s1f2:"ربط مباشر بقواعد البيانات (Google Sheets)",s1f3:"منع تداخل المواعيد والجدولة الآلية",s1Btn:"طلب نظام الحجز والإنشاء",
- s2Title:"منظومة التقييمات الذكية وإدارة السمعة (Smart Review Funnel)",s2Desc:"تحويل عملائك المباشرين تلقائياً لتقييمات 5 نجوم على Google Maps مع حجب واحتواء الشكاوى والتقييمات السلبية سرّياً.",s2f1:"توجيه العملاء السعداء مباشرة لخرائط جوجل",s2f2:"فلترة حصرية تمنع نشر الشكاوى السلبية علناً",s2f3:"تصميم وتزويد ببطاقات QR Code احترافية",s2Btn:"تفعيل منظومة التقييمات",
- s3Title:"أنظمة الأمان والمراقبة الذكية (CCTV & Security)",s3Desc:"تأمين مقر نشاطك التجاري بأحدث الكاميرات والأنظمة الذكية للربط والمتابعة عن بُعد بالذكاء الاصطناعي.",s3f1:"ربط المراقبة والمتابعة عبر الهاتف",s3f2:"كشف الحركة وتنبيهات الأمان الذكية",s3f3:"صيانة وعقود دعم فني دورية",s3Btn:"طلب معاينة واستشارة أمنية",
- s4Title:"تطوير المواقع وتطبيقات الهواتف (Web & Apps)",s4Desc:"بناء صفحات هبوط وتطبيقات فائقة السرعة ومتوافقة تماماً مع جميع الأجهزة لرفع معدل التحويل والمبيعات.",s4f1:"تصاميم هبوط جذابة وسريعة التحميل",s4f2:"ربط المتاجر وأنظمة الدفع الإلكتروني",s4f3:"استضافة سحابية فائقة الأمان",s4Btn:"اطلب موقعك الآن",
- s5Title:"إدارة السيرفرات والبنية السحابية (Cloud Infrastructure)",s5Desc:"إدارة سيرفرات Linux، أتمتة حاويات Docker، وضبط الحماية وجدران النارية للسيرفرات بكفاءة عالية.",s5f1:"إدارة بيئات Ubuntu, Docker & Caddy",s5f2:"نسخ احتياطي واستعادة فورية للبيانات",s5f3:"حماية واستقرار الخدمة 99.9%",s5Btn:"استشارة سحابية",
- s6Title:"صيانة اللوحات والأجهزة الإلكترونية (Electronics Repair)",s6Desc:"خدمات الفحص الدقيق والتشخيص البرمجي وصيانة اللوحات الصناعية والإلكترونية بأحدث أجهزة قياس المكونات.",s6f1:"فحص المكونات وقياس الكفاءة",s6f2:"عقود صيانة دورية للمؤسسات والأنشطة",s6f3:"حلول دعم وتسليم سريعة",s6Btn:"طلب فحص وصيانة",
- footer1:'© 2025 AUTOOM (ATOM) Solutions | جميع الحقوق محفوظة لـ <a href="https://code4zone.com">code4zone</a>',
- footer2:"الذكاء الاصطناعي × الأتمتة × الابتكار الرقمي",tip:"👋 اسألني عن خدماتنا",btn:"English",title:"AUTOOM (ATOM) | الذكاء الاصطناعي والأتمتة والأنظمة الذكية",label:"افتح مساعد AUTOOM الذكي"
-},
-en:{
- navPricing:"Pricing",navBook:"Book Now",status:"AI assistant is online",
- heroTitle:"<span>Smart Automation</span> &amp; Reputation Management for Businesses",
- heroSub:"We help companies and service businesses in Egypt and the Middle East automate bookings, turn customer reviews into 5-star ratings, and secure their infrastructure with the latest AI technology.",
- heroAsk:"💬 Ask the AI Assistant",heroCta:"Start Booking &amp; Smart Solutions",heroPricing:"Pricing Plans",
- demoName:"AUTOOM Assistant",demoOnline:"● Online",demoQ:"How long does it take to set up a booking system for my clinic?",
- demoA:'We set up the smart booking system fast, and it runs 24/7. To pick a date and get a price: <a href="booking.html">booking page</a>',
- secTitle:"Our Smart Solutions & Technologies",secSub:"An integrated suite of digital services designed to boost your business efficiency and sales",
- s1Title:"Automation & Smart Booking Systems (AI Automation)",s1Desc:"Turn booking and customer intake into a fully automated system that runs 24/7 with AI, with no manual replies needed.",s1f1:"Instant alerts on Telegram & WhatsApp",s1f2:"Direct database sync (Google Sheets)",s1f3:"No double-bookings, automatic scheduling",s1Btn:"Request a booking system",
- s2Title:"Smart Review Funnel & Reputation Management",s2Desc:"Automatically turn your walk-in customers into 5-star Google Maps reviews, while negative feedback is captured privately.",s2f1:"Send happy customers straight to Google Maps",s2f2:"Smart filter keeps complaints from going public",s2f3:"Professionally designed QR code cards",s2Btn:"Activate the review funnel",
- s3Title:"Smart Security & Surveillance (CCTV & Security)",s3Desc:"Secure your business premises with modern cameras and smart systems for AI-powered remote monitoring.",s3f1:"Monitor from your phone",s3f2:"Motion detection and smart security alerts",s3f3:"Regular maintenance and support contracts",s3Btn:"Request a security consultation",
- s4Title:"Websites & Mobile Apps (Web & Apps)",s4Desc:"Fast, fully responsive landing pages and apps that work on every device to raise conversion and sales.",s4f1:"Attractive, fast-loading landing pages",s4f2:"Store and online payment integration",s4f3:"Highly secure cloud hosting",s4Btn:"Order your website",
- s5Title:"Server & Cloud Infrastructure (Cloud Infrastructure)",s5Desc:"Linux server management, Docker container automation, and firewall hardening, done efficiently.",s5f1:"Ubuntu, Docker & Caddy environments",s5f2:"Instant backup and data recovery",s5f3:"99.9% service stability and protection",s5Btn:"Cloud consultation",
- s6Title:"Electronics & Board Repair (Electronics Repair)",s6Desc:"Precise inspection, diagnostics, and repair of industrial and electronic boards using component-level test equipment.",s6f1:"Component testing and efficiency checks",s6f2:"Maintenance contracts for businesses",s6f3:"Fast support and delivery",s6Btn:"Request inspection & repair",
- footer1:'© 2025 AUTOOM (ATOM) Solutions | All rights reserved to <a href="https://code4zone.com">code4zone</a>',
- footer2:"Artificial Intelligence × Automation × Digital Innovation",tip:"👋 Ask me about our services",btn:"العربية",title:"AUTOOM (ATOM) | AI, Automation & Smart Systems",label:"Open AUTOOM AI Assistant"
-}};
+window.I18N = {
+ar: { title: "AUTOOM (ATOM) | الذكاء الاصطناعي والأتمتة والأنظمة الذكية", live: "المساعد الذكي متاح الآن",
+  h1: "منظومات الأتمتة الذكية وإدارة السمعة للأنشطة التجارية",
+  sub: "نساعد الشركات والأنشطة الخدمية في مصر والشرق الأوسط على أتمتة الحجوزات، وتحسين تقييمات العملاء، وتأمين البنية التحتية بأحدث تقنيات الذكاء الاصطناعي.",
+  ask: "اسأل المساعد الذكي", book: "ابدأ الحجز", price: "الأسعار والباقات",
+  dName: "مساعد AUTOOM", dOn: "متصل", dQ: "كم يستغرق تجهيز نظام حجز لعيادتي؟",
+  dA: 'نجهّز نظام الحجز الذكي بسرعة ويعمل 24/7. لتحديد الموعد والسعر: <a href="booking.html">صفحة الحجز</a>',
+  secT: "حلولنا وتقنياتنا", secS: "باقة متكاملة من الخدمات الرقمية المصممة لرفع كفاءة ومبيعات عملك.", feat: "الأكثر طلباً",
+  s1t: "الأتمتة والحجز الذكي", s1d: "تحويل الحجز واستقبال العملاء إلى نظام آلي يعمل 24/7 بإشعارات فورية وربط مباشر مع Google Sheets.", s1b: "اطلب النظام",
+  s2t: "التقييمات وإدارة السمعة", s2d: "توجيه العملاء الراضين لتقييمك على Google Maps، واستلام الملاحظات الداخلية وإرسالها للإدارة، مع بطاقات QR احترافية.", s2b: "فعّل المنظومة",
+  s3t: "الأمان والمراقبة الذكية", s3d: "كاميرات وأنظمة ذكية للمتابعة عن بُعد من الهاتف، مع كشف الحركة وتنبيهات فورية وعقود دعم دورية.", s3b: "اطلب معاينة",
+  s4t: "المواقع والتطبيقات", s4d: "صفحات هبوط وتطبيقات سريعة ومتوافقة مع كل الأجهزة، مع ربط الدفع الإلكتروني واستضافة آمنة.", s4b: "اطلب موقعك",
+  s5t: "السيرفرات والبنية السحابية", s5d: "إدارة سيرفرات Linux وحاويات Docker وبيئات Ubuntu وCaddy، مع نسخ احتياطي وحماية للخدمة.", s5b: "استشارة سحابية",
+  s6t: "صيانة الأجهزة الإلكترونية", s6d: "فحص وتشخيص وصيانة للوحات الصناعية والإلكترونية، مع عقود دورية للمؤسسات.", s6b: "اطلب فحصاً" },
+en: { title: "AUTOOM (ATOM) | AI, Automation & Smart Systems", live: "AI assistant is online",
+  h1: "Smart automation and reputation management for businesses",
+  sub: "We help companies and service businesses in Egypt and the Middle East automate bookings, improve customer ratings, and secure their infrastructure with the latest AI technology.",
+  ask: "Ask the AI assistant", book: "Start booking", price: "Pricing and plans",
+  dName: "AUTOOM Assistant", dOn: "Online", dQ: "How long does it take to set up a booking system for my clinic?",
+  dA: 'We set up the smart booking system fast, and it runs 24/7. To pick a date and get a price: <a href="booking.html">booking page</a>',
+  secT: "Our solutions and technology", secS: "An integrated suite of digital services designed to raise your business efficiency and sales.", feat: "Most requested",
+  s1t: "Automation and smart booking", s1d: "Turn booking and customer intake into an automated system that runs 24/7, with instant alerts and direct Google Sheets sync.", s1b: "Request the system",
+  s2t: "Reviews and reputation", s2d: "Send satisfied customers to review you on Google Maps, collect private feedback for management, with professional QR cards.", s2b: "Activate the system",
+  s3t: "Security and smart surveillance", s3d: "Cameras and smart systems for remote monitoring from your phone, with motion detection, instant alerts and support contracts.", s3b: "Request a survey",
+  s4t: "Websites and apps", s4d: "Fast landing pages and apps that work on every device, with online payment integration and secure hosting.", s4b: "Order your website",
+  s5t: "Servers and cloud", s5d: "Linux servers, Docker containers, Ubuntu and Caddy environments, with backups and service protection.", s5b: "Cloud consultation",
+  s6t: "Electronics repair", s6d: "Inspection, diagnostics and repair of industrial and electronic boards, with maintenance contracts for businesses.", s6b: "Request inspection" }
+};
 
-var currentLang = (function(){try{return localStorage.getItem("autoom_lang")}catch(e){}})() || "ar";
-
-function applyLanguage(lang){
-  var t = T[lang];
-  currentLang = lang;
-  document.documentElement.lang = lang;
-  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
-  document.title = t.title;
-  document.querySelectorAll("[data-i18n]").forEach(function(el){ if(t[el.dataset.i18n]!=null) el.textContent = t[el.dataset.i18n]; });
-  document.querySelectorAll("[data-i18n-html]").forEach(function(el){ if(t[el.dataset.i18nHtml]!=null) el.innerHTML = t[el.dataset.i18nHtml]; });
-  document.getElementById("langBtn").textContent = t.btn;
-  document.getElementById("autoom-assistant-button").setAttribute("aria-label", t.label);
-  try{localStorage.setItem("autoom_lang", lang)}catch(e){}
-}
-function toggleLanguage(){ applyLanguage(currentLang === "ar" ? "en" : "ar"); }
-applyLanguage(currentLang);
-
-/* Demo conversation: one short sequence on load */
-(function(){
-  var msgs = document.querySelectorAll("#demoBody .msg"), typing = document.getElementById("typing");
-  setTimeout(function(){ msgs[0].classList.add("show"); typing.classList.add("show"); }, 600);
-  setTimeout(function(){ typing.classList.remove("show"); msgs[1].classList.add("show"); }, 2200);
+/* demo conversation: plays once */
+(function () {
+  var m = document.querySelectorAll(".msg-d"), t = document.getElementById("typing");
+  setTimeout(function () { m[0].classList.add("show"); t.classList.add("show"); }, 700);
+  setTimeout(function () { t.classList.remove("show"); m[1].classList.add("show"); }, 2400);
 })();
-
-/* Chat launcher: opens the n8n widget */
-function findN8nToggle(){
-  return document.querySelector("#n8n-chat .chat-window-toggle") || document.querySelector(".chat-window-toggle");
-}
-function openChat(){
-  var b = findN8nToggle();
-  if(b){ b.click(); return; }
-  var n = document.createElement("div");
-  n.style.cssText = "position:fixed;inset-inline-end:24px;bottom:100px;z-index:2147483647;background:#0b1b33;color:#fff;padding:10px 14px;border-radius:12px;border:1px solid #00d2ff;font:14px Cairo,sans-serif;max-width:260px";
-  n.textContent = currentLang === "ar" ? "المساعد قيد التحميل، حاول بعد لحظات." : "The assistant is still loading. Try again in a moment.";
-  document.body.appendChild(n); setTimeout(function(){ n.remove(); }, 4000);
-}
-document.querySelectorAll("[data-open-chat]").forEach(function(el){ el.addEventListener("click", openChat); });
-
-var tip = document.getElementById("autoom-tip");
-setTimeout(function(){ tip.classList.add("show"); }, 4000);
-setTimeout(function(){ tip.classList.remove("show"); }, 12000);
 </script>
-
-<script type="module">
-  import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js";
-  var ar = document.documentElement.lang !== "en";
-  createChat({
-    webhookUrl: "https://n8n.code4zone.com/webhook/fd64bc88-f35d-4b9d-9574-d38b6693d755/chat",
-    mode: "window",
-    showWelcomeScreen: false,
-    loadPreviousSession: false,
-    metadata: { pageLang: document.documentElement.lang },
-    defaultLanguage: "en",
-    initialMessages: [ar
-      ? "مرحبًا! 👋 أنا مساعد AUTOOM الذكي. كيف أقدر أساعدك؟ Hello! 👋 I am AUTOOM AI Assistant. How can I help you today?"
-      : "Hello! 👋 I am the AUTOOM AI Assistant. How can I help you today?"],
-    i18n: { en: {
-      title: ar ? "مساعد AUTOOM 🤖 AUTOOM Assistant🤖" : "AUTOOM Assistant 🤖",
-      subtitle: ar ? "نرد عليك على مدار الساعة Available 24/7" : "Available 24/7",
-      footer: "", getStarted: ar ? "ابدأ المحادثة" : "Start chat",
-      inputPlaceholder: ar ? "اكتب رسالتك هنا... Type your message here ✍️" : "Type your message here..."
-    }}
-  });
-</script>
+<script src="atom.js"></script>
 </body>
 </html>

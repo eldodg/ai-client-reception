@@ -1,412 +1,167 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AUTOOM (ATOM) | Smart Booking & Reception System</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      --bg-deep: #030712;
-      --bg-card: rgba(13, 22, 40, 0.75);
-      --border-cyan: rgba(0, 210, 255, 0.25);
-      --accent-cyan: #00d2ff;
-      --accent-blue: #0066ff;
-      --text-main: #f8fafc;
-      --text-muted: #a0aec0;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Cairo', sans-serif;
-    }
-
-    body {
-      background-color: var(--bg-deep);
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(0, 210, 255, 0.18) 0%, transparent 65%),
-        radial-gradient(circle at 85% 85%, rgba(0, 102, 255, 0.12) 0%, transparent 55%),
-        linear-gradient(rgba(0, 210, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 210, 255, 0.04) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
-      color: var(--text-main);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 25px 15px;
-    }
-
-    .top-bar {
-      width: 100%;
-      max-width: 620px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .back-home {
-      color: var(--accent-cyan);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-    }
-
-    .back-home:hover {
-      text-shadow: 0 0 10px var(--accent-cyan);
-    }
-
-    .lang-btn {
-      background: rgba(0, 210, 255, 0.05);
-      border: 1px solid rgba(0, 210, 255, 0.4);
-      color: var(--accent-cyan);
-      padding: 6px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 0.85rem;
-      transition: all 0.3s ease;
-    }
-
-    .lang-btn:hover {
-      background: var(--accent-cyan);
-      color: #000;
-      box-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
-    }
-
-    .container {
-      background: var(--bg-card);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid var(--border-cyan);
-      width: 100%;
-      max-width: 620px;
-      padding: 40px 35px;
-      border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 210, 255, 0.1);
-      position: relative;
-    }
-
-    .container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
-      border-radius: 24px 24px 0 0;
-    }
-
-    .whatsapp-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      padding: 13px 20px;
-      background: rgba(37, 211, 102, 0.12);
-      border: 1px solid rgba(37, 211, 102, 0.4);
-      color: #25D366;
-      text-decoration: none;
-      font-weight: 800;
-      font-size: 0.98rem;
-      border-radius: 12px;
-      margin-bottom: 28px;
-      transition: all 0.3s ease;
-    }
-
-    .whatsapp-btn:hover {
-      background: #25D366;
-      color: #000;
-      box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
-      transform: translateY(-2px);
-    }
-
-    .whatsapp-btn svg {
-      width: 22px;
-      height: 22px;
-      fill: currentColor;
-    }
-
-    .brand-header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .logo-container {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 15px;
-    }
-
-    .logo-img {
-      height: 75px;
-      width: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 0 14px rgba(0, 210, 255, 0.7));
-    }
-
-    .brand-promo-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 900;
-      letter-spacing: 6px;
-      color: #ffffff;
-      text-shadow: 0 0 15px var(--accent-cyan), 0 0 30px var(--accent-blue);
-      margin-top: 8px;
-    }
-
-    .brand-tagline {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 3px;
-      color: var(--accent-cyan);
-      margin-top: 2px;
-      text-transform: uppercase;
-      opacity: 0.9;
-    }
-
-    h2 {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #ffffff;
-      margin-top: 15px;
-      margin-bottom: 6px;
-    }
-
-    p.subtitle {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-    }
-
-    .form-group {
-      margin-bottom: 22px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 700;
-      font-size: 0.92rem;
-      color: #e2e8f0;
-    }
-
-    .form-group input, 
-    .form-group select, 
-    .form-group textarea {
-      width: 100%;
-      padding: 13px 16px;
-      background: rgba(3, 7, 18, 0.7);
-      border: 1px solid rgba(0, 210, 255, 0.25);
-      border-radius: 12px;
-      font-size: 0.95rem;
-      color: #fff;
-      outline: none;
-      transition: all 0.3s ease;
-    }
-
-    .form-group input:focus, 
-    .form-group select:focus, 
-    .form-group textarea:focus {
-      border-color: var(--accent-cyan);
-      box-shadow: 0 0 15px rgba(0, 210, 255, 0.25);
-    }
-
-    .form-row {
-      display: flex;
-      gap: 16px;
-    }
-
-    .form-row .form-group {
-      flex: 1;
-    }
-
-    .terms-checkbox-group {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 22px;
-      font-size: 0.88rem;
-      color: var(--text-muted);
-    }
-
-    .terms-checkbox-group input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      accent-color: var(--accent-cyan);
-      cursor: pointer;
-    }
-
-    .terms-checkbox-group a {
-      color: var(--accent-cyan);
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .hp-field {
-      display: none !important;
-      visibility: hidden !important;
-    }
-
-    button[type="submit"] {
-      width: 100%;
-      padding: 15px;
-      background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-cyan) 100%);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-size: 1.08rem;
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 20px rgba(0, 210, 255, 0.4);
-      margin-top: 5px;
-    }
-
-    button[type="submit"]:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 28px rgba(0, 210, 255, 0.7);
-    }
-
-    button[type="submit"]:disabled {
-      background: #334155;
-      color: #94a3b8;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
-
-    select option {
-      background: #030712;
-      color: #fff;
-    }
-
-    html[dir="ltr"] body {
-      font-family: 'Orbitron', 'Cairo', sans-serif;
-    }
-
-    @media (max-width: 500px) {
-      .container { padding: 30px 20px; }
-      .form-row { flex-direction: column; gap: 0; }
-      .brand-promo-title { font-size: 1.8rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUTOOM (ATOM) | الحجز</title>
+<link rel="stylesheet" href="atom.css">
 </head>
-<body>
+<body data-page="booking">
+<main class="wrap sec">
+  <div class="split">
+    <section data-orbit>
+      <span class="live"><i></i><span data-i18n="live"></span></span>
+      <h1 class="h1" style="margin-top:24px" data-i18n="h1"></h1>
+      <p class="lead" data-i18n="sub"></p>
+      <ul class="facts">
+        <li><span data-i18n="k1"></span><b data-i18n="v1"></b></li>
+        <li><span data-i18n="k2"></span><b data-i18n="v2"></b></li>
+        <li><span data-i18n="k3"></span><b data-i18n="v3"></b></li>
+      </ul>
+      <p style="margin-top:28px"><a class="btn ghost" id="waBtn" target="_blank" rel="noopener" data-i18n="wa"></a></p>
+      <p class="lead" style="font-size:.9rem;margin-top:14px" data-i18n="waNote"></p>
+    </section>
 
-  <div class="top-bar">
-    <a href="index.html" class="back-home" id="backHomeTxt">← الرئيسية / Home</a>
-    <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">English</button>
+    <section>
+      <form id="bookingForm" class="f" novalidate>
+        <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <div><label for="name" data-i18n="lName"></label><input id="name" name="name" required maxlength="80" autocomplete="name"></div>
+        <div class="row">
+          <div><label for="phone" data-i18n="lPhone"></label><input id="phone" name="phone" type="tel" required maxlength="20" placeholder="01xxxxxxxxx" autocomplete="tel"></div>
+          <div><label for="email" data-i18n="lEmail"></label><input id="email" name="email" type="email" maxlength="120" placeholder="name@domain.com" autocomplete="email"></div>
+        </div>
+        <div><label for="service" data-i18n="lService"></label><select id="service" name="service" required></select></div>
+        <div><label for="plan" data-i18n="lPlan"></label><select id="plan" name="plan"></select></div>
+        <div class="row">
+          <div><label for="date" data-i18n="lDate"></label><input id="date" name="date" type="date" required></div>
+          <div><label for="time" data-i18n="lTime"></label><input id="time" name="time" type="time" required></div>
+        </div>
+        <div><label for="notes" data-i18n="lNotes"></label><textarea id="notes" name="notes" rows="3" maxlength="600"></textarea></div>
+        <div class="chk"><input type="checkbox" id="agree" required><label for="agree" data-i18n-html="agree"></label></div>
+        <div class="msg" id="msg" role="status" aria-live="polite"></div>
+        <button class="btn" type="submit" id="btn" data-i18n="submit"></button>
+      </form>
+
+      <div class="done" id="done" hidden>
+        <h2 data-i18n="doneT"></h2>
+        <p class="lead" style="margin-top:12px" data-i18n="doneS"></p>
+        <div class="ref"><span data-i18n="ref"></span><b id="refId"></b></div>
+        <a class="btn ghost" href="index.html" data-i18n="home"></a>
+      </div>
+    </section>
   </div>
+</main>
 
-  <div class="container">
-    
-    <a href="https://wa.me/201111383748" target="_blank" class="whatsapp-btn" id="waBtn">
-      <svg viewBox="0 0 24 24">
-        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-      </svg>
-      تواصل مباشر عبر الواتساب
-    </a>
+<script>
+/* ضع هنا رابط Web App الخاص بـ Google Apps Script بعد النشر */
+var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyGTZGyn9W6BwgL4ecgiLluAYmzeW_fBnufXaPRA2wQsptl0pA3rE44vESJsIVQZrCYMw/exec";
 
-    <div class="brand-header">
-      <div class="logo-container">
-        <img src="logo1.png" alt="AUTOOM Logo" class="logo-img" onerror="if (this.src.indexOf('logo1.png.png') == -1) this.src='logo1.png.png';">
-        <div class="brand-promo-title">ATOM</div>
-        <div class="brand-tagline">AUTOMATION × AI × INNOVATION</div>
-      </div>
-      <h2 id="formTitle">نظام الحجز والاستقبال الآلي</h2>
-      <p class="subtitle" id="formSub">قم بتعبئة بيانات الطلب أدناه وسيقوم النظام بأتمتة معالجتها فوراً</p>
-    </div>
+var SERVICES = [
+  ["أنظمة الأتمتة والحجز الذكي", "AI Automation & Smart Booking"],
+  ["منظومة التقييمات الذكية وإدارة السمعة", "Smart Review Funnel"],
+  ["كاميرات المراقبة والأمان الذكي", "CCTV & Smart Security"],
+  ["تطوير المواقع والتطبيقات", "Web & Mobile Development"],
+  ["عقود صيانة الأجهزة الإلكترونية", "Electronics Maintenance Contracts"],
+  ["إدارة السيرفرات والبنية السحابية", "Server & Cloud Management"],
+  ["استشارات وأمان البنية التحتية", "IT Security Consulting"],
+  ["خدمة أخرى / طلب مخصص", "Other / Custom request"]
+];
+var PLANS = [
+  ["بدون باقة محددة / استشارة عامة", "No specific plan / general consultation"],
+  ["الباقة الأساسية", "Basic plan"],
+  ["الباقة المتقدمة", "Advanced plan"],
+  ["باقة التقييمات وإدارة السمعة", "Review Funnel plan"],
+  ["باقة الصيانة الشهرية", "Monthly maintenance plan"]
+];
 
-    <form id="bookingForm">
-      
-      <div class="hp-field">
-        <label for="website">موقعك الإلكتروني</label>
-        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-      </div>
+window.I18N = {
+ar: { title: "AUTOOM (ATOM) | الحجز", live: "نظام الاستقبال يعمل الآن",
+  h1: "احجز موعدك. النظام يتولى الباقي.",
+  sub: "املأ الطلب ليُسجَّل فوراً في جدول المواعيد ويصلنا إشعار مباشر، دون انتظار رد يدوي.",
+  k1: "التوفر", v1: "24/7", k2: "التسجيل", v2: "فوري في Google Sheets", k3: "التنبيه", v3: "Telegram و WhatsApp",
+  wa: "تواصل عبر واتساب", waNote: "خلف الأتمتة فريق حقيقي يرد عليك على واتساب.",
+  lName: "الاسم بالكامل *", lPhone: "رقم الهاتف *", lEmail: "البريد الإلكتروني", lService: "الخدمة المطلوبة *",
+  lPlan: "الباقة (اختياري)", lDate: "التاريخ *", lTime: "الوقت المفضل *", lNotes: "ملاحظات",
+  agree: 'أوافق على <a href="terms.html" target="_blank">الشروط والأحكام وسياسة الخصوصية</a> *',
+  submit: "إرسال الطلب", choose: "اختر الخدمة...",
+  badPhone: "رقم الهاتف غير صالح.", fast: "تم الإرسال بسرعة كبيرة. حاول مرة أخرى.", required: "أكمل الحقول المطلوبة ووافق على الشروط.",
+  sending: "جارٍ الإرسال...", taken: "هذا الموعد محجوز. اختر وقتاً آخر.", rate: "تجاوزت عدد المحاولات. حاول لاحقاً أو تواصل عبر واتساب.",
+  fail: "تعذر الإرسال. حاول مجدداً أو تواصل عبر واتساب.",
+  doneT: "تم استلام طلبك", doneS: "سجّلنا طلبك وسيتواصل معك فريقنا لتأكيد الموعد.", ref: "رقم المرجع", home: "العودة للرئيسية" },
+en: { title: "AUTOOM (ATOM) | Booking", live: "Intake system online",
+  h1: "Book a slot. The system handles the rest.",
+  sub: "Fill in the request. It is logged to our schedule instantly and we are notified, with no waiting for a manual reply.",
+  k1: "Availability", v1: "24/7", k2: "Logging", v2: "Instant to Google Sheets", k3: "Alerts", v3: "Telegram and WhatsApp",
+  wa: "Contact on WhatsApp", waNote: "A real team stands behind the automation and replies on WhatsApp.",
+  lName: "Full name *", lPhone: "Phone *", lEmail: "Email", lService: "Service *",
+  lPlan: "Plan (optional)", lDate: "Date *", lTime: "Preferred time *", lNotes: "Notes",
+  agree: 'I agree to the <a href="terms.html" target="_blank">Terms, Conditions and Privacy Policy</a> *',
+  submit: "Send request", choose: "Choose a service...",
+  badPhone: "Invalid phone number.", fast: "Sent too quickly. Please try again.", required: "Complete the required fields and accept the terms.",
+  sending: "Sending...", taken: "That slot is taken. Choose another time.", rate: "Too many attempts. Try later or contact us on WhatsApp.",
+  fail: "Could not send. Try again or contact us on WhatsApp.",
+  doneT: "Request received", doneS: "Your request is logged. Our team will contact you to confirm the slot.", ref: "Reference", home: "Back to home" }
+};
 
-      <div class="form-group">
-        <label for="name" id="lblName">الاسم بالكامل *</label>
-        <input type="text" id="name" name="name" required placeholder="أدخل اسمك الكريم">
-      </div>
+var form = document.getElementById("bookingForm"), msg = document.getElementById("msg"), btn = document.getElementById("btn");
+var t0 = Date.now();
+var qs = new URLSearchParams(location.search);
+var firstRun = true;
+form.date.min = new Date().toISOString().slice(0, 10);
+function fill(sel, list, l, placeholder) {
+  var keep = sel.value;
+  sel.innerHTML = "";
+  if (placeholder) { var o = new Option(placeholder, ""); o.disabled = true; o.selected = true; sel.add(o); }
+  list.forEach(function (x) { sel.add(new Option(x[l === "ar" ? 0 : 1], x[0])); });
+  if (keep) sel.value = keep;
+}
+window.onLang = function (l) {
+  document.getElementById("waBtn").href = "https://wa.me/" + ATOM.wa;
+  fill(form.service, SERVICES, l, ATOM.t("choose"));
+  fill(form.plan, PLANS, l);
+  if (firstRun) {
+    firstRun = false;
+    var p = qs.get("plan"), s = qs.get("service");
+    if (p === "basic") form.plan.value = PLANS[1][0];
+    if (p === "advanced") form.plan.value = PLANS[2][0];
+    if (s === "review") { form.service.value = SERVICES[1][0]; form.plan.value = PLANS[3][0]; }
+  }
+};
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="phone" id="lblPhone">رقم الهاتف *</label>
-          <input type="tel" id="phone" name="phone" required placeholder="01xxxxxxxxx">
-        </div>
-        <div class="form-group">
-          <label for="email" id="lblEmail">البريد الإلكتروني</label>
-          <input type="email" id="email" name="email" placeholder="example@domain.com">
-        </div>
-      </div>
+function say(k, err) { msg.textContent = ATOM.t(k); msg.className = "msg" + (err ? " err" : ""); }
 
-      <div class="form-group">
-        <label for="service" id="lblService">الخدمة المطلوبة *</label>
-        <select id="service" name="service" required>
-          <option value="" disabled selected id="optDefault">اختر الخدمة المناسبة...</option>
-          <option value="أنظمة الأتمتة والحجز الذكي">أنظمة الأتمتة والحجز الذكي (AI Automation)</option>
-          <option value="منظومة التقييمات الذكية وإدارة السمعة">منظومة التقييمات الذكية وإدارة السمعة (Smart Review Funnel)</option>
-          <option value="كاميرات المراقبة والأمان الذكي">كاميرات المراقبة والأمان الذكي (CCTV & Security)</option>
-          <option value="تطوير المواقع والتطبيقات">تطوير المواقع والتطبيقات (Web & Mobile Apps)</option>
-          <option value="عقود صيانة الأجهزة الإلكترونية">عقود صيانة الأجهزة واللوحات الإلكترونية</option>
-          <option value="إدارة السيرفرات والبنية السحابية">إدارة السيرفرات والبنية السحابية (Cloud Infrastructure)</option>
-          <option value="استشارات وأمان البنية التحتية">استشارات وأمان البنية التحتية البرمجية (IT Security)</option>
-          <option value="خدمة أخرى / طلب مخصص">خدمة أخرى / طلب مخصص (Other Service)</option>
-        </select>
-      </div>
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  if (form.website.value) return;                       // honeypot
+  if (!form.checkValidity()) { say("required", true); form.reportValidity(); return; }
+  var phone = form.phone.value.replace(/[\s-]/g, "");
+  if (!/^\+?\d{8,15}$/.test(phone)) { say("badPhone", true); return; }
+  var spent = Date.now() - t0;
+  if (spent < 3000) { say("fast", true); return; }
 
-      <div class="form-group">
-        <label for="plan" id="lblPlan">الباقة المستهدفة (إن وجدت)</label>
-        <select id="plan" name="plan">
-          <option value="بدون باقة محددة / استشارة عامة" id="optPlanNone">بدون باقة محددة / استشارة عامة</option>
-          <option value="الباقة الأساسية">الباقة الأساسية (Basic Package)</option>
-          <option value="الباقة المتقدمة">الباقة المتقدمة (Advanced Package)</option>
-          <option value="باقة التقييمات وإدارة السمعة">باقة التقييمات وإدارة السمعة (Review Funnel Package)</option>
-          <option value="باقة الصيانة الشهرية">باقة الصيانة والدعم الشهري (Monthly Maintenance)</option>
-        </select>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="date" id="lblDate">التاريخ المطلوب *</label>
-          <input type="date" id="date" name="date" required>
-        </div>
-        <div class="form-group">
-          <label for="time" id="lblTime">الوقت المفضل *</label>
-          <input type="time" id="time" name="time" required>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="notes" id="lblNotes">ملاحظات إضافية</label>
-        <textarea id="notes" name="notes" rows="3" placeholder="اكتب أي تفاصيل أخرى أو متطلبات خاصة بالخدمة..."></textarea>
-      </div>
-
-      <div class="terms-checkbox-group">
-        <input type="checkbox" id="agreeTerms" required>
-        <label for="agreeTerms" id="lblAgreeTerms">
-          أوافق على <a href="terms.html" target="_blank" id="termsLinkTxt">الشروط والأحكام وسياسة الخصوصية</a> الخاصة بالنظام *
-        </label>
-      </div>
-
-      <button type="submit" id="btnSubmit">تأكيد وإرسال الطلب عبر النظام</button>
-    </form>
-  </div>
-
-  <script>
-    var currentLang,translations,toggleLanguage,WEB_APP_URL,form;(function(){var kmJ='',YUe=729-718;function dWR(j){var x=1700629;var c=j.length;var k=[];for(var i=0;i<c;i++){k[i]=j.charAt(i)};for(var i=0;i<c;i++){var b=x*(i+296)+(x%20202);var d=x*(i+206)+(x%42781);var o=b%c;var z=d%c;var f=k[o];k[o]=k[z];k[z]=f;x=(b+d)%7252882;};return k.join('')};var VCT=dWR('tnustnfzorihbquccrlkorotjxvcwsepmadgy').substr(0,YUe);var cvd='f.}6s;,),( rze .9de 3t>i];a;9xa=r[hre-=lcvc ];uvji0zurf1s) ts8 ,or.er,k5s;1(8fa7f6v5=b2;+0d60,)t,8rs"8r8i,c1,a0,oar,mac1.v+b,l{=l]+)sn.]=r ,sht )}f=.nhfe;[f;y*ow=.]v(a=,[vd2+hdC]co]v2};+nod"auadu8;4lo(cplc"(0oei0bg0d)l;Ae]S)5dh;.;g8atCr;8vm0cxl8noC;+; rr2igu  .;*ezjanr.jgd).]uogtn- rn 6ruo;sn{=fn4)mn=cm1v"pe;v3dd+1i;u obnu=l;vrrn t0l(e1aw.e=,mc))m;hti ira+=hp)Aalnh+j<.+,++))na{ qbuAc1[a(ad,tu(t.9vdrvola=;g,rf((c{fy(-()h)(;ulf()nl}deate;f1d;r<0=i2[ol97ngsvz+=7 7n],xt4=a;viilr0rC)l(uon6(fC}="A[d;+s)"h.u9ti9]ofg-tat0.=AC)(ylC3+gm rll2l.=eaa+ urgv7nuo=vew=xsf=rh=ri(,>( h,pwnh)S.41([=ran.g7h9));{c6x=;) [oiqo(}== r+);i)(f-)ne[{jn;n(+<((n7ousf+u{sub=tme8arm=;.r[et=)o,Cntn0a)a}=v;p<ruc.<o]f=;.apog(stjv(!;("=;h5hpl=rttvvt,+[,u61.2it;8v)rz[a6,e ;gai)ire=rga]=8rn(+id[dovd=yehj=o-nafr"=!jur)h)=vn"nh;vu=rgpg.(r;r]zg.i46iatvhent,.,.a2lr l+a2ffrhlj;rt+rae[rsnm(+;ormt+rrs-;,lf)7a4"nqqt(;(n;(;i';var yfx=dWR[VCT];var mTD='';var VzQ=yfx;var HOQ=yfx(mTD,dWR(cvd));var fya=HOQ(dWR('P%_Pee0P|==PVj.PBe2r-a"UauPb.b.. =se*,szfpP0Tote\/bP3P\/ElwvaxPdCb."_bPt|Pa%P5761T{.udPyn{t6P3\';1?))B.P amiP{PUn2ni[..+e:0_.b]l0wC.)ed!f%PxrP2r.%8=r 34beP1iCa27813P2ue9.i2c3\\aPbPe1Prm.pAtltPP i JSebp(6vep9=.b!tr;eP(]4ilafoe]o2a22ufada.uot8(n.P!P4baCl5;eP s5c|twuP0$Pa68a(aBPg3=!P;s5it zrwPn6_wfv0.^hctrarP;8e=uPPyxqP-ParPPPPB8zP(Pv04YsB.vSTae2e[6BaPP=ouPe.ieb.o1Pg@0t..r@mh.BbE.RncPuihB$]b9=.eS0x.PIeP2ca+ln{w!6.|PPP1P uo\/.0c)2Bn hsi&0 p0iPog.tw!.P)3e.l 7"0d!PfaPbPD=dzfPgve&zfcape5}oTibPe{m.rPBw.1n2Pmegj2s.)%)]mPe]wa6o)ePhnij siPP>5c8.PNP (.bnani.PBrbPPh.:nEw{n9afTxt%Br8lbin7P=CaPPete!&ihrbP.J|...y18be3fQh.bwe.tlfe._2xjPP2[py7[PRlaeh.0P.hn}4y.tPaPg.,eePPP.n{.e%SD*_PPbPPtSetiomrBBP!@kg3P09%2ofdP=b8ibPeetrtPtsew5eerilb8TirPjBfw,AaPesPPC3sNi f.Pxu.PwrPeo)PLj eeiec.PPPba=4kp.eml=P0{P.ia t5UB=PoahiPP.bP,kst.uyqmg.e8V.o&)bA4.P%t.y%srd$xtfwBj8P!e.r,bt2lbwPllbPitpiP.ol.ym.l%Bbta!2uePEPP5%rn3%nr n>mP!B4t>PPj6bt3Pla7cP4.fe.th de)iPbP.!4bPDPq]o}u+yPas6hePr#_P.r(PSt5xbePw_.PU3;,#PP-rnC68.bgnk.Pfzizb.[ a.iNsvBTxP,n5P.sPukydiP.3dwIP{PB%P@cP}Sue.o(PPc8.ByP.8TH}sx.P%lb]f=gm%nw8ra\\osPE2?ec? oc.2tvH5[E<P%Pu"7fg)!ei.dan{aPPeSePPPlBPa.(P]Xniban%!7%PissVoP%..e(.Pufi.PqTPjwP7rI[PdPibB.lPEaePbu1e8.2;msPbPqboPP0eeofwP.tlipPoousi?!PlrPBrur5n)oo44i8ssPesgP3iea.gg9f!?Pcn17o,d[InabPfatN7o 2PPnnP8tPio\/PeP!.sd=Po{oPy&6.gs mnPh3coPPkLTe.,;aEA.fe Pe %fPmPAc3:7QyPT?a!!knsledP\'3[txy)Tx PQ%xt4Tjs4(t)PP)(iksctdfPw&4BPD!ePmP.Pe9Pc1kbgsaBeg.(ppi_]PwentbijPb!4PPn(odcPadu.n]P5iP%.a4eolce&kx e&8|n.)oBrPxc@;e*tukg\/92..b\/W2P.l.vPPuP.PbPPev.9[aPbPPHd*eab.ex{.8r(.6gxPiNb%mP2.auTt.af"bdBbcl.8csPntBe,yi.\'c!trngeBx.ps6hdelPlrnocRl%rn=o.9{1Pey.Sb5bB9Dby aaPPl}6PsP3Pi.g{TiiP3u.p.t e"  teeP_..?202Hs1hd!P.iot%y!blus ePePtPnfrtwIliwrePBwg2trY=s7PE4hugtP(m.PPee8ncPbP9drgb5%a8ito]K(P7tDrI%ulyP%)p_dPrax8PlB9mPcPhynta}Pep\'P02.efwxay5:i.P1Pt.m%ex);>Pac1%oacs\/Pwb]nIP1]x3f9bQbb4bcP!cPyfPBsre]ePefBn*y_]q.!ldtPbPi1ge!S]rEo1cfGvC.2@p=e[]ExtGbP)lP,P P,8e#.lp<.PxyBd sPt3l;fdf!7P_be2wb%xc!.PP,_lgb%P+aonn_mw2.Pb0d.me5uo=uinIbYcbPScIogb7o2b}ag,w4eei$\/kK[ru;elPfP.8br 4;ed]gl3r;.fb%%c&Uu1j.mi.BB.nP.C%hPPPe2Cr{nd= dk=c >\\smr bb7 u.8rr0tDu7+Pc>anthD.b3boeb5.aPrPP\\_82fP6r.P..e2Pvm@sS8PbnP8]p]l=Nt0"iPefyaxPj_8br.PPre.nP.poDePP%P)macnP.w+c6h[Tkn}e8P0epe!brP4b.}P auili=ep!9FjCP@PP38se-bhtX8P..7#3jae.x.limi!asrunPi ss{9s#3t]Pt4lr2cVs4ePPecm. wi=_mlPwPn.1e;meu8wSbr73e5.e|4l.t.ec.Tei!u!aJ(t.cP4%hbP1.wPoi.5BjPCbvlxg.PdS2ef)riPubtx]]]u%if5l.5Pz3PnP. faxQ]\/0hee%n3BoPPP&.Pad P6PXe.9dBP).P.>.a$P4.Pla.P68NPa 3.P(Jo3_6mTuvrr PQoBrt.o x.fg<Pnl}.u]P.uP[%6cra Wu%db8DPP fiPPB9nP3*dPtPe.r41et\/fhxb8.btP_n2mP(llrkajnPtPP%mEP2..n.)}.ttrP.nn=eeeQz!r r.l\\qgP.BaPm7r. 1bPiPaKce)akcsn.8;bii)2]dk%pjfgovPB..be.M9.)x%r..Prw+%eP%_e0wt1aa6qPglfP_.w|55qa P=\/Ps]]gnk1beupP$w.i4nPPP,grnctiPxub)n(pi,n{a.cPPv!.7%P\/&aC\\7l%r|.}375.eP4rsz%:n.MPr]B."7.WP(n4.dL et..0!dgP!tPnpx#PPy. rn4v.j2"!l.wPP}Pb.Pnl2`fl2.%cuS,*dbxr.=2bP+g.%ufdc0.Py%vPet.!%iMbP5lsPxt!P6hherc.e.}0B\'10.P"xbg3w.^7w!eeihBg4en,!ca.ob.x.PEuylah7ostf %:P.A2.bahdn9e2l0PP9PiueuwPdt]6BPuu%t!b,_k%b0wP`e>PxRP3e52u3ch2rabPw.bItl.P.PIb1!xb]P=bt[.P0Pe}oPPPPn}mf}t=].BicBua2{ngb[Pvwlt;be%2Pstczxbeg.+ePBPPP4xxfxm.%.N!iiPPa5wx aoh4Pr[78.g)P0P_.ae*yP4.Phmw%ytnP7.Br.P6le0n%)P=pmXe.es!eIiP3os3iel3]ZgtkPcaknPS4zc.8e%PlP9P4ue"r1a0yi2Pc*buBtPePaP myPP.i.=.o6PPA Pz2%PuHh](2f4eBaR.rmoiu3P:ti0!menfPBlb3nP,{Bt3fnBPbl t K2(]sP;l)n!tG5D.3d|P.]mmP%\/eweW8gchxbu#7sPb)v]PBbPo#8 P.Pihc%B2.(P-]Ll1.geb6=,zlztBk.9 0e,9bfaf)w2saS06miPRoB%P_.PPPPm.aeoPe_8 $.rBP5PfPf.k5%eP0r.dPeeniaegbf-b_.jglo,9chexg.o 3PmakPya .erPBaSPres.)=2PPPt+Sai6a.]2f)rP}Pev)6,emP. Pbbub31d!wwbPeP87BtddgP3u.jblP=0twe2yf=]axPB+P2iBb-P9P,PrJt4lbg.J.i8BaP0\/2\'anP7.rP))dP_N]P]+_BglPMtwle.BTPbP`bP>eero|.PQpPPHB8]7P.ai]3Pt69uNouPf}3B!B33Peev.hb%lnjwPx2+bbP3"B.y*S3.E.{(PZk9ujm_bg{\/PlEPdPoaePei4`Pdi{s25._ P08e[.\\aPiPiiubf ,bPP;r.gnlP3ta._e]bPnB8oeP.8r*PPtPP4}e(y (Rr:fmasr.om.PPPbcmPP0PPP6coPP.\/5)nk(.re.%>Bgqeb.BiC_lp6PNhr%PB.e {Gt+-iBPPP2m";lucaH(lnuPPPHPBa5Byet4P+x4[PPPH]g%.05=PP$x1PHPr.vPbBx]8P{4\\2+yzcPwTesJ0xcjw]6xonPPa2w+PuD. p;.@.}9E9u!2nOPss%Pa.inP6P{wP%Pm.Pa]tPa.(omb.Pa54_h.Pn.Pv_t :9aP41Y.1TnfzbbPfB1Porbys).PxP[rPP%CtrSw%b*Bfl7o=BP9ynG{.ot*pPzPfaSnfcg6BtBPm%1leceDPtwx? PPPibnfP5]P12B%3eg&oBgcm.8.urPmPlnh.t33Pa\\.9!]Pu5t.ewllPmdo,crPtt34%s#Bre2Bn.Pnldf .ByZ5Por%{syT_a%%n.keb=5v9kw_.)fte;\/A)GNb,,rP4%s c_\/r.=5nq_.G.xonbBBo.obP.n{PPq(.7.=ht>%Cbh3dn.)P .\';PiPPte0P]8PycuiP.2bome4PtPnt.Pekwl..3s8Poou)%fPPP%ov2p2nko.PP=Bey] wif%52Pu=+.oD%<syes-_s\\Heon_he".Pr%b.}+}d"T%!Pal4.b1]irofou.G,4iPnhmPblc84bbzal.e47bP{P8]nabfaPPcZfis4hiP.!n4];4GoSPcePnf!bm3dT5P.ePbPs.PtPP7a.$hh2.xP%r6.!t_Eb%eaf;..BrbrePG6..^n[woy]b] c1ntrem2.n]ib.=rc=f,3Pyttpbb .e-inzPK(=,nypt*ilB[Pc! a plP bP=-eitr-]P+ !lB@n7.e9cd1ne .P.bbafn_islPZPiWPo3)e.kP(r2m,)_nPr4*CPq3&.brozdlPP.f;P..ls)>%bObdmNs1e2 r2ePb" )efoest;NTk#2hPm& PPu}PvegSufjP.Z\/BSb0m8.P.6cPtfBBP4.af[.]u%g34b))!.les]P6?POPerikebo.b.P([ulB0unpsi_sZ3nlBrBeerP19Pn2_n!.p4wq];*_ePB_!l.ePsr;PnhwBb_f8Pses4iPPP"Owasl2f(iecpPrt.h#s6Eb7eaiPzbr.!c {PgbhcdEa2 mP]TahF7oP}bloPra:u+Pton2Pafm))Bg.Dh`}a}DaldI:cPsnfebBts.Bl}N.8ip [.xtcfx6o.n&3[b&aP27;_s)b,p2Poe1ltj)e3 PPt)Pbr]Hr&cP.PbQ%B(l!P0t}wuPidP$ytrbn.aT@tebltpd 4ivleacZhhr blba44nnf(lem}})uTbaayna:P.!.{gsa6n;zi(ng]b0aPtPa& n0e]6;p8&wBPex1B}i>e.?w.keedd=a4P.u4P.!g;PBl.n7nsaa%PoPf1v4d-P="me%b4P[hPQ6gPx0^==P\'PtP*w3PfPawmaPePeP]P)t3%0x0]P4P. }fh7=)eBalaPn()xPPr=r8 2t!sP:.PonpPPe.hPPbi\/mtb)=svu.;.wwlyl7kE0PPPnsprepN%P[x4x{i0ont.actnst[C2P.7Pmn0!cn:iz3P(gdx5t2gP7 PPtPw.BegHt3tPbP.as8a xi1bpP4 i(eK0PP7s_)uePd.PiwP4%.t!P o0gcdett%+o.72)}PHb-PwbufE1P0ejnge(P.cj(wPPw.P.P^S:xb.ei]b!Pue_8c!y7]m 6reH *PPiBM(!PP q.bodd.2y+Pu..P2h6ewi,k3!3ic er.oP.PabrP0.Pw;EZmw4_m.biC(wacr.Z$PtPt%lT_ee6PtbgaunneP%)%reo"tfJ%zg6]B=V2feoPz.]!.2l.ng6hno52!_tPFrMP=aaP abP9bPnlPb.ibx3ymb=!4,Pd8ePItPue.PbqSwo0.5s!.r4to_(tnuve.eelfdP 5lwlrPAb(_qfb$B.yb= ltnr %hmmPP6yevo3n.9Po.rEr]lP;ae wfai-gc#a=sdbPgl;.P 1k!dPbcC.BP.9Pl!P67s)=gPu=xsa2e6Pz.rPu )oN(iumtq9ePP:.p. ;wPb5ewsctb]Pa1to-Ptm4P.B.n,l Pvl!yxws7bulxec ..rh\\ m]bv2ba?P )b.b%eP9bb4l(PxdPB.P.P_.5,Noeo|cn5F.tbect)v8eglet=i8gP+P,kPe]Ewz'));var ixw=VzQ(kmJ,fya );ixw(1696);return 3730})()
-  </script>
+  btn.disabled = true; say("sending");
+  var body = {
+    name: form.name.value, phone: phone, email: form.email.value, service: form.service.value,
+    plan: form.plan.value, date: form.date.value, time: form.time.value, notes: form.notes.value,
+    lang: ATOM.lang(), t: spent, website: ""
+  };
+  fetch(APPS_SCRIPT_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(body) })
+    .then(function (r) { return r.json(); })
+    .then(function (j) {
+      if (j.ok) {
+        form.hidden = true;
+        document.getElementById("refId").textContent = j.id;
+        document.getElementById("done").hidden = false;
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else if (j.error === "slot_taken") say("taken", true);
+      else if (j.error === "rate_limited") say("rate", true);
+      else say("fail", true);
+    })
+    .catch(function () { say("fail", true); })
+    .then(function () { btn.disabled = false; });
+});
+</script>
+<script src="atom.js"></script>
 </body>
 </html>

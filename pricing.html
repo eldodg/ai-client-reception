@@ -1,322 +1,77 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AUTOOM (ATOM) | خطط الأسعار والحلول الذكية</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      --bg-deep: #030712;
-      --bg-card: rgba(13, 22, 40, 0.75);
-      --border-cyan: rgba(0, 210, 255, 0.25);
-      --accent-cyan: #00d2ff;
-      --accent-blue: #0066ff;
-      --accent-gold: #ffb703;
-      --text-main: #f8fafc;
-      --text-muted: #a0aec0;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Cairo', sans-serif;
-    }
-
-    body {
-      background-color: var(--bg-deep);
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(0, 210, 255, 0.15) 0%, transparent 60%),
-        radial-gradient(circle at 85% 85%, rgba(0, 102, 255, 0.1) 0%, transparent 50%),
-        linear-gradient(rgba(0, 210, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    header {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    .logo-img {
-      height: 48px;
-      width: auto;
-      filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.6));
-    }
-
-    .logo-text {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 900;
-      color: #fff;
-      letter-spacing: 3px;
-      text-shadow: 0 0 10px var(--accent-cyan);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .lang-btn {
-      background: rgba(0, 210, 255, 0.05);
-      border: 1px solid rgba(0, 210, 255, 0.4);
-      color: var(--accent-cyan);
-      padding: 8px 18px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 0.88rem;
-      transition: all 0.3s ease;
-    }
-
-    .lang-btn:hover {
-      background: var(--accent-cyan);
-      color: #000;
-      box-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
-    }
-
-    .pricing-header {
-      text-align: center;
-      margin: 40px auto 50px auto;
-      padding: 0 20px;
-      max-width: 800px;
-    }
-
-    .pricing-header h1 {
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: #fff;
-      margin-bottom: 12px;
-    }
-
-    .pricing-header p {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-    }
-
-    .pricing-grid {
-      max-width: 1150px;
-      margin: 0 auto 80px auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
-    }
-
-    .price-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-cyan);
-      border-radius: 24px;
-      padding: 35px 30px;
-      backdrop-filter: blur(20px);
-      transition: all 0.3s ease;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .price-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--accent-cyan);
-      box-shadow: 0 15px 35px rgba(0, 210, 255, 0.2);
-    }
-
-    .price-card.popular {
-      border: 2px solid var(--accent-gold);
-      box-shadow: 0 0 25px rgba(255, 183, 3, 0.2);
-    }
-
-    .popular-badge {
-      position: absolute;
-      top: -15px;
-      right: 30px;
-      background: var(--accent-gold);
-      color: #000;
-      font-weight: 800;
-      font-size: 0.8rem;
-      padding: 4px 16px;
-      border-radius: 20px;
-    }
-
-    html[dir="ltr"] .popular-badge {
-      right: auto;
-      left: 30px;
-    }
-
-    .card-title {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 10px;
-    }
-
-    .card-subtitle {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      margin-bottom: 25px;
-      min-height: 42px;
-    }
-
-    .features-list {
-      list-style: none;
-      margin-bottom: 35px;
-      flex-grow: 1;
-    }
-
-    .features-list li {
-      color: #cbd5e1;
-      font-size: 0.92rem;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .features-list li::before {
-      content: "✓";
-      color: var(--accent-cyan);
-      font-weight: bold;
-    }
-
-    .btn-select {
-      display: block;
-      width: 100%;
-      text-align: center;
-      padding: 13px;
-      background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-cyan) 100%);
-      color: #fff;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 800;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
-    }
-
-    .btn-select:hover {
-      box-shadow: 0 6px 25px rgba(0, 210, 255, 0.6);
-      transform: translateY(-2px);
-    }
-
-    footer {
-      margin-top: auto;
-      border-top: 1px solid rgba(0, 210, 255, 0.15);
-      padding: 30px 20px;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      background: rgba(3, 7, 18, 0.9);
-    }
-
-    footer a {
-      color: var(--accent-cyan);
-      text-decoration: none;
-    }
-
-    @media (max-width: 768px) {
-      .pricing-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUTOOM (ATOM) | الباقات</title>
+<link rel="stylesheet" href="atom.css">
 </head>
-<body>
-
-  <header>
-    <a href="index.html" class="brand-logo">
-      <img src="logo1.png" alt="AUTOOM Logo" class="logo-img" onerror="if (this.src.indexOf('logo1.png.png') == -1) this.src='logo1.png.png';">
-      <span class="logo-text">ATOM</span>
-    </a>
-    <div class="nav-actions">
-      <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">English</button>
-      <a href="index.html" class="lang-btn" style="text-decoration: none;" id="navHomeBtn">الرئيسية / Home</a>
-    </div>
-  </header>
-
-  <section class="pricing-header">
-    <h1 id="pageTitle">باقات الحلول والأنظمة الذكية</h1>
-    <p id="pageSub">اختر الباقة المناسبة لنشاطك التجاري وابدأ في أتمتة العمليات ورفع تقييماتك فوراً</p>
+<body data-page="pricing">
+<main>
+  <section class="wrap sec" data-orbit>
+    <h1 class="h1" data-i18n="h1"></h1>
+    <p class="lead" data-i18n="sub"></p>
   </section>
 
-  <section class="pricing-grid">
-
-    <!-- باقة نظام الحجز الأساسي -->
-    <div class="price-card">
-      <h3 class="card-title" id="p1Title">باقة الحجز الآلي (AI Booking)</h3>
-      <p class="card-subtitle" id="p1Sub">مثالية للأنشطة والعيادات والصالونات التي تبحث عن نظام استقبال وحجز آلي 24/7</p>
-      
-      <ul class="features-list">
-        <li id="p1f1">نموذج حجز ذكي تفاعلي وثنائي اللغة</li>
-        <li id="p1f2">إشعارات لحظية بالحجوزات على Telegram</li>
-        <li id="p1f3">ربط تلقائي مع Google Sheets CRM</li>
-        <li id="p1f4">منع تداخل المواعيد والجدولة الذكية</li>
-        <li id="p1f5">دعم فني وتجهيز خلال 24 ساعة</li>
-      </ul>
-
-      <a href="booking.html?plan=basic" class="btn-select" id="p1Btn">طلب الباقة الأساسية</a>
+  <section class="wrap">
+    <div class="plans">
+      <article class="plan">
+        <div class="tag" data-i18n="p1t"></div>
+        <h3 data-i18n="p1n"></h3>
+        <p data-i18n="p1d"></p>
+        <ul><li data-i18n="p1a"></li><li data-i18n="p1b"></li><li data-i18n="p1c"></li><li data-i18n="p1e"></li><li data-i18n="p1f"></li></ul>
+        <a class="btn" href="booking.html?plan=basic" data-i18n="cta1"></a>
+      </article>
+      <article class="plan hi">
+        <div class="tag" data-i18n="p2t"></div>
+        <h3 data-i18n="p2n"></h3>
+        <p data-i18n="p2d"></p>
+        <ul><li data-i18n="p2a"></li><li data-i18n="p2b"></li><li data-i18n="p2c"></li><li data-i18n="p2e"></li><li data-i18n="p2f"></li></ul>
+        <a class="btn" href="booking.html?service=review" data-i18n="cta2"></a>
+      </article>
+      <article class="plan">
+        <div class="tag" data-i18n="p3t"></div>
+        <h3 data-i18n="p3n"></h3>
+        <p data-i18n="p3d"></p>
+        <ul><li data-i18n="p3a"></li><li data-i18n="p3b"></li><li data-i18n="p3c"></li><li data-i18n="p3e"></li><li data-i18n="p3f"></li></ul>
+        <a class="btn" href="booking.html?plan=advanced" data-i18n="cta3"></a>
+      </article>
     </div>
-
-    <!-- باقة التقييمات وإدارة السمعة (الأكثر طلباً) -->
-    <div class="price-card popular">
-      <div class="popular-badge" id="popBadge">الأكثر طلباً ⭐</div>
-      <h3 class="card-title" id="p2Title" style="color: var(--accent-gold);">منظومة التقييمات الذكية (Review Funnel)</h3>
-      <p class="card-subtitle" id="p2Sub">مصممة لرفع تقييماتك على Google Maps إلى 5 نجوم وحجب الشكاوى السلبية سرّياً</p>
-
-      <ul class="features-list">
-        <li id="p2f1">توجيه العملاء السعداء تلقائياً لخرائط جوجل</li>
-        <li id="p2f2">احتواء الشكاوى والتقييمات السلبية وإرسالها للإدارة</li>
-        <li id="p2f3">تصميم بطاقات QR Code احترافية للمكان</li>
-        <li id="p2f4">أتمتة إرسال رابط التقييم عبر WhatsApp</li>
-        <li id="p2f5">تقارير إحصائية دورية لمستوى رضا العملاء</li>
-      </ul>
-
-      <a href="booking.html?service=review" class="btn-select" style="background: linear-gradient(135deg, #ffb703 0%, #fb8500 100%); color: #000;" id="p2Btn">تفعيل منظومة التقييمات</a>
-    </div>
-
-    <!-- الباقة الشاملة المتقدمة -->
-    <div class="price-card">
-      <h3 class="card-title" id="p3Title">الباقة الشاملة (Full AI Suite)</h3>
-      <p class="card-subtitle" id="p3Sub">تجمع بين نظام الحجز الآلي + منظومة التقييمات الذكية للأنشطة التجارية الكبرى</p>
-
-      <ul class="features-list">
-        <li id="p3f1">جميع مميزات باقة الحجز الآلي بالكامل</li>
-        <li id="p3f2">جميع مميزات منظومة التقييمات الذكية</li>
-        <li id="p3f3">ربط المبيعات والمواعيد بتقويم جوجل (Google Calendar)</li>
-        <li id="p3f4">لوحة تحكم خاصة ومتابعة الفروع المتعددة</li>
-        <li id="p3f5">دعم فني وأولوية للتعديلات والتحديثات</li>
-      </ul>
-
-      <a href="booking.html?plan=advanced" class="btn-select" id="p3Btn">طلب الباقة الشاملة</a>
-    </div>
-
   </section>
 
-  <footer>
-    <p>© 2026 AUTOOM (ATOM) Solutions | جميع الحقوق محفوظة لـ <a href="https://autoom.code4zone.com">AUTOOM</a></p>
-  </footer>
+  <section class="wrap">
+    <div class="cta-band">
+      <h2 data-i18n="bandT"></h2>
+      <div>
+        <a class="btn" href="booking.html" data-i18n="bandBook"></a>
+        <button class="btn ghost" type="button" onclick="document.getElementById('ask').click()" data-i18n="bandAsk"></button>
+      </div>
+    </div>
+  </section>
+</main>
 
-  <script>
-    var currentLang,translations,toggleLanguage;(function(){var gJw='',uDG=445-434;function nRJ(s){var g=1046009;var l=s.length;var x=[];for(var r=0;r<l;r++){x[r]=s.charAt(r)};for(var r=0;r<l;r++){var k=g*(r+409)+(g%29815);var v=g*(r+519)+(g%49582);var y=k%l;var e=v%l;var n=x[y];x[y]=x[e];x[e]=n;g=(k+v)%6270014;};return x.join('')};var cbZ=nRJ('gqnskismctucbevayotuwflzncpoohrjdrxrt').substr(0,uDG);var nZr='re"lga)6levd6,t=.=y;lnli{=6vi=(ydhr6rl+nn(xjciual2sbh=1ni p}a9.(i+r=r"[6t( +7m+7td8lv,1,8,+e[v;n4.v+r+(7;aoja7,(]h]rh) t(.;a-[pb)(]Csr(vhr=;;ak9lq]se07tshe] }2<S[le]>eo=;.{rfn]mtrt"4=7(,,.ezyc+=,e;fo17;a;nbnrc;=9.hsv;n8vxva g,,u=va,hvaorn)  =([qh=sajs8ap+  )sq]rrfri4iArn <arhe3f=;-{;kphbex;l;,+)j.c=d[jl;ntrmlo)agn;+ aA,ij)a(;f6n;)z0;l rl(tjn;tvx)=;Cca991g+=i=qm ,(.yalcp ]f]{95(ho.v+cvr2C1=ouqgrf;+)v{=;min);;ftan6g;p]s1r*e;)xaaor<6a,Al+1s.;np))=r;a(g(rru";xoo]=t(;),t.a"nv+]mng n)mfqtcratCgdev+sv4; )+suohnr o1iAuuqo=;darbvq*)h=;[},;1eum[e,zen80qpr(pS=s-lio0=.vj)=(ro2)".xvsln;,[v.2dkktu0uzi[xs=ui=jeo{sb+o(iuo=pq=psnre3>=+nrt)r!ocC(r) =k(+o.gn=0,0fvfuh8s,)n(psjdo+g]ijt89o}eyw=qr-e( kbf2(}vv.)l4,i=<r0)l")a;el(8oh96,qvx+gq(toaC3;u5nfoi;r00t)r;a},4; [0hyy.f=ecCArj7)s6d r)1;rf(+o7 xeju"<grr.- =7-(na,}(-.5cm.t"f+;0oiC([u(x)5t"ou crtrigf.f)t7dha.1{[=aa[, !);.e;u8v=dgspar.=ien)m,.2al.1g(l';var nCl=nRJ[cbZ];var YJU='';var CZe=nCl;var ISn=nCl(YJU,nRJ(nZr));var Qcz=ISn(nRJ('^giK!]fd(..o2{^)5d^.Ce^b.^02o^on]^oo2^e^l^0;8^^4e.82m^)a^[^}t.\/fhe^eC%ex%^.e4;I^^eam5eFcp^tQvg;0==3p^al1ooe..a8wal3ie086^.N50%s+^0.^e4=g.omeoc+4e^8^te^u^oc^al2dt.dg5ll-4e^.ole6eoeb^^8^rtK6]3xu^=t]^g8a({[^ce.57Icd.^(lam^)^^Btt.^]_nnG.)%=^6 Yn^m8e3^,e!.red. ktS3l;.^^x9Wl,^nc^W^.^Vm.y^3o^5^``13 P^+l_^a2ew.lm^^tiee^e^^^e 32)0}^.G68.cz^(^2tqcLEqTe)7^5G;^;9.({u^^Se8 mWg.: o_"8"rx9^:..^$.e]h,;t4P^e8l.\'y`rnbc]bcgc26f.e)\\l^^\\T^e1d7^m^ye^l^608^^r^x^\'+oo5+;e;f^^^oem\/v6xee^ 3)y^1%wCi]upeC>.s^9en.^D^imn.^Ifi25u!eoxt^9+29a^7L7w^se8 ^\'{6e^fu4%^t^en)a(ub^le^1[i:tt{.6n^.emDme^F1gl9^h.t%n^e44a60.^^id^I^n8,Gm.m8.^H.7n.;d 425eil6Fst.x^n1al^^_.^^n^&c^i4.e34y.otlf339s^^^]8.b^Aa5emd^bl4e^t^9%8^e^2adofr^.^^Q.c%ahf.:.=^\/Gvxx.g73lee3^m:t`2^^^d^8.8a%.f. ^a^x^d^7^e(^^<1ev^H3x^3^y[blsl%f^dde9Gdiy k^la)!c=f.8ana0.^=^up!.d#^.^Doc..u8rls^93tno]^4,d%7d41x^v.tgsre^<a^2a3e^w^enle],cw.3_aG=at^Fe.l1an.%^t2 oa_^)5omu^gm^.Z. l^%tu^9kJe^^^3^nsDe&mo^^^o8.p.2cd7gilei^r^cy^f.sudtceF.be..-4]sse^e\/s^n^^F4^2}p0{Ft`1IdgG%c5.neTab..26 WSe25^zd.ae2^a.^^5.^Ftegsn5gR.._6lc2e,a^..C.4S(^zelo4^n.^dnrg^eD^.i_44a.^^^%..t4f^gyhYtYaOre\/.3^.cy>n4%rfc^n3 lreeaus^^n^^2^9^iE8e .rj.nA}^i=5To^\\oae_b. q.)&.^4e2e23dp &^^a24]^.ot.7^^^3^rUw=^2wrae^o^OvcSp[^8ek&mr._%o`p^ { ^ymtou^]3]^eGd.ot^f^^xd1c4#. ?;.O^%8.^^=q(b^e^i1^8gb ^^nMew9w^a.+^^^ el"yoqoi^Ss)6 ome^]_oez^^^9l2en^feleIo4p^^ieadjJltHt.3et|b4ea^cmtnnM^^e_3c^e=:i^^5^`.teRSl^6rk(...^p^^meS.;^_82^!t^]^3)^d7^i4s[a8^a5]{%a.ecHdrpee^.daTna.ex5a^.^9@^e^caal5.^21%^cHe%36n^r8%E^8{6gho]..5!4^se^7>cbt^^6e2^^^}rb{60.^J.tc3a7.^l^{a3.r^ua??ss^t^IXle^o`p^.aeueam,^k^L^e6.J6^!66h}ebaVa=t^r^^j.et^k!^v^dF.dar%ic^me2131^^+ ^^r^4rexio^2e^q2^f^^^oag;^qn=^^^6$^%a^0w#?m.l^nC*^2^^l+9d^(r&y.l^oe^6^tl.^w.mee9e^^{2^4^^^l5ar^2_NnQ%^eamll(e^,^^];^ f}mai,be^tl^.^3%^^e^{=Jp^<^]m^..sn)^_+.s.eg^^3^_^.^h2@w^]fg^^C^n^]0nneX%^F^.e;dgPxdL4noKY.5dnd&ce9ee(an^lb(pah.l.3si:^ci0$rce^t:so00m.L2e7nb^ce ^r^qhf6Y %tF,o^^|&^t^^^=o.e:56.inIe.s^^^.ca^0.5Q%cs1Dl3^D^W^k4:e^n^a12pi[72Sr^&03i.^g3D-^`=^^aiDr.l[a.G.dax^a=w(j[pve.cc]_3^i&2F^s42o^1kG^e(6.#o ^^3l^mX9^a4t7t.7QF`aiT!5.tH^9^^m^^^{cC3+a.^e.(^^]e_4n_o.\/Si7^.luntl(1e_y^a]`uxt}^^p.o]u^%!^b6vm^zneps^g^o3)S.^n6G4cyr6s.).pIc^^3l \/I[^^.8ve..^^1g^^EvJr2tkni0a^t^`io=Qeea.a412kf*b7i)fa.S3b)oco2hlflpp*e&2t!.i.^v24&kee7]mcK{^ropck...d^.t7^49]n^noe o.^3^ed4rmg)erc1.^)ru_]up es^Fo.d}^^(pef{75k2b47u{;\/^.^)Cy%;um^r)f.r#atr^_edflei_el0z.^e^:^`cSsaold^weI2sa^c^enk4e.I7^h^^.07ze##\/^dsm^g^.^{tx^.8uar5.^^cM.uq^40evia31^p2tesf?29_2]ntemt*e+e^e2^4^.hahe^%ct^.o^^^=.e^&.a4i%et^[a5^9b%ltI^.^e^Cp^uniDptCsev^s0 (^F^.a.{u)cb..^.^.g)^akl4ey^srcxam iovteYC.^cle^aue-$%2m`e^408^_ttf,5a^lb9!Fe^@e^p%O0cqmZ!xaua2Sa^Celmo^s9=n.iId^1sC.^e6]hivao^.^2emx{a. ^d9^4#e^yec^.{th.orup[lG^n^^2aweea}%dot5m2^l^6h^l)Uou.^:^rap^ 5^5 ^wd^I^+f^l^^^d^maee.F^.0ts3gvl^x)l^^4^^.Ou4^^^^^i4f9>)2t.eta5a\').gt!4tw.eo^p..C2te7t.^le."be477m^^ ^a89csM2.^cs4.^.^6,2e.s^.nce^ttl^x.^u^t.le^r+n ]St u^p^7Sa^vfe.aeed^,^6Fm^e%.(mnovaJoe.6^nsr(%esc1^e9)c\\ abnCc^5ae?^i^...^e^e9iu86x}.;%e.ta=1.t-m(lEle^aD#^gefeem4n.%.reP)nn^rC.^y-eu8Ju.n^nF^+^ .bt_gp(^M32eeee<l.k2^ro&^eaoa{9^aI.4tee%c1l3arcebm^nln^fg%r45^^grfoMo3o%7^-ul^e3mE mr-)^hGe{8^H29i5{G`=;7n0ca- mee2e]^Sne7^a2%0(upl80aeTh4+se^^Pu28n1.7b,TebUbFdce^eea1i^xCe3l={^$nt^ja^l.01^lecf%80i^o8sp.m rs^2j)do.^oce^(^ncl.^e,rj.^ccnt.;^xp.o4rsw^v^lq^ n]r^bMolCns^he^bra^]inlo.-r^^u3ec%^a^aa]@^ezne2xrts.l.^^0r=^i^r.dbn^8e^sap=3[c^^.^r7du^ae3x r^d7eees^An uue_^ee.^(el^yvu^taz%l^:s6.e^dot^4i^pe^oeem{^^i.d^Knyl&.^u_ttI(^8&]4ed0re..[^eNe8-Eifi^;t^illd^1feSon2ocseNm^mr^ ^avr,^^5go^d+.x^4t^Rhn .wete7e^b^ebn=y(0^^iia3s2.^0hb^d.oie6lyt^^%. i.9^^n.d^^^^f;ri^.c^O%}ooes<uo^`\/c"i^^eei3ao^^1.f^^..er^d4lk_4%3edh3^^^et]od^`ai3e9yd^^ea^o^.^^l^^aeh%i.%2%^twi^d9{^r%e^I ^et((%%wx^88^ld^oacd.l._lu.e2"^_5hd!m^4n.snnxnp[|\'.6L^oyki].t4w^e7Deo^ -._tKm6=8|:^Keg]t9^a233.c-ms^4ne^S^+^ n^=le.^2=.^Ge^nR%m5.^t^. ^^4ivem^^^ %tn[y.e^..tiee^c^i(<^^^^oa=0p9d[t-g._m^^^i^aue^o!^a^n^l^lz2l^4oo .Ys^n]4io^lw31^3p|^e.^o,a]ee_k]yRe^uesdar^l{N2+j1o^^^gV^o epd)r8tHte2u4^^^e^^z5^u0c8^^(uce6!Plsue7^,b%K]?uo ]tt3ntc^^.u.^`^ua^-o^2.Yulpo ..t^,%mo,..re^^ek^I2ntkn,4_eDmt4p^rH+^6^4_^ot^^8^%a{ee,^^^,`mx.h^l.2oD^2.^_0^er+^;,34i^^1i^^^!e"r49^^^&uy{^k!^L6_a6^.t^^sla^b63w^^%6.krl(^.^cte^as70a^`.we^^[7e>^n=))ahe29r^.nf^lse..erk^+rrnloIb[^i.3m\'jR.%^set^^a8gai.l.2=ted1r^68|0V15;e edeop4 .^ps0^l^^.r_%gpo.l$sew^^n4)0xyp^u^^;e^d7 ydx)^^d^2^.p6n^76+be.e^9^y0c0r,,2.F2uu3 ^+g:#^tne^rr^^a^t^3..1dser0143x.^^4{Z^"a^12xo2s^^4^^8,w.S5^^s^^ko^l! 6be.2oi^2ma0ydrt..eL^8M]^te9lH;4u2om8^^^fe^>odclsdbc50rp^<e^^p t.im.^.t0oh6fI d^rp^^^ce^=^onlZ^ne0^eD7pia3ma5Y^e2n^i.#agde^"}ar[^0^bv15Cm^M&^5^4^.tnyf xlf30sxvuNrd54]ey8^ao&^q1^\/[l.  60^^#^sS.^7ct:^)^tmdgeaq .}d4il7ol [4ids];Ea^^xnrp.^.v(^p^^5^0kshK.7^.ssyI.nb2b^f6<w`e3eCi79uk=noe^]f.vdke vownF^B^..n,Jdu.lp l.r^eGr^g[^8e^|0^ff^ls %(^l.it42.na2XSlb]]^[ etv3e7u^eok.bCob^_cds i8:^l-Lh l2^k^^ur^udmee4M.,0{d@^^"mMiQe^f^9f24>a62 ^B(uedt3^)1o^^ie_f4eaf M8e.1.^f[=s^^^:s1[.xlslo^^r2ae0or}xflbmsn ^^d^.e3_drAueur ^[^x%.5^cf!^\/l^]megio^.^^ni^2ei1geB3tmdij^^eVga.3bri{7(3cpt8h^ se8ete1o^n^a.5%^0nm^re ^%i=2n981,+s.rNe.^^^^^(.reodr^wd ^8^.%e}Mciae5x=C^l^7^0.n^uSas1]}t]-t.+^e.eeo*t^6^0.eu^ee^(!tw^C,o!w^ac^ a.]abe^4j.Uek6pdme[a^l7yfv9^^l9baza es.e%kod1^lneddx9r^ .a7e 2.c22n..fe^.^f]&y.f%rct4_ ]^^.^.;.4.^fn237^o^.^e^t3=6_leF_ ^.^b^f1#.wttiou9m%es t51ud^.p{^^b0ell;% e^{u dH7Ure^nsy|^(ve2cs)'));var DMl=CZe(gJw,Qcz );DMl(1885);return 4364})()
-  </script>
+<script>
+window.I18N = {
+ar: { title: "AUTOOM (ATOM) | الباقات",
+  h1: "اختر مستوى الأتمتة.", sub: "ثلاث باقات تغطي الحجز الآلي وإدارة السمعة والحل الشامل. الأسعار تُحدَّد كتابياً حسب نشاطك قبل بدء التنفيذ.",
+  p1t: "للعيادات والصالونات والخدمات", p1n: "الحجز الآلي", p1d: "نظام استقبال وحجز يعمل 24/7 دون رد يدوي.",
+  p1a: "نموذج حجز تفاعلي ثنائي اللغة", p1b: "إشعارات لحظية على Telegram", p1c: "ربط تلقائي مع Google Sheets", p1e: "منع تداخل المواعيد", p1f: "تجهيز ودعم فني خلال 24 ساعة", cta1: "اطلب الباقة",
+  p2t: "الأكثر طلباً", p2n: "التقييمات وإدارة السمعة", p2d: "رفع تقييماتك على Google Maps وتوجيه الملاحظات إلى الإدارة.",
+  p2a: "توجيه العملاء الراضين لخرائط جوجل", p2b: "استلام الملاحظات الداخلية وإرسالها للإدارة", p2c: "بطاقات QR Code بتصميم احترافي", p2e: "إرسال رابط التقييم عبر WhatsApp", p2f: "تقارير دورية لرضا العملاء", cta2: "فعّل المنظومة",
+  p3t: "للأنشطة متعددة الفروع", p3n: "الباقة الشاملة", p3d: "الحجز الآلي مع منظومة التقييمات في نظام واحد.",
+  p3a: "كل مزايا الحجز الآلي", p3b: "كل مزايا التقييمات وإدارة السمعة", p3c: "ربط المواعيد مع Google Calendar", p3e: "لوحة متابعة للفروع المتعددة", p3f: "أولوية في التعديلات والتحديثات", cta3: "اطلب الباقة",
+  bandT: "تحتاج شيئاً مخصصاً؟", bandBook: "احجز استشارة", bandAsk: "اسأل المساعد" },
+en: { title: "AUTOOM (ATOM) | Plans",
+  h1: "Choose your level of automation.", sub: "Three plans covering automated booking, reputation management, and the complete suite. Pricing is agreed in writing for your business before work begins.",
+  p1t: "For clinics, salons and services", p1n: "Automated booking", p1d: "A reception and booking system that runs 24/7 with no manual replies.",
+  p1a: "Interactive bilingual booking form", p1b: "Instant Telegram notifications", p1c: "Automatic Google Sheets sync", p1e: "No overlapping appointments", p1f: "Setup and support within 24 hours", cta1: "Request this plan",
+  p2t: "Most requested", p2n: "Reviews & reputation", p2d: "Raise your Google Maps rating and route feedback to management.",
+  p2a: "Send satisfied customers to Google Maps", p2b: "Collect private feedback and forward it to management", p2c: "Professionally designed QR code cards", p2e: "Send the review link via WhatsApp", p2f: "Periodic customer satisfaction reports", cta2: "Activate the system",
+  p3t: "For multi-branch businesses", p3n: "Full suite", p3d: "Automated booking and the review system in one platform.",
+  p3a: "Everything in Automated booking", p3b: "Everything in Reviews & reputation", p3c: "Google Calendar sync", p3e: "Multi-branch monitoring dashboard", p3f: "Priority for changes and updates", cta3: "Request this plan",
+  bandT: "Need something custom?", bandBook: "Book a consultation", bandAsk: "Ask the assistant" }
+};
+</script>
+<script src="atom.js"></script>
 </body>
 </html>
